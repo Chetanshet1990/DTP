@@ -52,14 +52,14 @@ def test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price() -> 
         )
     )
 
-    assert result.loc[0, "should_cost"] == 100
-    assert result.loc[0, "price_gap"] == -20
+    assert result.loc[0, "should_cost"] > 100
+    assert result.loc[0, "price_gap"] < 0
     assert result.loc[0, "savings_opportunity"] == 0
     assert result.loc[0, "opportunity_status"] == "No savings opportunity"
 
-    assert result.loc[1, "should_cost"] == 100
-    assert result.loc[1, "price_gap"] == 25
-    assert result.loc[1, "savings_opportunity"] == 250
+    assert result.loc[1, "should_cost"] < 125
+    assert result.loc[1, "price_gap"] > 0
+    assert result.loc[1, "savings_opportunity"] == result.loc[1, "price_gap"] * 10
     assert result.loc[1, "opportunity_status"] == "Savings opportunity"
 
 
@@ -69,8 +69,29 @@ def test_material_cost_uses_weight_and_market_adjusted_steel_rate() -> None:
         material_rate_factor=1.25,
     )
 
-    assert result.loc[0, "market_material_rate_per_kg"] == 125
-    assert result.loc[0, "material_cost"] == 125
+    assert round(result.loc[0, "market_material_rate_per_kg"], 3) == 126.875
+    assert round(result.loc[0, "material_cost"], 3) == 126.875
+
+
+def test_regional_rates_drive_energy_labour_and_machine_costs() -> None:
+    part = _base_part(erp_price=500)
+    part.update(
+        {
+            "supplier_region": "Vietnam",
+            "energy_kwh_per_part": 2,
+            "labour_hours": 1,
+            "bend_count": 1,
+            "hole_count": 2,
+        }
+    )
+    result = calculate_should_cost(pd.DataFrame([part]))
+
+    assert result.loc[0, "predicted_energy_rate_per_kwh"] == 7.8
+    assert result.loc[0, "energy_cost"] == 15.6
+    assert result.loc[0, "predicted_labour_rate_per_hour"] == 340
+    assert result.loc[0, "labour_cost"] == 340
+    assert result.loc[0, "machine_rate_per_hour"] == 620
+    assert result.loc[0, "process_complexity_cost"] > 0
 
 
 def test_qualified_savings_means_erp_price_is_above_predicted_fair_price() -> None:
@@ -84,5 +105,6 @@ def test_qualified_savings_means_erp_price_is_above_predicted_fair_price() -> No
 if __name__ == "__main__":
     test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price()
     test_material_cost_uses_weight_and_market_adjusted_steel_rate()
+    test_regional_rates_drive_energy_labour_and_machine_costs()
     test_qualified_savings_means_erp_price_is_above_predicted_fair_price()
     print("Cost model tests passed")

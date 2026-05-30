@@ -210,22 +210,22 @@ Material Cost =
 Weight kg x Market Adjusted Steel Rate / kg
 
 Energy Cost:
-Manufacturing energy consumption.
+Predicted using part-level energy consumption and energy tariff for supplier country of origin.
 
 Labor Cost:
-Region-based labor rates.
+Predicted using part-level labor hours and labor rate for supplier country of origin.
 
-Bend/Hole Complexity Cost:
-Derived from bend count and hole count extracted from sheet metal drawings.
+Bends and Holes:
+Predicted as machine operation cost using bend count, hole count, operation time assumptions, thickness factor, and country-level machine hour rate.
 
-Surface Finish Cost:
-Derived from finish type such as painted, powder coated, zinc plated, or passivated.
+Surface Finish:
+Included because sheet metal finishing is a real conversion cost. Estimated using blank area and finish type.
 
 Overhead:
-Factory and operational costs.
+Applied to conversion cost using country-level overhead assumptions.
 
 Supplier Margin:
-Expected supplier profit margin.
+Predicted using minimum industry margin by part category.
 
 Qualified Savings Opportunity:
 Calculated only when ERP/current supplier price exceeds predicted fair price.

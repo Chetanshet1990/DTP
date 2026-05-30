@@ -300,6 +300,10 @@ def render_part_detail(
         "Savings is counted only when ERP/current supplier price is higher than predicted fair price. "
         "If fair price is higher than ERP price, savings is ₹0."
     )
+    st.caption(
+        "The chart indexes current ERP price to 100. A predicted fair price index below 100 means "
+        "the should-cost model is lower than the current ERP price."
+    )
 
     breakdown_pct = cost_breakdown_percent(selected_part)
     indexed_prices = price_development_index(selected_part, erp_transactions)
@@ -397,6 +401,62 @@ def render_part_detail(
         hide_index=True,
     )
 
+    with st.expander("How predicted fair price is calculated"):
+        st.write(
+            "Predicted fair price is the should-cost estimate built from material, energy, "
+            "labour, machine operations, surface finish, overhead, and minimum supplier margin."
+        )
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "driver": "Steel material",
+                        "logic": "weight kg x live-market-adjusted steel rate x grade factor x thickness factor",
+                        "value": money(selected_part["material_cost"]),
+                    },
+                    {
+                        "driver": "Energy",
+                        "logic": "part energy kWh x predicted energy tariff for supplier COO",
+                        "value": money(selected_part["energy_cost"]),
+                    },
+                    {
+                        "driver": "Labour",
+                        "logic": "labour hours x predicted labour rate for supplier COO",
+                        "value": money(selected_part["labour_cost"]),
+                    },
+                    {
+                        "driver": "Bends and holes",
+                        "logic": "operation minutes x machine hour rate for supplier COO",
+                        "value": money(selected_part["process_complexity_cost"]),
+                    },
+                    {
+                        "driver": "Surface finish",
+                        "logic": "blank area x finish-specific rate per square meter",
+                        "value": money(selected_part["surface_finish_cost"]),
+                    },
+                    {
+                        "driver": "Overhead",
+                        "logic": "regional overhead applied to conversion cost",
+                        "value": money(selected_part["overhead"]),
+                    },
+                    {
+                        "driver": "Supplier margin",
+                        "logic": "minimum industry margin for the part category",
+                        "value": money(selected_part["supplier_margin"]),
+                    },
+                ]
+            ),
+            width="stretch",
+            hide_index=True,
+        )
+        st.caption(
+            f"COO: {selected_part['supplier_region']}; "
+            f"energy rate: {money(selected_part['predicted_energy_rate_per_kwh'])}/kWh; "
+            f"labour rate: {money(selected_part['predicted_labour_rate_per_hour'])}/hour; "
+            f"machine rate: {money(selected_part['machine_rate_per_hour'])}/hour; "
+            f"minimum margin: {percent(selected_part['predicted_supplier_margin_pct'])}."
+        )
+
 
 def geo_cost_comparison(selected_part: pd.Series, geo_indices: pd.DataFrame) -> pd.DataFrame:
     rows = []
@@ -410,7 +470,7 @@ def geo_cost_comparison(selected_part: pd.Series, geo_indices: pd.DataFrame) -> 
         surface_finish_cost = selected_part["surface_finish_cost"]
         overhead = (
             (energy_cost + labour_cost + process_complexity_cost + surface_finish_cost)
-            * selected_part["overhead_pct"]
+            * selected_part["predicted_overhead_pct"]
             / 100
             * region["overhead_index"]
         )
@@ -422,7 +482,7 @@ def geo_cost_comparison(selected_part: pd.Series, geo_indices: pd.DataFrame) -> 
             + surface_finish_cost
             + overhead
         )
-        margin = base_cost * selected_part["supplier_margin_pct"] / 100
+        margin = base_cost * selected_part["predicted_supplier_margin_pct"] / 100
         logistics = (base_cost + margin) * region["logistics_pct"] / 100
         rows.append(
             {

@@ -45,6 +45,15 @@ Material Cost =
 Weight kg x Market Adjusted Steel Rate / kg
 ```
 
+Other should-cost drivers:
+
+- Energy: part kWh multiplied by predicted energy tariff for the supplier country of origin.
+- Labour: part labour hours multiplied by predicted labour rate for the supplier country of origin.
+- Bends and holes: treated as machine operation cost using operation minutes and country-level machine hour rate.
+- Surface finish: included because sheet metal finishes such as painting, powder coating, zinc plating, and passivation add real conversion cost; estimated from blank area and finish type.
+- Overhead: applied to conversion cost using a country-level overhead assumption.
+- Supplier margin: uses a minimum industry margin by part category, not the submitted supplier margin.
+
 Current live-data sources:
 
 - Steel index: FRED `WPU101`, Producer Price Index for Iron and Steel
