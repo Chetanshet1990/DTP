@@ -32,6 +32,19 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## Deploy
+
+Recommended option for external users:
+
+1. Push this repository to GitHub.
+2. Open Streamlit Community Cloud: `https://share.streamlit.io`
+3. Create a new app from repository `Chetanshet1990/DTP`.
+4. Select branch `main`.
+5. Set main file path to `app.py`.
+6. Deploy.
+
+The deployed app will get a public `*.streamlit.app` URL that can be shared with external users.
+
 ## ERP Data Pipeline
 
 Clean and anonymize raw ERP procurement data:

@@ -14,7 +14,7 @@ from dtp.erp_pipeline import clean_erp_data
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
 PRICE_GAP_THRESHOLD = 5.0
-LOCAL_APP_URL = "http://localhost:8501"
+APP_HOME_URL = "./"
 
 
 st.set_page_config(
@@ -265,7 +265,7 @@ def get_app_view() -> str:
 def add_part_links(priced_parts: pd.DataFrame) -> pd.DataFrame:
     linked = priced_parts.copy()
     linked["part_id"] = linked["part_id"].map(
-        lambda value: f"{LOCAL_APP_URL}/?view=detail&part_id={quote(str(value))}"
+        lambda value: f"./?view=detail&part_id={quote(str(value))}"
     )
     return linked
 
@@ -374,7 +374,7 @@ def render_part_detail(
     priced_parts: pd.DataFrame,
     erp_transactions: pd.DataFrame,
 ) -> None:
-    st.markdown(f"[Back to portfolio]({LOCAL_APP_URL})")
+    st.markdown(f"[Back to portfolio]({APP_HOME_URL})")
     st.subheader(f"Illustrative direct spend digital twin analysis: {selected_part['part_id']}")
     st.caption(
         f"{selected_part['part_name']} | {selected_part['material_grade']} | "
