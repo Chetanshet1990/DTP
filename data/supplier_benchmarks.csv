@@ -1,0 +1,7 @@
+supplier,category,region,quality_ppm,on_time_delivery_pct,lead_time_days,commercial_risk_score
+SteelWorks,Bracket,India,820,93,18,42
+SteelWorks,Fabricated assembly,India,980,91,24,48
+PlatePro,Mounting plate,India,560,96,16,34
+FabriMax,Cover / panel,Vietnam,760,90,31,55
+PrecisionFab,Bracket,India,420,97,15,29
+PrecisionFab,Fabricated assembly,India,510,95,22,36

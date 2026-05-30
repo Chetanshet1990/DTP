@@ -1,0 +1,16 @@
+Part Number,Part Description,Category,Supplier Name,Supplier Country,PO Date,Quantity,Unit Price,Currency,Incoterms,Plant
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-01-18,500,3.65,USD,EXW,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-01-18,500,3.65,USD,EXW,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Euro Fab GmbH,Germany,2023-07-22,400,4.05,EUR,FOB,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2024-03-12,650,312,INR,EXW,Pune
+SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2024-05-17,320,6.15,USD,EXW,Pune
+SM-1002,Control Cabinet Mounting Plate,Mounting Plate,Euro Fab GmbH,Germany,2025-01-24,280,6.95,EUR,FOB,Pune
+SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2024-08-05,220,10.45,USD,FOB,Chennai
+SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2025-02-16,260,872,INR,FOB,Chennai
+SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2025-02-14,180,25.2,USD,EXW,Pune
+SM-1005,Sensor Guard Bracket,Bracket,Precision Fab Pvt Ltd,India,2023-06-19,750,5.85,USD,EXW,Bengaluru
+SM-1005,Sensor Guard Bracket,Bracket,Precision Fab Pvt Ltd,India,2024-09-28,900,515,INR,EXW,Bengaluru
+SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2025-04-11,620,6.65,USD,EXW,Pune
+SM-1007,Electrical Enclosure Panel,Panel,Viet Fabrication Co,Vietnam,2025-06-30,360,11.35,USD,FOB,Chennai
+SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fab Pvt Ltd,India,2025-08-04,240,18.9,USD,EXW,Bengaluru
+SM-1009,Incomplete Mounting Plate,Mounting Plate,Incomplete Supplier,India,,350,6.4,USD,EXW,Pune

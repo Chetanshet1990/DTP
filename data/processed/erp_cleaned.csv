@@ -1,0 +1,14 @@
+part_id,description,category,supplier_id,country,region,po_date,quantity,unit_price,currency,unit_price_usd,year,month
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2023-01-18,500,3.65,USD,3.65,2023,1
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_2,Germany,Europe,2023-07-22,400,4.05,EUR,4.374,2023,7
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2024-03-12,650,312.0,INR,3.744,2024,3
+SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2024-05-17,320,6.15,USD,6.15,2024,5
+SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_2,Germany,Europe,2025-01-24,280,6.95,EUR,7.506,2025,1
+SM-1003,Machine Safety Cover,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2024-08-05,220,10.45,USD,10.45,2024,8
+SM-1003,Machine Safety Cover,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2025-02-16,260,872.0,INR,10.464,2025,2
+SM-1004,Welded Support Frame,Fabricated assembly,Supplier_1,India,South Asia,2025-02-14,180,25.2,USD,25.2,2025,2
+SM-1005,Sensor Guard Bracket,Bracket,Supplier_4,India,South Asia,2023-06-19,750,5.85,USD,5.85,2023,6
+SM-1005,Sensor Guard Bracket,Bracket,Supplier_4,India,South Asia,2024-09-28,900,515.0,INR,6.18,2024,9
+SM-1006,Base Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2025-04-11,620,6.65,USD,6.65,2025,4
+SM-1007,Electrical Enclosure Panel,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2025-06-30,360,11.35,USD,11.35,2025,6
+SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_4,India,South Asia,2025-08-04,240,18.9,USD,18.9,2025,8

@@ -1,0 +1,7 @@
+region,material_index,energy_index,labour_index,overhead_index,logistics_pct
+India,1.00,1.00,1.00,1.00,2.5
+China,0.98,0.92,1.18,1.05,6.5
+Vietnam,1.03,0.95,0.86,0.92,5.5
+Mexico,1.06,1.08,1.34,1.10,7.0
+Eastern Europe,1.08,1.35,1.95,1.18,8.0
+USA,1.12,1.18,4.80,1.65,10.0
