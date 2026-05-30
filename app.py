@@ -11,6 +11,7 @@ import streamlit as st
 from dtp.cost_model import PRICE_GAP_THRESHOLD, calculate_should_cost
 from dtp.erp_pipeline import clean_erp_data
 from dtp.market_data import get_market_adjustment
+from dtp.ml_models import run_ai_pricing_models
 
 
 BASE_DIR = Path(__file__).parent
@@ -563,6 +564,8 @@ priced_parts = calculate_should_cost(
     parts_raw,
     material_rate_factor=market_adjustment.material_rate_factor,
 )
+ai_result = run_ai_pricing_models(priced_parts)
+ai_priced_parts = ai_result.priced_parts
 geo_indices = load_csv("geo_cost_indices.csv")
 benchmarks = load_csv("supplier_benchmarks.csv")
 
@@ -631,9 +634,10 @@ st.caption(
     "Qualified savings excludes parts where predicted fair price is higher than ERP/current supplier price."
 )
 
-tab_overview, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, tab_scenario = st.tabs(
+tab_overview, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, tab_scenario = st.tabs(
     [
         "Portfolio",
+        "AI Models",
         "ERP Intelligence",
         "Cost Drivers",
         "Explainability",
@@ -707,6 +711,111 @@ with tab_overview:
         x1=priced_parts["should_cost"].max() * 1.1,
         y1=priced_parts["should_cost"].max() * 1.1,
         line={"dash": "dash", "color": "#555"},
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+with tab_ai:
+    st.subheader("AI Pricing, Anomaly Detection, and Segmentation")
+    st.caption(
+        "Linear Regression, Random Forest, and XGBoost learn the explainable should-cost as "
+        "the fair-price target. Isolation Forest flags unusual pricing patterns, and K-Means "
+        "segments similar parts."
+    )
+
+    ai_columns = [
+        "part_id",
+        "part_name",
+        "category",
+        "erp_price",
+        "should_cost",
+        "linear_regression_fair_price",
+        "random_forest_fair_price",
+        "xgboost_fair_price",
+        "ai_predicted_fair_price",
+        "ai_price_gap_pct",
+        "ai_savings_opportunity",
+        "isolation_forest_flag",
+        "kmeans_cluster",
+    ]
+    st.dataframe(
+        ai_priced_parts[ai_columns].style.format(
+            {
+                "erp_price": "₹{:,.0f}",
+                "should_cost": "₹{:,.0f}",
+                "linear_regression_fair_price": "₹{:,.0f}",
+                "random_forest_fair_price": "₹{:,.0f}",
+                "xgboost_fair_price": "₹{:,.0f}",
+                "ai_predicted_fair_price": "₹{:,.0f}",
+                "ai_price_gap_pct": "{:,.1f}%",
+                "ai_savings_opportunity": "₹{:,.0f}",
+            }
+        ),
+        width="stretch",
+        hide_index=True,
+    )
+
+    metrics_col, clusters_col = st.columns(2)
+    with metrics_col:
+        st.caption("Supervised model fit on demo data")
+        st.dataframe(
+            ai_result.model_metrics.style.format(
+                {
+                    "training_mae": "₹{:,.2f}",
+                    "training_r2": "{:,.3f}",
+                }
+            ),
+            width="stretch",
+            hide_index=True,
+        )
+    with clusters_col:
+        st.caption("K-Means part clusters")
+        st.dataframe(
+            ai_result.cluster_summary.style.format(
+                {
+                    "avg_erp_price": "₹{:,.0f}",
+                    "avg_ai_fair_price": "₹{:,.0f}",
+                    "avg_gap_pct": "{:,.1f}%",
+                    "qualified_savings": "₹{:,.0f}",
+                }
+            ),
+            width="stretch",
+            hide_index=True,
+        )
+
+    top_importance = ai_result.feature_importance.groupby(
+        ["algorithm", "feature"],
+        as_index=False,
+    ).agg(importance=("importance", "mean"))
+    top_importance = (
+        top_importance.sort_values(["algorithm", "importance"], ascending=[True, False])
+        .groupby("algorithm")
+        .head(8)
+    )
+    fig = px.bar(
+        top_importance,
+        x="importance",
+        y="feature",
+        color="algorithm",
+        facet_col="algorithm",
+        orientation="h",
+        labels={"importance": "Feature importance", "feature": "Feature"},
+    )
+    fig.update_yaxes(matches=None, showticklabels=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+    fig = px.scatter(
+        ai_priced_parts,
+        x="ai_predicted_fair_price",
+        y="erp_price",
+        color="isolation_forest_flag",
+        symbol="kmeans_cluster",
+        size="annual_volume",
+        hover_name="part_name",
+        hover_data=["category", "ai_price_gap_pct", "kmeans_cluster"],
+        labels={
+            "ai_predicted_fair_price": "AI predicted fair price",
+            "erp_price": "ERP supplier price",
+        },
     )
     st.plotly_chart(fig, use_container_width=True)
 

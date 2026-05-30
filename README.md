@@ -11,6 +11,7 @@ https://github.com/Chetanshet1990/DTP
 ## Features
 
 - Calculates should-cost for sheet metal brackets, mounting plates, covers, panels, and fabricated assemblies
+- Applies Linear Regression, Random Forest, XGBoost, Isolation Forest, and K-Means to the priced part dataset
 - Compares ERP/current supplier price with predicted fair price
 - Flags price gaps above 5%
 - Counts savings opportunity only when predicted fair price is lower than ERP/current supplier spend
@@ -68,6 +69,18 @@ Qualified Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annua
 ```
 
 If predicted fair price is higher than ERP/current supplier price, the part is counted as ₹0 qualified savings.
+
+## AI Algorithms Implemented
+
+The current prototype uses these algorithms in `dtp/ml_models.py` and displays them in the Streamlit `AI Models` tab:
+
+- Linear Regression: supervised fair-price prediction from engineering, supplier, and volume features.
+- Random Forest: non-linear supervised fair-price prediction plus feature importance.
+- XGBoost: gradient-boosted supervised fair-price prediction plus feature importance.
+- Isolation Forest: unsupervised anomaly detection for unusual price and part-cost patterns.
+- K-Means: unsupervised segmentation of similar parts into cost/engineering clusters.
+
+On macOS, native XGBoost may require the OpenMP runtime (`libomp`). If that runtime is unavailable, the app keeps running with a marked gradient-boosting compatibility fallback; deployed Linux environments commonly provide the required runtime.
 
 ## Run
 
@@ -143,7 +156,7 @@ The portal also accepts raw ERP CSV or Excel uploads in the sidebar and applies 
 
 ## Dataset
 
-The app includes sample CSV datasets in `data/` and an Excel workbook at `data/digital_twin_pricing_demo.xlsx`.
+The app includes sample CSV datasets in `data/` and an Excel workbook at `data/digital_twin_pricing_demo.xlsx`. The default `data/sample_parts.csv` file contains 30 synthetic sheet-metal items with all required cost-twin and ML attributes populated. The default `data/erp_raw_sample.csv` file contains 95 synthetic historical ERP transactions across 2023-2025 for those parts.
 
 For the upload flow, use the workbook's `Parts` sheet exported as Excel/CSV, or upload any `.xlsx`, `.xls`, or `.csv` file with these columns:
 

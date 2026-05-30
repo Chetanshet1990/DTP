@@ -1,14 +1,96 @@
 part_id,description,category,supplier_id,country,region,po_date,quantity,unit_price,currency,unit_price_usd,year,month
-SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2023-01-18,500,3.65,USD,3.65,2023,1
-SM-1001,Motor Mounting Bracket,Bracket,Supplier_2,Germany,Europe,2023-07-22,400,4.05,EUR,4.374,2023,7
-SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2024-03-12,650,312.0,INR,3.744,2024,3
-SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2024-05-17,320,6.15,USD,6.15,2024,5
-SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_2,Germany,Europe,2025-01-24,280,6.95,EUR,7.506,2025,1
-SM-1003,Machine Safety Cover,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2024-08-05,220,10.45,USD,10.45,2024,8
-SM-1003,Machine Safety Cover,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2025-02-16,260,872.0,INR,10.464,2025,2
-SM-1004,Welded Support Frame,Fabricated assembly,Supplier_1,India,South Asia,2025-02-14,180,25.2,USD,25.2,2025,2
-SM-1005,Sensor Guard Bracket,Bracket,Supplier_4,India,South Asia,2023-06-19,750,5.85,USD,5.85,2023,6
-SM-1005,Sensor Guard Bracket,Bracket,Supplier_4,India,South Asia,2024-09-28,900,515.0,INR,6.18,2024,9
-SM-1006,Base Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2025-04-11,620,6.65,USD,6.65,2025,4
-SM-1007,Electrical Enclosure Panel,Cover / panel,Supplier_5,Vietnam,Southeast Asia,2025-06-30,360,11.35,USD,11.35,2025,6
-SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_4,India,South Asia,2025-08-04,240,18.9,USD,18.9,2025,8
+SM-1020,Material Handling Tray,Fabricated assembly,Supplier_5,India,South Asia,2023-02-09,490,2451.5,INR,29.418,2023,2
+SM-1028,Motor Base Welded Assembly,Fabricated assembly,Supplier_9,Vietnam,Southeast Asia,2023-02-09,580,27.44,USD,27.44,2023,2
+SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2023-02-10,1840,504.78,INR,6.0574,2023,2
+SM-1006,Base Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2023-02-10,2360,532.62,INR,6.3914,2023,2
+SM-1004,Welded Support Frame,Fabricated assembly,Supplier_1,India,South Asia,2023-02-11,700,1912.79,INR,22.9535,2023,2
+SM-1019,Access Door Panel,Cover / panel,Supplier_9,Vietnam,Southeast Asia,2023-02-11,990,12.99,USD,12.99,2023,2
+SM-1024,Conveyor Transfer Chute,Fabricated assembly,Supplier_7,USA,North America,2023-02-11,280,84.1,USD,84.1,2023,2
+SM-1018,Hydraulic Manifold Plate,Mounting plate,Supplier_6,China,East Asia,2023-02-14,940,14.18,USD,14.18,2023,2
+SM-1025,Photo Sensor L Bracket,Bracket,Supplier_3,India,South Asia,2023-02-14,8170,93.48,INR,1.1218,2023,2
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2023-02-16,3390,288.51,INR,3.4621,2023,2
+SM-1003,Machine Safety Cover,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2023-02-16,1130,9.55,USD,9.55,2023,2
+SM-1007,Electrical Enclosure Panel,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2023-02-16,1350,10.13,USD,10.13,2023,2
+SM-1016,Cooling Duct Assembly,Fabricated assembly,Supplier_8,Vietnam,Southeast Asia,2023-02-17,780,19.66,USD,19.66,2023,2
+SM-1026,Robot Pedestal Plate,Mounting plate,Supplier_7,USA,North America,2023-02-17,260,54.97,USD,54.97,2023,2
+SM-1013,Cable Clamp Bracket,Bracket,Supplier_4,India,South Asia,2023-02-18,7560,135.26,INR,1.6231,2023,2
+SM-1030,Busbar Insulation Cover,Cover / panel,Supplier_7,USA,North America,2023-02-18,620,22.26,USD,22.26,2023,2
+SM-1005,Sensor Guard Bracket,Bracket,Supplier_5,India,South Asia,2023-02-20,2920,472.35,INR,5.6682,2023,2
+SM-1022,Plc Rack Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2023-02-21,1790,481.58,INR,5.779,2023,2
+SM-1012,Heavy Duty Skid Frame,Fabricated assembly,Supplier_6,China,East Asia,2023-02-22,350,38.64,USD,38.64,2023,2
+SM-1023,Gearbox Splash Cover,Cover / panel,Supplier_6,China,East Asia,2023-02-22,1190,9.18,USD,9.18,2023,2
+SM-1011,Operator Console Side Panel,Cover / panel,Supplier_3,India,South Asia,2023-02-23,1100,984.03,INR,11.8084,2023,2
+SM-1014,Compressor Mounting Plate,Mounting plate,Supplier_1,India,South Asia,2023-02-24,1130,991.6,INR,11.8992,2023,2
+SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_5,India,South Asia,2023-02-25,850,1446.32,INR,17.3558,2023,2
+SM-1010,Drive Cabinet Back Plate,Mounting plate,Supplier_6,China,East Asia,2023-02-25,1400,8.78,USD,8.78,2023,2
+SM-1015,Inverter Cover Panel,Cover / panel,Supplier_7,USA,North America,2023-02-25,810,20.25,USD,20.25,2023,2
+SM-1017,Limit Switch Bracket,Bracket,Supplier_9,Vietnam,Southeast Asia,2023-02-25,6700,1.98,USD,1.98,2023,2
+SM-1009,Pump Support Angle Bracket,Bracket,Supplier_6,China,East Asia,2023-02-26,2890,4.97,USD,4.97,2023,2
+SM-1021,Actuator Support Bracket,Bracket,Supplier_7,USA,North America,2023-02-26,1050,12.71,USD,12.71,2023,2
+SM-1027,Terminal Box Cover,Cover / panel,Supplier_4,India,South Asia,2023-02-26,2800,328.41,INR,3.9409,2023,2
+SM-1029,Cable Tray Support Bracket,Bracket,Supplier_6,China,East Asia,2023-02-26,4530,3.66,USD,3.66,2023,2
+SM-1026,Robot Pedestal Plate,Mounting plate,Supplier_1,India,South Asia,2023-12-20,180,3520.0,INR,42.24,2023,12
+SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2024-06-08,2410,522.25,INR,6.267,2024,6
+SM-1012,Heavy Duty Skid Frame,Fabricated assembly,Supplier_6,China,East Asia,2024-06-08,460,40.97,USD,40.97,2024,6
+SM-1015,Inverter Cover Panel,Cover / panel,Supplier_7,USA,North America,2024-06-08,980,23.0,USD,23.0,2024,6
+SM-1019,Access Door Panel,Cover / panel,Supplier_9,Vietnam,Southeast Asia,2024-06-08,1020,13.64,USD,13.64,2024,6
+SM-1024,Conveyor Transfer Chute,Fabricated assembly,Supplier_7,USA,North America,2024-06-08,340,84.37,USD,84.37,2024,6
+SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_5,India,South Asia,2024-06-09,970,1548.77,INR,18.5852,2024,6
+SM-1007,Electrical Enclosure Panel,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2024-06-10,1690,11.28,USD,11.28,2024,6
+SM-1029,Cable Tray Support Bracket,Bracket,Supplier_6,China,East Asia,2024-06-10,4860,3.86,USD,3.86,2024,6
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2024-06-11,4050,297.98,INR,3.5758,2024,6
+SM-1011,Operator Console Side Panel,Cover / panel,Supplier_3,India,South Asia,2024-06-11,1240,976.11,INR,11.7133,2024,6
+SM-1022,Plc Rack Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2024-06-11,2270,505.59,INR,6.0671,2024,6
+SM-1003,Machine Safety Cover,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2024-06-13,1170,10.49,USD,10.49,2024,6
+SM-1025,Photo Sensor L Bracket,Bracket,Supplier_3,India,South Asia,2024-06-13,10420,105.33,INR,1.264,2024,6
+SM-1028,Motor Base Welded Assembly,Fabricated assembly,Supplier_9,Vietnam,Southeast Asia,2024-06-13,600,29.34,USD,29.34,2024,6
+SM-1018,Hydraulic Manifold Plate,Mounting plate,Supplier_6,China,East Asia,2024-06-14,1180,15.18,USD,15.18,2024,6
+SM-1014,Compressor Mounting Plate,Mounting plate,Supplier_1,India,South Asia,2024-06-17,1340,1052.18,INR,12.6262,2024,6
+SM-1030,Busbar Insulation Cover,Cover / panel,Supplier_7,USA,North America,2024-06-17,740,23.58,USD,23.58,2024,6
+SM-1020,Material Handling Tray,Fabricated assembly,Supplier_5,India,South Asia,2024-06-18,590,2661.15,INR,31.9338,2024,6
+SM-1027,Terminal Box Cover,Cover / panel,Supplier_4,India,South Asia,2024-06-18,2610,362.5,INR,4.35,2024,6
+SM-1004,Welded Support Frame,Fabricated assembly,Supplier_1,India,South Asia,2024-06-19,690,2018.55,INR,24.2226,2024,6
+SM-1005,Sensor Guard Bracket,Bracket,Supplier_5,India,South Asia,2024-06-19,2890,485.21,INR,5.8225,2024,6
+SM-1006,Base Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2024-06-20,2790,576.39,INR,6.9167,2024,6
+SM-1010,Drive Cabinet Back Plate,Mounting plate,Supplier_6,China,East Asia,2024-06-21,1880,9.66,USD,9.66,2024,6
+SM-1013,Cable Clamp Bracket,Bracket,Supplier_4,India,South Asia,2024-06-22,8100,136.98,INR,1.6438,2024,6
+SM-1023,Gearbox Splash Cover,Cover / panel,Supplier_6,China,East Asia,2024-06-22,1380,9.7,USD,9.7,2024,6
+SM-1009,Pump Support Angle Bracket,Bracket,Supplier_6,China,East Asia,2024-06-23,3570,5.5,USD,5.5,2024,6
+SM-1017,Limit Switch Bracket,Bracket,Supplier_9,Vietnam,Southeast Asia,2024-06-23,6350,2.1,USD,2.1,2024,6
+SM-1021,Actuator Support Bracket,Bracket,Supplier_7,USA,North America,2024-06-23,1250,13.94,USD,13.94,2024,6
+SM-1026,Robot Pedestal Plate,Mounting plate,Supplier_7,USA,North America,2024-06-25,320,56.32,USD,56.32,2024,6
+SM-1016,Cooling Duct Assembly,Fabricated assembly,Supplier_8,Vietnam,Southeast Asia,2024-06-26,770,19.84,USD,19.84,2024,6
+SM-1015,Inverter Cover Panel,Cover / panel,Supplier_5,India,South Asia,2024-08-21,520,1310.0,INR,15.72,2024,8
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_2,Germany,Europe,2024-11-18,420,4.2,EUR,4.536,2024,11
+SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_6,China,East Asia,2025-03-12,360,20.8,USD,20.8,2025,3
+SM-1024,Conveyor Transfer Chute,Fabricated assembly,Supplier_2,Germany,Europe,2025-09-15,140,71.25,EUR,76.95,2025,9
+SM-1005,Sensor Guard Bracket,Bracket,Supplier_5,India,South Asia,2025-10-09,3630,536.38,INR,6.4366,2025,10
+SM-1001,Motor Mounting Bracket,Bracket,Supplier_1,India,South Asia,2025-10-10,5510,327.51,INR,3.9301,2025,10
+SM-1030,Busbar Insulation Cover,Cover / panel,Supplier_7,USA,North America,2025-10-10,950,25.48,USD,25.48,2025,10
+SM-1015,Inverter Cover Panel,Cover / panel,Supplier_7,USA,North America,2025-10-11,1010,23.76,USD,23.76,2025,10
+SM-1021,Actuator Support Bracket,Bracket,Supplier_7,USA,North America,2025-10-11,1400,15.08,USD,15.08,2025,10
+SM-1022,Plc Rack Mounting Plate,Mounting plate,Supplier_3,India,South Asia,2025-10-11,2580,519.45,INR,6.2334,2025,10
+SM-1003,Machine Safety Cover,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2025-10-12,1450,11.05,USD,11.05,2025,10
+SM-1014,Compressor Mounting Plate,Mounting plate,Supplier_1,India,South Asia,2025-10-14,1410,1111.15,INR,13.3338,2025,10
+SM-1026,Robot Pedestal Plate,Mounting plate,Supplier_7,USA,North America,2025-10-14,320,60.95,USD,60.95,2025,10
+SM-1007,Electrical Enclosure Panel,Cover / panel,Supplier_8,Vietnam,Southeast Asia,2025-10-15,1690,11.89,USD,11.89,2025,10
+SM-1010,Drive Cabinet Back Plate,Mounting plate,Supplier_6,China,East Asia,2025-10-15,1970,10.55,USD,10.55,2025,10
+SM-1019,Access Door Panel,Cover / panel,Supplier_9,Vietnam,Southeast Asia,2025-10-15,1210,14.88,USD,14.88,2025,10
+SM-1024,Conveyor Transfer Chute,Fabricated assembly,Supplier_7,USA,North America,2025-10-15,380,96.38,USD,96.38,2025,10
+SM-1028,Motor Base Welded Assembly,Fabricated assembly,Supplier_9,Vietnam,Southeast Asia,2025-10-15,680,29.02,USD,29.02,2025,10
+SM-1013,Cable Clamp Bracket,Bracket,Supplier_4,India,South Asia,2025-10-16,9860,144.16,INR,1.7299,2025,10
+SM-1025,Photo Sensor L Bracket,Bracket,Supplier_3,India,South Asia,2025-10-16,12060,107.64,INR,1.2917,2025,10
+SM-1008,Battery Tray Assembly,Fabricated assembly,Supplier_5,India,South Asia,2025-10-18,1020,1645.84,INR,19.7501,2025,10
+SM-1006,Base Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2025-10-19,3010,584.69,INR,7.0163,2025,10
+SM-1018,Hydraulic Manifold Plate,Mounting plate,Supplier_6,China,East Asia,2025-10-19,1230,15.85,USD,15.85,2025,10
+SM-1011,Operator Console Side Panel,Cover / panel,Supplier_3,India,South Asia,2025-10-21,1450,1041.77,INR,12.5012,2025,10
+SM-1004,Welded Support Frame,Fabricated assembly,Supplier_1,India,South Asia,2025-10-22,930,2233.51,INR,26.8021,2025,10
+SM-1009,Pump Support Angle Bracket,Bracket,Supplier_6,China,East Asia,2025-10-22,4670,5.63,USD,5.63,2025,10
+SM-1023,Gearbox Splash Cover,Cover / panel,Supplier_6,China,East Asia,2025-10-22,1860,10.39,USD,10.39,2025,10
+SM-1016,Cooling Duct Assembly,Fabricated assembly,Supplier_8,Vietnam,Southeast Asia,2025-10-23,840,22.28,USD,22.28,2025,10
+SM-1020,Material Handling Tray,Fabricated assembly,Supplier_5,India,South Asia,2025-10-23,570,2789.41,INR,33.4729,2025,10
+SM-1017,Limit Switch Bracket,Bracket,Supplier_9,Vietnam,Southeast Asia,2025-10-24,7280,2.26,USD,2.26,2025,10
+SM-1027,Terminal Box Cover,Cover / panel,Supplier_4,India,South Asia,2025-10-24,3380,364.51,INR,4.3741,2025,10
+SM-1029,Cable Tray Support Bracket,Bracket,Supplier_6,China,East Asia,2025-10-24,5510,4.15,USD,4.15,2025,10
+SM-1002,Control Cabinet Mounting Plate,Mounting plate,Supplier_4,India,South Asia,2025-10-25,2880,570.03,INR,6.8404,2025,10
+SM-1012,Heavy Duty Skid Frame,Fabricated assembly,Supplier_6,China,East Asia,2025-10-25,420,44.02,USD,44.02,2025,10

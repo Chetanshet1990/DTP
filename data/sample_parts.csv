@@ -1,9 +1,31 @@
 part_id,part_name,category,material,material_grade,thickness_mm,length_mm,width_mm,weight_kg,bend_count,hole_count,surface_finish,finish_cost_per_part,material_rate_per_kg,cycle_time_min,energy_kwh_per_part,energy_rate_per_kwh,labour_hours,labour_rate_per_hour,overhead_pct,supplier_margin_pct,current_supplier,supplier_region,erp_price,annual_volume
 SM-1001,Motor mounting bracket,Bracket,Mild Steel,IS 2062 E250,3.0,220,140,1.18,4,6,Powder coated,34,78,14,0.52,8.5,0.24,390,23,11,SteelWorks,India,312,14000
 SM-1002,Control cabinet mounting plate,Mounting plate,CRCA Steel,CRCA IS 513,2.0,480,360,2.71,2,18,Zinc plated,52,86,22,0.74,8.5,0.36,390,24,11,PlatePro,India,548,7600
-SM-1003,Machine safety cover,Cover / panel,Galvanized Steel,GI G90,1.6,620,420,3.29,6,12,Powder coated,78,92,30,1.05,8.5,0.52,410,25,12,FabriMax,Vietnam,872,4200
+SM-1003,Machine safety cover,Cover / panel,Galvanized Steel,GI G90,1.6,620,420,3.29,6,12,Powder coated,78,92,30,1.05,7.8,0.52,340,25,12,FabriMax,Vietnam,872,4200
 SM-1004,Welded support frame,Fabricated assembly,Mild Steel,IS 2062 E350,5.0,820,520,8.40,8,10,Painted,115,80,54,1.92,8.5,1.12,420,27,12,SteelWorks,India,2140,2400
 SM-1005,Sensor guard bracket,Bracket,Stainless Steel,SS304,2.5,180,120,0.82,5,8,Passivated,46,245,18,0.61,8.5,0.30,440,24,13,PrecisionFab,India,515,9600
 SM-1006,Base mounting plate,Mounting plate,Mild Steel,IS 2062 E250,4.0,360,260,2.94,1,14,Painted,44,78,20,0.68,8.5,0.34,390,23,11,PlatePro,India,575,8100
-SM-1007,Electrical enclosure panel,Cover / panel,CRCA Steel,CRCA IS 513,1.2,700,480,3.16,7,22,Powder coated,96,86,36,1.16,8.5,0.60,410,26,12,FabriMax,Vietnam,945,5100
+SM-1007,Electrical enclosure panel,Cover / panel,CRCA Steel,CRCA IS 513,1.2,700,480,3.16,7,22,Powder coated,96,86,36,1.16,7.8,0.60,340,26,12,FabriMax,Vietnam,945,5100
 SM-1008,Battery tray assembly,Fabricated assembly,Galvanized Steel,GI G90,2.5,640,420,5.28,9,16,Zinc plated,132,92,48,1.54,8.5,0.92,420,27,12,PrecisionFab,India,1625,3200
+SM-1009,Pump support angle bracket,Bracket,Mild Steel,IS 2062 E250,4.0,260,180,1.72,6,10,Painted,39,78,20,0.74,7.5,0.38,460,24,11,SinoMetal,China,455,11800
+SM-1010,Drive cabinet back plate,Mounting plate,CRCA Steel,CRCA IS 513,2.5,560,430,3.75,2,24,Zinc plated,68,88,28,0.96,7.5,0.46,460,25,11,SinoMetal,China,820,5600
+SM-1011,Operator console side panel,Cover / panel,Galvanized Steel,GI G90,1.5,760,390,3.22,8,18,Powder coated,91,94,38,1.22,8.5,0.66,390,26,12,PanelCraft,India,1035,4400
+SM-1012,Heavy duty skid frame,Fabricated assembly,Mild Steel,IS 2062 E350,6.0,980,620,12.85,12,18,Painted,168,82,72,2.45,7.5,1.58,460,29,13,SinoMetal,China,3480,1300
+SM-1013,Cable clamp bracket,Bracket,CRCA Steel,CRCA IS 513,1.5,160,90,0.36,3,4,Zinc plated,18,86,9,0.28,8.5,0.16,390,22,10,PlatePro,India,145,26000
+SM-1014,Compressor mounting plate,Mounting plate,Mild Steel,IS 2062 E350,5.0,520,340,5.02,3,20,Painted,76,82,32,1.10,8.5,0.54,390,25,11,SteelWorks,India,1045,3900
+SM-1015,Inverter cover panel,Cover / panel,Stainless Steel,SS304,1.2,430,310,1.38,5,16,Passivated,74,248,31,0.98,10.0,0.58,1900,31,13,USFab,USA,1890,2800
+SM-1016,Cooling duct assembly,Fabricated assembly,CRCA Steel,CRCA IS 513,2.0,720,460,5.14,10,28,Powder coated,148,89,58,1.88,7.8,1.04,340,27,12,FabriMax,Vietnam,1725,2600
+SM-1017,Limit switch bracket,Bracket,Mild Steel,IS 2062 E250,2.0,145,95,0.42,4,6,Powder coated,21,78,11,0.32,7.8,0.18,340,22,10,VietFab,Vietnam,175,22000
+SM-1018,Hydraulic manifold plate,Mounting plate,Mild Steel,IS 2062 E350,8.0,420,260,6.86,0,18,Zinc plated,66,84,30,1.04,7.5,0.48,460,25,11,SinoMetal,China,1250,3500
+SM-1019,Access door panel,Cover / panel,CRCA Steel,CRCA IS 513,1.6,840,520,4.26,9,26,Powder coated,126,87,44,1.38,7.8,0.74,340,26,12,VietFab,Vietnam,1185,3600
+SM-1020,Material handling tray,Fabricated assembly,Galvanized Steel,GI G90,3.0,900,580,10.42,11,24,Zinc plated,182,94,68,2.18,8.5,1.36,390,28,12,PrecisionFab,India,2790,1700
+SM-1021,Actuator support bracket,Bracket,Stainless Steel,SS304,3.0,240,160,1.52,5,8,Passivated,58,252,22,0.70,10.0,0.42,1900,33,13,USFab,USA,1180,4200
+SM-1022,PLC rack mounting plate,Mounting plate,CRCA Steel,CRCA IS 513,1.5,500,300,1.76,2,16,Powder coated,54,86,24,0.82,8.5,0.38,390,24,11,PanelCraft,India,520,6800
+SM-1023,Gearbox splash cover,Cover / panel,Mild Steel,IS 2062 E250,2.0,560,380,3.01,6,14,Painted,69,80,34,1.08,7.5,0.62,460,26,12,SinoMetal,China,850,4700
+SM-1024,Conveyor transfer chute,Fabricated assembly,Mild Steel,IS 2062 E350,4.5,1100,720,15.60,14,30,Painted,235,84,84,2.94,10.0,1.86,1900,35,14,USFab,USA,7450,950
+SM-1025,Photo sensor L bracket,Bracket,Galvanized Steel,GI G90,1.2,130,80,0.24,2,4,Zinc plated,16,92,8,0.22,8.5,0.12,390,21,10,PanelCraft,India,105,30000
+SM-1026,Robot pedestal plate,Mounting plate,Mild Steel,IS 2062 E350,10.0,620,480,18.20,0,22,Painted,145,84,46,1.86,10.0,0.82,1900,35,13,USFab,USA,4825,900
+SM-1027,Terminal box cover,Cover / panel,Galvanized Steel,GI G90,1.0,360,250,0.88,4,12,Powder coated,42,92,20,0.64,8.5,0.32,390,24,12,PlatePro,India,365,9200
+SM-1028,Motor base welded assembly,Fabricated assembly,Mild Steel,IS 2062 E250,5.0,760,500,9.35,10,20,Painted,154,80,62,2.05,7.8,1.24,340,27,12,VietFab,Vietnam,2410,2100
+SM-1029,Cable tray support bracket,Bracket,CRCA Steel,CRCA IS 513,2.0,300,150,1.05,6,12,Zinc plated,31,86,17,0.54,7.5,0.28,460,24,11,SinoMetal,China,335,15000
+SM-1030,Busbar insulation cover,Cover / panel,Stainless Steel,SS304,1.5,520,260,1.70,5,10,Passivated,84,250,32,1.02,10.0,0.60,1900,32,13,USFab,USA,2050,2400

@@ -1,16 +1,96 @@
 Part Number,Part Description,Category,Supplier Name,Supplier Country,PO Date,Quantity,Unit Price,Currency,Incoterms,Plant
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-01-18,500,3.65,USD,EXW,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-01-18,500,3.65,USD,EXW,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Euro Fab GmbH,Germany,2023-07-22,400,4.05,EUR,FOB,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2024-03-12,650,312,INR,EXW,Pune
-SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2024-05-17,320,6.15,USD,EXW,Pune
-SM-1002,Control Cabinet Mounting Plate,Mounting Plate,Euro Fab GmbH,Germany,2025-01-24,280,6.95,EUR,FOB,Pune
-SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2024-08-05,220,10.45,USD,FOB,Chennai
-SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2025-02-16,260,872,INR,FOB,Chennai
-SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2025-02-14,180,25.2,USD,EXW,Pune
-SM-1005,Sensor Guard Bracket,Bracket,Precision Fab Pvt Ltd,India,2023-06-19,750,5.85,USD,EXW,Bengaluru
-SM-1005,Sensor Guard Bracket,Bracket,Precision Fab Pvt Ltd,India,2024-09-28,900,515,INR,EXW,Bengaluru
-SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2025-04-11,620,6.65,USD,EXW,Pune
-SM-1007,Electrical Enclosure Panel,Panel,Viet Fabrication Co,Vietnam,2025-06-30,360,11.35,USD,FOB,Chennai
-SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fab Pvt Ltd,India,2025-08-04,240,18.9,USD,EXW,Bengaluru
-SM-1009,Incomplete Mounting Plate,Mounting Plate,Incomplete Supplier,India,,350,6.4,USD,EXW,Pune
+SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2023-02-09,490,2451.5,INR,EXW,Pune
+SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2023-02-09,580,27.44,USD,FOB,Chennai
+SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2023-02-10,1840,504.78,INR,EXW,Pune
+SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2023-02-10,2360,532.62,INR,EXW,Pune
+SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2023-02-11,700,1912.79,INR,EXW,Pune
+SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2023-02-11,990,12.99,USD,FOB,Chennai
+SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2023-02-11,280,84.1,USD,DAP,Bengaluru
+SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2023-02-14,940,14.18,USD,FOB,Chennai
+SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2023-02-14,8170,93.48,INR,EXW,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-02-16,3390,288.51,INR,EXW,Pune
+SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2023-02-16,1130,9.55,USD,FOB,Chennai
+SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2023-02-16,1350,10.13,USD,FOB,Chennai
+SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2023-02-17,780,19.66,USD,FOB,Chennai
+SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2023-02-17,260,54.97,USD,DAP,Bengaluru
+SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2023-02-18,7560,135.26,INR,EXW,Pune
+SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2023-02-18,620,22.26,USD,DAP,Bengaluru
+SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2023-02-20,2920,472.35,INR,EXW,Pune
+SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2023-02-21,1790,481.58,INR,EXW,Pune
+SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2023-02-22,350,38.64,USD,FOB,Chennai
+SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2023-02-22,1190,9.18,USD,FOB,Chennai
+SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2023-02-23,1100,984.03,INR,EXW,Pune
+SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2023-02-24,1130,991.6,INR,EXW,Pune
+SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2023-02-25,850,1446.32,INR,EXW,Pune
+SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2023-02-25,1400,8.78,USD,FOB,Chennai
+SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2023-02-25,810,20.25,USD,DAP,Bengaluru
+SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2023-02-25,6700,1.98,USD,FOB,Chennai
+SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2023-02-26,2890,4.97,USD,FOB,Chennai
+SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2023-02-26,1050,12.71,USD,DAP,Bengaluru
+SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2023-02-26,2800,328.41,INR,EXW,Pune
+SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2023-02-26,4530,3.66,USD,FOB,Chennai
+SM-1026,Robot Pedestal Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2023-12-20,180,3520.0,INR,EXW,Pune
+SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2024-06-08,2410,522.25,INR,EXW,Pune
+SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2024-06-08,460,40.97,USD,FOB,Chennai
+SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2024-06-08,980,23.0,USD,DAP,Bengaluru
+SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2024-06-08,1020,13.64,USD,FOB,Chennai
+SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2024-06-08,340,84.37,USD,DAP,Bengaluru
+SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2024-06-09,970,1548.77,INR,EXW,Pune
+SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2024-06-10,1690,11.28,USD,FOB,Chennai
+SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2024-06-10,4860,3.86,USD,FOB,Chennai
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2024-06-11,4050,297.98,INR,EXW,Pune
+SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2024-06-11,1240,976.11,INR,EXW,Pune
+SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2024-06-11,2270,505.59,INR,EXW,Pune
+SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2024-06-13,1170,10.49,USD,FOB,Chennai
+SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2024-06-13,10420,105.33,INR,EXW,Pune
+SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2024-06-13,600,29.34,USD,FOB,Chennai
+SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2024-06-14,1180,15.18,USD,FOB,Chennai
+SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2024-06-17,1340,1052.18,INR,EXW,Pune
+SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2024-06-17,740,23.58,USD,DAP,Bengaluru
+SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2024-06-18,590,2661.15,INR,EXW,Pune
+SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2024-06-18,2610,362.5,INR,EXW,Pune
+SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2024-06-19,690,2018.55,INR,EXW,Pune
+SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2024-06-19,2890,485.21,INR,EXW,Pune
+SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2024-06-20,2790,576.39,INR,EXW,Pune
+SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2024-06-21,1880,9.66,USD,FOB,Chennai
+SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2024-06-22,8100,136.98,INR,EXW,Pune
+SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2024-06-22,1380,9.7,USD,FOB,Chennai
+SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2024-06-23,3570,5.5,USD,FOB,Chennai
+SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2024-06-23,6350,2.1,USD,FOB,Chennai
+SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2024-06-23,1250,13.94,USD,DAP,Bengaluru
+SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2024-06-25,320,56.32,USD,DAP,Bengaluru
+SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2024-06-26,770,19.84,USD,FOB,Chennai
+SM-1015,Inverter Cover Panel,Cover,Precision Fabricators Pvt Ltd,India,2024-08-21,520,1310.0,INR,EXW,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Euro Fab GmbH,Germany,2024-11-18,420,4.2,EUR,FOB,Pune
+SM-1008,Battery Tray Assembly,Fabricated Assembly,Sino Metal Forming Ltd,China,2025-03-12,360,20.8,USD,FOB,Chennai
+SM-1024,Conveyor Transfer Chute,Fabricated Assembly,Euro Fab GmbH,Germany,2025-09-15,140,71.25,EUR,DAP,Bengaluru
+SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2025-10-09,3630,536.38,INR,EXW,Pune
+SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2025-10-10,5510,327.51,INR,EXW,Pune
+SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2025-10-10,950,25.48,USD,DAP,Bengaluru
+SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2025-10-11,1010,23.76,USD,DAP,Bengaluru
+SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2025-10-11,1400,15.08,USD,DAP,Bengaluru
+SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2025-10-11,2580,519.45,INR,EXW,Pune
+SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2025-10-12,1450,11.05,USD,FOB,Chennai
+SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2025-10-14,1410,1111.15,INR,EXW,Pune
+SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2025-10-14,320,60.95,USD,DAP,Bengaluru
+SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2025-10-15,1690,11.89,USD,FOB,Chennai
+SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2025-10-15,1970,10.55,USD,FOB,Chennai
+SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2025-10-15,1210,14.88,USD,FOB,Chennai
+SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2025-10-15,380,96.38,USD,DAP,Bengaluru
+SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2025-10-15,680,29.02,USD,FOB,Chennai
+SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2025-10-16,9860,144.16,INR,EXW,Pune
+SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2025-10-16,12060,107.64,INR,EXW,Pune
+SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2025-10-18,1020,1645.84,INR,EXW,Pune
+SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2025-10-19,3010,584.69,INR,EXW,Pune
+SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2025-10-19,1230,15.85,USD,FOB,Chennai
+SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2025-10-21,1450,1041.77,INR,EXW,Pune
+SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2025-10-22,930,2233.51,INR,EXW,Pune
+SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2025-10-22,4670,5.63,USD,FOB,Chennai
+SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2025-10-22,1860,10.39,USD,FOB,Chennai
+SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2025-10-23,840,22.28,USD,FOB,Chennai
+SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2025-10-23,570,2789.41,INR,EXW,Pune
+SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2025-10-24,7280,2.26,USD,FOB,Chennai
+SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2025-10-24,3380,364.51,INR,EXW,Pune
+SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2025-10-24,5510,4.15,USD,FOB,Chennai
+SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2025-10-25,2880,570.03,INR,EXW,Pune
+SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2025-10-25,420,44.02,USD,FOB,Chennai
