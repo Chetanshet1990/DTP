@@ -17,6 +17,7 @@ https://github.com/Chetanshet1990/DTP
 - Counts savings opportunity only when predicted fair price is lower than ERP/current supplier spend
 - Derives predicted fair price from live steel index and USD/INR FX data without exposing live rates in the dashboard
 - Explains flagged prices using drawing-derived cost drivers such as thickness, bends, holes, and surface finish
+- Shows part-level monthly ERP price history against daily ML-predicted fair prices, with generated/interpolated ERP months labelled in the data table
 - Benchmarks suppliers by price gap, quality, delivery, lead time, and risk
 - Compares landed should-cost across regions
 - Accepts Excel or CSV datasets

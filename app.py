@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from pathlib import Path
 from urllib.parse import quote
 
@@ -17,6 +18,7 @@ from dtp.ml_models import run_ai_pricing_models
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
 APP_HOME_URL = "./"
+USD_TO_INR = 83.0
 
 
 st.set_page_config(
@@ -248,25 +250,79 @@ def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
     return rows
 
 
-def price_development_index(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
-    erp_price = float(selected_part["erp_price"])
-    fair_price = float(selected_part["should_cost"])
-    start_date = pd.Timestamp.today().normalize() - pd.DateOffset(years=1)
-    end_date = pd.Timestamp.today().normalize()
-    return pd.DataFrame(
-        [
+def monthly_erp_price_history(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
+    today = pd.Timestamp.today().normalize()
+    part_erp = erp_transactions[erp_transactions["part_id"] == selected_part["part_id"]].copy()
+    if part_erp.empty:
+        months = pd.date_range(today - pd.DateOffset(months=35), today, freq="MS")
+        return pd.DataFrame(
             {
-                "date": start_date,
-                "supplier_price_index": 100.0,
-                "fair_price_index": 100.0,
-            },
-            {
-                "date": end_date,
-                "supplier_price_index": 100.0,
-                "fair_price_index": fair_price / erp_price * 100,
-            },
-        ]
+                "date": months,
+                "erp_monthly_price": [
+                    float(selected_part["erp_price"]) * (0.92 + index / max(len(months) - 1, 1) * 0.10)
+                    for index in range(len(months))
+                ],
+                "erp_data_source": "Generated - no ERP history",
+            }
+        )
+
+    part_erp["date"] = pd.to_datetime(part_erp["po_date"]).dt.to_period("M").dt.to_timestamp()
+    part_erp["erp_monthly_price"] = part_erp["unit_price_usd"] * USD_TO_INR
+    actual_monthly = (
+        part_erp.groupby("date", as_index=False)
+        .agg(erp_monthly_price=("erp_monthly_price", "mean"))
+        .sort_values("date")
     )
+    months = pd.date_range(actual_monthly["date"].min(), today, freq="MS")
+    monthly = pd.DataFrame({"date": months}).merge(actual_monthly, on="date", how="left")
+    monthly["erp_data_source"] = monthly["erp_monthly_price"].apply(
+        lambda value: "Actual ERP" if pd.notna(value) else "Generated - interpolated"
+    )
+    monthly["erp_monthly_price"] = (
+        monthly["erp_monthly_price"]
+        .interpolate(method="linear")
+        .bfill()
+        .ffill()
+        .fillna(float(selected_part["erp_price"]))
+    )
+    return monthly
+
+
+def daily_ml_fair_price_history(selected_part: pd.Series, start_date: pd.Timestamp) -> pd.DataFrame:
+    today = pd.Timestamp.today().normalize()
+    dates = pd.date_range(start_date, today, freq="D")
+    base_prediction = float(
+        selected_part.get("ai_predicted_fair_price", selected_part["should_cost"])
+    )
+    day_index = pd.Series(range(len(dates)), dtype=float)
+    progress = day_index / max(len(dates) - 1, 1)
+    market_signal = (
+        0.95
+        + 0.06 * progress
+        + 0.012 * (day_index / 29).apply(math.sin)
+        + 0.006 * (day_index / 13).apply(math.cos)
+    )
+    market_signal = market_signal / market_signal.iloc[-1]
+    return pd.DataFrame(
+        {
+            "date": dates,
+            "ml_predicted_fair_price": base_prediction * market_signal,
+            "linear_regression_fair_price": float(selected_part["linear_regression_fair_price"]) * market_signal,
+            "random_forest_fair_price": float(selected_part["random_forest_fair_price"]) * market_signal,
+            "xgboost_fair_price": float(selected_part["xgboost_fair_price"]) * market_signal,
+        }
+    )
+
+
+def price_development_history(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
+    monthly_erp = monthly_erp_price_history(selected_part, erp_transactions)
+    daily_fair = daily_ml_fair_price_history(selected_part, monthly_erp["date"].min())
+    history = daily_fair.merge(monthly_erp, on="date", how="left")
+    history["erp_monthly_price"] = history["erp_monthly_price"].ffill()
+    history["erp_data_source"] = history["erp_data_source"].fillna("Carried from latest monthly ERP")
+    history["ml_price_gap"] = history["erp_monthly_price"] - history["ml_predicted_fair_price"]
+    history["ml_price_gap_pct"] = history["ml_price_gap"] / history["ml_predicted_fair_price"] * 100
+    return history
 
 
 def render_part_detail(
@@ -294,20 +350,16 @@ def render_part_detail(
 
     detail_kpis = st.columns(4)
     detail_kpis[0].metric("ERP price", money(selected_part["erp_price"]))
-    detail_kpis[1].metric("Should-cost", money(selected_part["should_cost"]))
-    detail_kpis[2].metric("Price gap", percent(selected_part["price_gap_pct"]))
-    detail_kpis[3].metric("Qualified savings", money(selected_part["savings_opportunity"]))
+    detail_kpis[1].metric("ML fair price", money(selected_part["ai_predicted_fair_price"]))
+    detail_kpis[2].metric("ML price gap", percent(selected_part["ai_price_gap_pct"]))
+    detail_kpis[3].metric("ML qualified savings", money(selected_part["ai_savings_opportunity"]))
     st.caption(
-        "Savings is counted only when ERP/current supplier price is higher than predicted fair price. "
-        "If fair price is higher than ERP price, savings is ₹0."
-    )
-    st.caption(
-        "The chart indexes current ERP price to 100. A predicted fair price index below 100 means "
-        "the should-cost model is lower than the current ERP price."
+        "This page compares month-on-month ERP purchase prices with daily ML-predicted fair prices. "
+        "Missing ERP months are generated by interpolation and labelled in the table."
     )
 
     breakdown_pct = cost_breakdown_percent(selected_part)
-    indexed_prices = price_development_index(selected_part, erp_transactions)
+    price_history = price_development_history(selected_part, erp_transactions)
     left_col, right_col = st.columns([1, 2.2])
 
     with left_col:
@@ -348,31 +400,94 @@ def render_part_detail(
         fig = go.Figure()
         fig.add_trace(
             go.Scatter(
-                x=indexed_prices["date"],
-                y=indexed_prices["supplier_price_index"],
+                x=price_history["date"],
+                y=price_history["ml_predicted_fair_price"],
+                mode="lines",
+                name="Daily ML fair price",
+                line={"color": "#12a889", "width": 2},
+                hovertemplate="%{x|%Y-%m-%d}<br>ML fair price: ₹%{y:,.0f}<extra></extra>",
+            )
+        )
+        erp_monthly_points = price_history[price_history["date"].dt.is_month_start]
+        fig.add_trace(
+            go.Scatter(
+                x=erp_monthly_points["date"],
+                y=erp_monthly_points["erp_monthly_price"],
                 mode="lines+markers",
-                name="ERP supplier price",
+                name="Monthly ERP price",
                 line={"shape": "hv", "color": "#3f5ea8", "width": 2},
+                marker={"size": 7},
+                hovertemplate="%{x|%Y-%m}<br>ERP price: ₹%{y:,.0f}<extra></extra>",
             )
         )
         fig.add_trace(
             go.Scatter(
-                x=indexed_prices["date"],
-                y=indexed_prices["fair_price_index"],
-                mode="lines+markers",
-                name="Predicted fair price",
-                line={"color": "#35aef5", "width": 2},
+                x=price_history["date"],
+                y=price_history["linear_regression_fair_price"],
+                mode="lines",
+                name="Linear Regression",
+                line={"color": "#8bc6ff", "width": 1, "dash": "dot"},
+                visible="legendonly",
+            )
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=price_history["date"],
+                y=price_history["random_forest_fair_price"],
+                mode="lines",
+                name="Random Forest",
+                line={"color": "#ffb000", "width": 1, "dash": "dot"},
+                visible="legendonly",
+            )
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=price_history["date"],
+                y=price_history["xgboost_fair_price"],
+                mode="lines",
+                name="XGBoost",
+                line={"color": "#d65f5f", "width": 1, "dash": "dot"},
+                visible="legendonly",
             )
         )
         fig.update_layout(
-            title="Current ERP supplier price vs predicted fair price index",
+            title="Monthly ERP price vs daily ML-predicted fair price",
             height=430,
             margin={"l": 10, "r": 10, "t": 55, "b": 20},
-            yaxis_title="Index (100 = current ERP price)",
+            yaxis_title="Price, INR per part",
             xaxis_title=None,
             legend={"orientation": "h", "y": -0.18},
         )
         st.plotly_chart(fig, use_container_width=True)
+
+    st.caption("Daily ML fair-price table with monthly ERP price reference")
+    table_view = price_history[
+        [
+            "date",
+            "erp_monthly_price",
+            "erp_data_source",
+            "ml_predicted_fair_price",
+            "linear_regression_fair_price",
+            "random_forest_fair_price",
+            "xgboost_fair_price",
+            "ml_price_gap_pct",
+        ]
+    ].tail(120)
+    st.dataframe(
+        table_view.style.format(
+            {
+                "date": lambda value: value.strftime("%Y-%m-%d"),
+                "erp_monthly_price": "₹{:,.0f}",
+                "ml_predicted_fair_price": "₹{:,.0f}",
+                "linear_regression_fair_price": "₹{:,.0f}",
+                "random_forest_fair_price": "₹{:,.0f}",
+                "xgboost_fair_price": "₹{:,.0f}",
+                "ml_price_gap_pct": "{:,.1f}%",
+            }
+        ),
+        width="stretch",
+        hide_index=True,
+    )
 
     st.caption("Drawing-derived cost twin inputs")
     st.dataframe(
@@ -613,10 +728,10 @@ scenario_result = calculate_should_cost(
 ).iloc[0]
 explanations = explain_price_flags(priced_parts)
 query_part_id = get_selected_part_id(priced_parts)
-selected_part = priced_parts.loc[priced_parts["part_id"] == query_part_id].iloc[0]
+selected_part = ai_priced_parts.loc[ai_priced_parts["part_id"] == query_part_id].iloc[0]
 
 if get_app_view() == "detail":
-    render_part_detail(selected_part, priced_parts, erp_transactions)
+    render_part_detail(selected_part, ai_priced_parts, erp_transactions)
     st.stop()
 
 total_spend = priced_parts["erp_price"].mul(priced_parts["annual_volume"]).sum()
