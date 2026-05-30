@@ -248,75 +248,24 @@ def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
 
 
 def price_development_index(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
-    dates = pd.date_range("2020-03-01", "2024-01-01", freq="QS")
-    material_pressure = [
-        100.0,
-        100.0,
-        101.0,
-        103.0,
-        112.0,
-        116.0,
-        117.0,
-        121.0,
-        128.0,
-        133.0,
-        135.0,
-        134.0,
-        136.0,
-        134.0,
-        130.0,
-        127.0,
-    ]
-    supplier_steps = [
-        100.0,
-        100.0,
-        100.0,
-        100.0,
-        110.0,
-        110.0,
-        110.0,
-        120.0,
-        120.0,
-        120.0,
-        132.0,
-        132.0,
-        132.0,
-        132.0,
-        132.0,
-        132.0,
-    ]
-    trend = pd.DataFrame(
-        {
-            "date": dates,
-            "fair_market_price": material_pressure,
-            "supplier_price_development": supplier_steps,
-        }
-    )
-
-    part_transactions = erp_transactions[erp_transactions["part_id"] == selected_part["part_id"]]
-    if not part_transactions.empty:
-        part_transactions = part_transactions.sort_values("po_date")
-        baseline = part_transactions["unit_price_usd"].iloc[0]
-        actual = pd.DataFrame(
+    erp_price = float(selected_part["erp_price"])
+    fair_price = float(selected_part["should_cost"])
+    start_date = pd.Timestamp.today().normalize() - pd.DateOffset(years=1)
+    end_date = pd.Timestamp.today().normalize()
+    return pd.DataFrame(
+        [
             {
-                "date": pd.to_datetime(part_transactions["po_date"]),
-                "supplier_price_development": (
-                    part_transactions["unit_price_usd"] / baseline * 100
-                ),
-            }
-        )
-        trend = pd.concat(
-            [
-                trend[["date", "fair_market_price"]],
-                actual[["date", "supplier_price_development"]],
-            ],
-            ignore_index=True,
-        ).sort_values("date")
-        trend["fair_market_price"] = trend["fair_market_price"].interpolate().ffill().bfill()
-        trend["supplier_price_development"] = (
-            trend["supplier_price_development"].ffill().bfill()
-        )
-    return trend
+                "date": start_date,
+                "supplier_price_index": 100.0,
+                "fair_price_index": 100.0,
+            },
+            {
+                "date": end_date,
+                "supplier_price_index": 100.0,
+                "fair_price_index": fair_price / erp_price * 100,
+            },
+        ]
+    )
 
 
 def render_part_detail(
@@ -395,26 +344,26 @@ def render_part_detail(
         fig.add_trace(
             go.Scatter(
                 x=indexed_prices["date"],
-                y=indexed_prices["supplier_price_development"],
+                y=indexed_prices["supplier_price_index"],
                 mode="lines+markers",
-                name="Supplier price development",
+                name="ERP supplier price",
                 line={"shape": "hv", "color": "#3f5ea8", "width": 2},
             )
         )
         fig.add_trace(
             go.Scatter(
                 x=indexed_prices["date"],
-                y=indexed_prices["fair_market_price"],
+                y=indexed_prices["fair_price_index"],
                 mode="lines+markers",
-                name="Fair market price",
+                name="Predicted fair price",
                 line={"color": "#35aef5", "width": 2},
             )
         )
         fig.update_layout(
-            title="Supplier price development vs fair market price, cost increase index",
+            title="Current ERP supplier price vs predicted fair price index",
             height=430,
             margin={"l": 10, "r": 10, "t": 55, "b": 20},
-            yaxis_title="Index (100 = baseline price)",
+            yaxis_title="Index (100 = current ERP price)",
             xaxis_title=None,
             legend={"orientation": "h", "y": -0.18},
         )

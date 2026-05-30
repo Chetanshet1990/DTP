@@ -73,7 +73,16 @@ def test_material_cost_uses_weight_and_market_adjusted_steel_rate() -> None:
     assert result.loc[0, "material_cost"] == 125
 
 
+def test_qualified_savings_means_erp_price_is_above_predicted_fair_price() -> None:
+    result = calculate_should_cost(pd.read_csv("data/sample_parts.csv"))
+    savings_parts = result[result["savings_opportunity"] > 0]
+
+    assert not savings_parts.empty
+    assert (savings_parts["erp_price"] > savings_parts["should_cost"]).all()
+
+
 if __name__ == "__main__":
     test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price()
     test_material_cost_uses_weight_and_market_adjusted_steel_rate()
+    test_qualified_savings_means_erp_price_is_above_predicted_fair_price()
     print("Cost model tests passed")

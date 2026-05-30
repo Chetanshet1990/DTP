@@ -143,7 +143,7 @@ Algorithms:
 Outputs:
 - Predicted Price
 - Feature Importance
-- Supplier price development versus fair market price index
+- Current ERP supplier price versus predicted fair price index, using the same selected-part prices that drive qualified savings
 
 ---
 
@@ -299,7 +299,7 @@ The dedicated part detail page shows:
 - Qualified savings opportunity.
 - Savings opportunity status.
 - Cost breakdown by percentage.
-- Supplier price development versus fair-market price index.
+- Current ERP supplier price versus predicted fair price index.
 - Drawing-derived cost twin inputs.
 - Market-adjusted steel rate per kg and material cost.
 - Cost breakdown derived from live market-adjusted material cost.
