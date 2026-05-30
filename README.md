@@ -2,6 +2,12 @@
 
 Procurement-focused should-cost intelligence prototype for a thesis demo on sheet metal sourcing.
 
+GitHub repository:
+
+```text
+https://github.com/Chetanshet1990/DTP
+```
+
 ## Features
 
 - Calculates should-cost for sheet metal brackets, mounting plates, covers, panels, and fabricated assemblies
@@ -36,14 +42,49 @@ streamlit run app.py
 
 Recommended option for external users:
 
-1. Push this repository to GitHub.
-2. Open Streamlit Community Cloud: `https://share.streamlit.io`
-3. Create a new app from repository `Chetanshet1990/DTP`.
-4. Select branch `main`.
-5. Set main file path to `app.py`.
-6. Deploy.
+1. Open Streamlit Community Cloud: `https://share.streamlit.io`
+2. Create a new app from repository `Chetanshet1990/DTP`.
+3. Select branch `main`.
+4. Set main file path to `app.py`.
+5. Deploy.
 
 The deployed app will get a public `*.streamlit.app` URL that can be shared with external users.
+
+Deployment notes:
+
+- The app uses relative links for part-level drill-down pages, so clickable `part_id` links work on localhost and on the deployed Streamlit domain.
+- No API keys or private secrets are required for the current demo dataset.
+- `requirements.txt` contains the Python packages needed by Streamlit Cloud.
+
+## Development Workflow
+
+Use this flow when continuing development:
+
+```bash
+git status
+git add -A
+git commit -m "Describe the change"
+git push
+```
+
+Run local checks before pushing important changes:
+
+```bash
+python3 tests/test_erp_pipeline.py
+python3 -m py_compile app.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py
+```
+
+Run the app locally:
+
+```bash
+streamlit run app.py
+```
+
+Then open:
+
+```text
+http://localhost:8501
+```
 
 ## ERP Data Pipeline
 

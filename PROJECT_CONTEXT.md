@@ -240,6 +240,7 @@ This improves procurement trust and decision-making.
 
 The current working prototype is a Streamlit application:
 
+- GitHub repository: `https://github.com/Chetanshet1990/DTP`
 - Main file: `app.py`
 - ERP cleaning pipeline: `dtp/erp_pipeline.py`
 - ERP cleaning script: `scripts/clean_erp_data.py`
@@ -261,6 +262,7 @@ The application currently supports:
 - Supplier benchmarking.
 - Geographic landed should-cost comparison.
 - What-if scenario modeling.
+- External deployment readiness through Streamlit Community Cloud.
 
 The dedicated part detail page shows:
 
@@ -271,6 +273,18 @@ The dedicated part detail page shows:
 - Cost breakdown by percentage.
 - Supplier price development versus fair-market price index.
 - Drawing-derived cost twin inputs.
+
+Deployment route:
+
+- Platform: Streamlit Community Cloud
+- Repository: `Chetanshet1990/DTP`
+- Branch: `main`
+- Main file path: `app.py`
+- Current public deployment URL: to be added after Streamlit Cloud deployment is completed.
+
+Important deployment note:
+
+The application uses relative links for part-level drill-down pages so that clickable `part_id` navigation works on both localhost and external Streamlit deployment URLs.
 
 ---
 
@@ -390,6 +404,40 @@ Version Control:
 - Git
 - GitHub
 
+Repository:
+- `https://github.com/Chetanshet1990/DTP`
+
+Deployment:
+- Streamlit Community Cloud
+- Public URL pending deployment
+
+---
+
+# Development Continuity
+
+This project will continue to be built incrementally based on user directions.
+
+Working process:
+
+1. Implement requested changes in the local repository.
+2. Run focused validation checks.
+3. Update relevant documentation.
+4. Commit changes with a clear message.
+5. Push to GitHub so external deployment can rebuild from `main`.
+
+Current baseline validation commands:
+
+```bash
+python3 tests/test_erp_pipeline.py
+python3 -m py_compile app.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py
+```
+
+Current run command:
+
+```bash
+streamlit run app.py
+```
+
 ---
 
 # Future Scope
@@ -433,11 +481,14 @@ Completed:
 - Geographic Cost Comparison
 - What-if Cost Scenario
 - Basic ERP Pipeline Test
+- GitHub Repository Push
+- Deployment-Ready Relative Navigation
 
 In Progress:
 - Dataset Refinement
 - Dashboard Polish
 - Literature Review Expansion
+- External Streamlit Deployment
 
 Next:
 - Baseline Regression Model
@@ -445,3 +496,4 @@ Next:
 - Feature Importance / Explainability Model
 - More Realistic Market Index Integration
 - Final Thesis Evaluation Metrics
+- Add public deployment URL after Streamlit Cloud deployment
