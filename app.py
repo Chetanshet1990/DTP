@@ -340,7 +340,11 @@ def render_part_detail(
     detail_kpis[0].metric("ERP price", money(selected_part["erp_price"]))
     detail_kpis[1].metric("Should-cost", money(selected_part["should_cost"]))
     detail_kpis[2].metric("Price gap", percent(selected_part["price_gap_pct"]))
-    detail_kpis[3].metric("Savings opportunity", money(selected_part["savings_opportunity"]))
+    detail_kpis[3].metric("Qualified savings", money(selected_part["savings_opportunity"]))
+    st.caption(
+        "Savings is counted only when ERP/current supplier price is higher than predicted fair price. "
+        "If fair price is higher than ERP price, savings is ₹0."
+    )
 
     breakdown_pct = cost_breakdown_percent(selected_part)
     indexed_prices = price_development_index(selected_part, erp_transactions)
@@ -584,12 +588,16 @@ total_spend = priced_parts["erp_price"].mul(priced_parts["annual_volume"]).sum()
 total_should_cost = priced_parts["should_cost"].mul(priced_parts["annual_volume"]).sum()
 review_count = int((priced_parts["gap_status"] == "Review").sum())
 opportunity = priced_parts["savings_opportunity"].sum()
+savings_part_count = int((priced_parts["savings_opportunity"] > 0).sum())
 
 kpi_cols = st.columns(4)
 kpi_cols[0].metric("ERP annual spend", money(total_spend))
 kpi_cols[1].metric("Predicted fair spend", money(total_should_cost))
-kpi_cols[2].metric("Savings opportunity", money(opportunity))
-kpi_cols[3].metric("Parts above 5% gap", f"{review_count}/{len(priced_parts)}")
+kpi_cols[2].metric("Qualified savings", money(opportunity))
+kpi_cols[3].metric("Savings-eligible parts", f"{savings_part_count}/{len(priced_parts)}")
+st.caption(
+    "Qualified savings excludes parts where predicted fair price is higher than ERP/current supplier price."
+)
 
 tab_overview, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, tab_scenario = st.tabs(
     [
@@ -639,7 +647,7 @@ with tab_overview:
             "should_cost": st.column_config.NumberColumn("should_cost", format="₹%.0f"),
             "price_gap_pct": st.column_config.NumberColumn("price_gap_pct", format="%.1f%%"),
             "savings_opportunity": st.column_config.NumberColumn(
-                "savings_opportunity",
+                "qualified_savings",
                 format="₹%.0f",
             ),
             "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
@@ -818,7 +826,7 @@ with tab_suppliers:
         .agg(
             parts=("part_id", "count"),
             avg_gap_pct=("price_gap_pct", "mean"),
-            savings_opportunity=("savings_opportunity", "sum"),
+            qualified_savings=("savings_opportunity", "sum"),
             avg_should_cost=("should_cost", "mean"),
         )
         .merge(
@@ -836,7 +844,7 @@ with tab_suppliers:
                 "region",
                 "parts",
                 "avg_gap_pct",
-                "savings_opportunity",
+                "qualified_savings",
                 "quality_ppm",
                 "on_time_delivery_pct",
                 "lead_time_days",
@@ -845,7 +853,7 @@ with tab_suppliers:
         ].style.format(
             {
                 "avg_gap_pct": "{:,.1f}%",
-                "savings_opportunity": "₹{:,.0f}",
+                "qualified_savings": "₹{:,.0f}",
                 "on_time_delivery_pct": "{:,.0f}%",
             }
         ),
@@ -856,7 +864,7 @@ with tab_suppliers:
         supplier_summary,
         x="quality_ppm",
         y="avg_gap_pct",
-        size="savings_opportunity",
+        size="qualified_savings",
         color="category",
         hover_name="current_supplier",
         labels={"quality_ppm": "Quality defects PPM", "avg_gap_pct": "Average price gap %"},

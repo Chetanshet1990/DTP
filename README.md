@@ -32,13 +32,13 @@ Overhead +
 Supplier Margin
 ```
 
-Savings opportunity rule:
+Qualified savings opportunity rule:
 
 ```text
-Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
+Qualified Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
 ```
 
-If predicted fair price is higher than ERP/current supplier price, the part is not counted as a savings opportunity.
+If predicted fair price is higher than ERP/current supplier price, the part is counted as ₹0 qualified savings.
 
 ## Run
 

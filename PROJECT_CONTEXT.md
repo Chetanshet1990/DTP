@@ -12,7 +12,7 @@ This project proposes an Explainable AI-driven procurement intelligence framewor
 
 The system aims to compare actual ERP purchase prices against AI-predicted fair prices and should-cost estimates, helping procurement teams identify negotiation opportunities and potential savings.
 
-Savings opportunity is counted only when predicted fair price is lower than ERP/current supplier spend. If predicted fair price is higher than ERP spend, the result is not treated as savings opportunity.
+Qualified savings opportunity is counted only when predicted fair price is lower than ERP/current supplier spend. If predicted fair price is higher than ERP spend, the result is counted as ₹0 qualified savings.
 
 The research focuses on reducing procurement cycle time from weeks of manual analysis to near real-time decision support.
 
@@ -159,8 +159,8 @@ Outputs:
 - Savings opportunity
 
 Important business rule:
-- Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
-- If Predicted Fair Price > ERP Price, Savings Opportunity = 0
+- Qualified Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
+- If Predicted Fair Price > ERP Price, Qualified Savings Opportunity = 0
 
 ---
 
@@ -214,11 +214,11 @@ Factory and operational costs.
 Supplier Margin:
 Expected supplier profit margin.
 
-Savings Opportunity:
+Qualified Savings Opportunity:
 Calculated only when ERP/current supplier price exceeds predicted fair price.
 
 Formula:
-Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
+Qualified Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
 
 ---
 
@@ -281,7 +281,7 @@ The dedicated part detail page shows:
 - ERP price.
 - Should-cost.
 - Price gap percentage.
-- Annual savings opportunity.
+- Qualified savings opportunity.
 - Savings opportunity status.
 - Cost breakdown by percentage.
 - Supplier price development versus fair-market price index.
