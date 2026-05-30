@@ -97,13 +97,17 @@ Data will be anonymized.
 ## Market Intelligence Data
 
 Planned:
-- Steel Index
-- FX Rates
+- Live Steel Index
+- Live FX Rates
 - Labor Rates
 - Energy Rates
 
 Sources:
-Publicly available market datasets.
+Publicly available market datasets and no-key APIs.
+
+Current prototype sources:
+- Steel index: FRED `WPU101`, Producer Price Index for Iron and Steel
+- FX: Frankfurter USD/INR latest exchange rate API
 
 ---
 
@@ -194,7 +198,16 @@ Supplier Margin
 Where:
 
 Material Cost:
-Derived from steel grade, thickness, and weight.
+Derived from steel grade, thickness, weight, live steel index, and live FX rate.
+
+Formula:
+Market Adjusted Steel Rate / kg =
+Base Steel Rate / kg x
+(Latest Steel Index / Base Steel Index) x
+(Latest USD/INR / Base USD/INR)
+
+Material Cost =
+Weight kg x Market Adjusted Steel Rate / kg
 
 Energy Cost:
 Manufacturing energy consumption.
@@ -268,6 +281,7 @@ The application currently supports:
 - ERP raw data upload and cleaning.
 - Supplier anonymization.
 - Currency normalization to USD for ERP intelligence.
+- Live steel index and USD/INR FX adjustment for material cost.
 - Portfolio-level ERP price versus predicted fair price comparison.
 - Part-level cost breakdown.
 - Part-level direct spend digital twin analysis.
@@ -286,6 +300,7 @@ The dedicated part detail page shows:
 - Cost breakdown by percentage.
 - Supplier price development versus fair-market price index.
 - Drawing-derived cost twin inputs.
+- Market-adjusted steel rate per kg and material cost.
 
 Deployment route:
 

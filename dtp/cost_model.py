@@ -6,7 +6,7 @@ import pandas as pd
 PRICE_GAP_THRESHOLD = 5.0
 
 
-def calculate_should_cost(parts: pd.DataFrame) -> pd.DataFrame:
+def calculate_should_cost(parts: pd.DataFrame, material_rate_factor: float = 1.0) -> pd.DataFrame:
     result = parts.copy()
     numeric_columns = [
         "weight_kg",
@@ -29,7 +29,10 @@ def calculate_should_cost(parts: pd.DataFrame) -> pd.DataFrame:
     result[numeric_columns] = result[numeric_columns].apply(pd.to_numeric, errors="coerce")
 
     result["blank_area_m2"] = (result["length_mm"] * result["width_mm"]) / 1_000_000
-    result["material_cost"] = result["weight_kg"] * result["material_rate_per_kg"]
+    result["market_material_rate_per_kg"] = (
+        result["material_rate_per_kg"] * material_rate_factor
+    )
+    result["material_cost"] = result["weight_kg"] * result["market_material_rate_per_kg"]
     result["energy_cost"] = result["energy_kwh_per_part"] * result["energy_rate_per_kwh"]
     result["labour_cost"] = result["labour_hours"] * result["labour_rate_per_hour"]
     result["bend_cost"] = result["bend_count"] * 12.0

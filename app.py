@@ -10,6 +10,12 @@ import streamlit as st
 
 from dtp.cost_model import PRICE_GAP_THRESHOLD, calculate_should_cost
 from dtp.erp_pipeline import clean_erp_data
+from dtp.market_data import (
+    DEFAULT_BASE_STEEL_INDEX,
+    DEFAULT_BASE_USD_INR,
+    MarketAdjustment,
+    get_market_adjustment,
+)
 
 
 BASE_DIR = Path(__file__).parent
@@ -116,6 +122,14 @@ def read_erp_transactions(uploaded_file) -> pd.DataFrame:
         else:
             raw_erp = pd.read_csv(uploaded_file)
     return clean_erp_data(raw_erp).cleaned_data
+
+
+@st.cache_data(ttl=60 * 60)
+def load_market_adjustment(
+    base_steel_index: float,
+    base_usd_inr: float,
+) -> MarketAdjustment:
+    return get_market_adjustment(base_steel_index, base_usd_inr)
 
 
 def validate_parts(parts: pd.DataFrame) -> list[str]:
@@ -423,11 +437,22 @@ def render_part_detail(
                     "material_grade": selected_part["material_grade"],
                     "thickness_mm": selected_part["thickness_mm"],
                     "blank_area_m2": selected_part["blank_area_m2"],
+                    "market_material_rate_per_kg": selected_part["market_material_rate_per_kg"],
+                    "weight_kg": selected_part["weight_kg"],
+                    "material_cost": selected_part["material_cost"],
                     "bend_count": selected_part["bend_count"],
                     "hole_count": selected_part["hole_count"],
                     "surface_finish": selected_part["surface_finish"],
                 }
             ]
+        ).style.format(
+            {
+                "thickness_mm": "{:,.1f}",
+                "blank_area_m2": "{:,.3f}",
+                "market_material_rate_per_kg": "₹{:,.2f}",
+                "weight_kg": "{:,.2f}",
+                "material_cost": "₹{:,.0f}",
+            }
         ),
         width="stretch",
         hide_index=True,
@@ -503,6 +528,21 @@ with st.sidebar:
     )
     st.caption("Raw ERP data is cleaned, normalized, and anonymized before analytics.")
 
+    st.header("Live Market Inputs")
+    use_live_market = st.toggle("Use live steel index and FX", value=True)
+    base_steel_index = st.number_input(
+        "Base steel index",
+        min_value=1.0,
+        value=DEFAULT_BASE_STEEL_INDEX,
+        step=1.0,
+    )
+    base_usd_inr = st.number_input(
+        "Base USD/INR",
+        min_value=1.0,
+        value=DEFAULT_BASE_USD_INR,
+        step=0.5,
+    )
+
     st.header("Create Scenario")
     category = st.selectbox("Manufacturing category", list(CATEGORY_PRESETS))
     preset = CATEGORY_PRESETS[category]
@@ -533,7 +573,24 @@ if errors:
         st.error(error)
     st.stop()
 
-priced_parts = calculate_should_cost(parts_raw)
+market_adjustment = (
+    load_market_adjustment(base_steel_index, base_usd_inr)
+    if use_live_market
+    else MarketAdjustment(
+        steel_index=base_steel_index,
+        steel_index_date="Manual baseline",
+        usd_inr=base_usd_inr,
+        fx_date="Manual baseline",
+        base_steel_index=base_steel_index,
+        base_usd_inr=base_usd_inr,
+        source_status="disabled",
+    )
+)
+
+priced_parts = calculate_should_cost(
+    parts_raw,
+    material_rate_factor=market_adjustment.material_rate_factor,
+)
 geo_indices = load_csv("geo_cost_indices.csv")
 benchmarks = load_csv("supplier_benchmarks.csv")
 
@@ -575,7 +632,10 @@ scenario = pd.DataFrame(
         }
     ]
 )
-scenario_result = calculate_should_cost(scenario).iloc[0]
+scenario_result = calculate_should_cost(
+    scenario,
+    material_rate_factor=market_adjustment.material_rate_factor,
+).iloc[0]
 explanations = explain_price_flags(priced_parts)
 query_part_id = get_selected_part_id(priced_parts)
 selected_part = priced_parts.loc[priced_parts["part_id"] == query_part_id].iloc[0]
@@ -597,6 +657,17 @@ kpi_cols[2].metric("Qualified savings", money(opportunity))
 kpi_cols[3].metric("Savings-eligible parts", f"{savings_part_count}/{len(priced_parts)}")
 st.caption(
     "Qualified savings excludes parts where predicted fair price is higher than ERP/current supplier price."
+)
+
+market_cols = st.columns(4)
+market_cols[0].metric("Steel index", f"{market_adjustment.steel_index:,.1f}")
+market_cols[1].metric("USD/INR FX", f"{market_adjustment.usd_inr:,.2f}")
+market_cols[2].metric("Material rate factor", f"{market_adjustment.material_rate_factor:,.3f}x")
+market_cols[3].metric("Market data", market_adjustment.source_status.title())
+st.caption(
+    f"Steel index date: {market_adjustment.steel_index_date}; "
+    f"FX date: {market_adjustment.fx_date}. "
+    "Material cost = weight kg x market-adjusted steel rate per kg."
 )
 
 tab_overview, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, tab_scenario = st.tabs(
@@ -623,6 +694,9 @@ with tab_overview:
         "bend_count",
         "hole_count",
         "surface_finish",
+        "weight_kg",
+        "market_material_rate_per_kg",
+        "material_cost",
         "current_supplier",
         "supplier_region",
         "erp_price",
@@ -651,6 +725,12 @@ with tab_overview:
                 format="₹%.0f",
             ),
             "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
+            "weight_kg": st.column_config.NumberColumn("weight_kg", format="%.2f"),
+            "market_material_rate_per_kg": st.column_config.NumberColumn(
+                "live_steel_rate_per_kg",
+                format="₹%.2f",
+            ),
+            "material_cost": st.column_config.NumberColumn("material_cost", format="₹%.0f"),
         },
     )
 
@@ -789,12 +869,23 @@ with tab_cost:
                     "material_grade": selected_part["material_grade"],
                     "thickness_mm": selected_part["thickness_mm"],
                     "blank_area_m2": selected_part["blank_area_m2"],
+                    "market_material_rate_per_kg": selected_part["market_material_rate_per_kg"],
+                    "weight_kg": selected_part["weight_kg"],
+                    "material_cost": selected_part["material_cost"],
                     "bend_count": selected_part["bend_count"],
                     "hole_count": selected_part["hole_count"],
                     "surface_finish": selected_part["surface_finish"],
                 }
             ]
-        ).style.format({"thickness_mm": "{:,.1f}", "blank_area_m2": "{:,.3f}"}),
+        ).style.format(
+            {
+                "thickness_mm": "{:,.1f}",
+                "blank_area_m2": "{:,.3f}",
+                "market_material_rate_per_kg": "₹{:,.2f}",
+                "weight_kg": "{:,.2f}",
+                "material_cost": "₹{:,.0f}",
+            }
+        ),
         width="stretch",
         hide_index=True,
     )
@@ -909,6 +1000,8 @@ with tab_scenario:
     scenario_cols[2].metric("Should Cost", money(scenario_result["should_cost"]))
 
     st.caption(
+        f"Scenario material cost uses {weight_kg:,.2f} kg x "
+        f"{money(scenario_result['market_material_rate_per_kg'])}/kg. "
         f"Scenario assumes {bend_count} bends, {hole_count} holes, and {surface_finish.lower()} finish."
     )
 

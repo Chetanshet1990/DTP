@@ -63,6 +63,17 @@ def test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price() -> 
     assert result.loc[1, "opportunity_status"] == "Savings opportunity"
 
 
+def test_material_cost_uses_weight_and_market_adjusted_steel_rate() -> None:
+    result = calculate_should_cost(
+        pd.DataFrame([_base_part(erp_price=500)]),
+        material_rate_factor=1.25,
+    )
+
+    assert result.loc[0, "market_material_rate_per_kg"] == 125
+    assert result.loc[0, "material_cost"] == 125
+
+
 if __name__ == "__main__":
     test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price()
+    test_material_cost_uses_weight_and_market_adjusted_steel_rate()
     print("Cost model tests passed")
