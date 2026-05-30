@@ -282,6 +282,7 @@ The application currently supports:
 - Supplier anonymization.
 - Currency normalization to USD for ERP intelligence.
 - Live steel index and USD/INR FX adjustment for material cost.
+- Live steel index and FX are hidden model inputs rather than visible dashboard KPIs.
 - Portfolio-level ERP price versus predicted fair price comparison.
 - Part-level cost breakdown.
 - Part-level direct spend digital twin analysis.
@@ -301,6 +302,7 @@ The dedicated part detail page shows:
 - Supplier price development versus fair-market price index.
 - Drawing-derived cost twin inputs.
 - Market-adjusted steel rate per kg and material cost.
+- Cost breakdown derived from live market-adjusted material cost.
 
 Deployment route:
 

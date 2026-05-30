@@ -14,7 +14,7 @@ https://github.com/Chetanshet1990/DTP
 - Compares ERP/current supplier price with predicted fair price
 - Flags price gaps above 5%
 - Counts savings opportunity only when predicted fair price is lower than ERP/current supplier spend
-- Adjusts steel material cost using live steel index and USD/INR FX data, with fallback baseline values
+- Derives predicted fair price from live steel index and USD/INR FX data without exposing live rates in the dashboard
 - Explains flagged prices using drawing-derived cost drivers such as thickness, bends, holes, and surface finish
 - Benchmarks suppliers by price gap, quality, delivery, lead time, and risk
 - Compares landed should-cost across regions
@@ -33,7 +33,7 @@ Overhead +
 Supplier Margin
 ```
 
-Live material cost rule:
+Material cost rule used inside the model:
 
 ```text
 Market Adjusted Steel Rate / kg =
@@ -50,7 +50,7 @@ Current live-data sources:
 - Steel index: FRED `WPU101`, Producer Price Index for Iron and Steel
 - FX: Frankfurter USD/INR latest exchange rate API
 
-If live market data is unavailable, the app falls back to the configured baseline steel index and USD/INR values so the demo remains usable.
+If live market data is unavailable, the app falls back to baseline steel index and USD/INR values so the demo remains usable. Live steel index and FX values are used as model inputs, not displayed as dashboard KPIs.
 
 Qualified savings opportunity rule:
 
