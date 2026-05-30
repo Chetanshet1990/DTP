@@ -28,45 +28,6 @@ st.set_page_config(
 )
 
 
-CATEGORY_PRESETS = {
-    "Bracket": {
-        "default_material_rate": 78.0,
-        "default_energy_kwh": 0.55,
-        "default_labour_rate": 390.0,
-        "default_overhead_pct": 23.0,
-        "default_margin_pct": 11.0,
-    },
-    "Mounting plate": {
-        "default_material_rate": 86.0,
-        "default_energy_kwh": 0.70,
-        "default_labour_rate": 390.0,
-        "default_overhead_pct": 24.0,
-        "default_margin_pct": 11.0,
-    },
-    "Cover / panel": {
-        "default_material_rate": 92.0,
-        "default_energy_kwh": 1.05,
-        "default_labour_rate": 410.0,
-        "default_overhead_pct": 25.0,
-        "default_margin_pct": 12.0,
-    },
-    "Fabricated assembly": {
-        "default_material_rate": 80.0,
-        "default_energy_kwh": 1.70,
-        "default_labour_rate": 420.0,
-        "default_overhead_pct": 27.0,
-        "default_margin_pct": 12.0,
-    },
-}
-
-SURFACE_FINISH_COSTS = {
-    "Painted": 45.0,
-    "Powder coated": 80.0,
-    "Zinc plated": 60.0,
-    "Passivated": 50.0,
-}
-
-
 REQUIRED_PART_COLUMNS = [
     "part_id",
     "part_name",
@@ -628,6 +589,8 @@ def percent(value: float) -> str:
 st.title("Sheet Metal Cost Digital Twin")
 st.caption("Explainable procurement intelligence for sheet metal sourcing")
 
+market_adjustment = load_market_adjustment()
+
 with st.sidebar:
     st.header("Dataset")
     uploaded_file = st.file_uploader(
@@ -643,27 +606,29 @@ with st.sidebar:
     )
     st.caption("Raw ERP data is cleaned, normalized, and anonymized before analytics.")
 
-    st.header("Create Scenario")
-    category = st.selectbox("Manufacturing category", list(CATEGORY_PRESETS))
-    preset = CATEGORY_PRESETS[category]
-    weight_kg = st.number_input("Weight per part (kg)", min_value=0.001, value=1.2, step=0.1)
-    material_rate = st.number_input(
-        "Material rate per kg",
-        min_value=0.0,
-        value=preset["default_material_rate"],
-        step=5.0,
+    st.header("Live Market Inputs")
+    st.metric(
+        "Steel index",
+        f"{market_adjustment.steel_index:,.1f}",
+        help="FRED WPU101 Producer Price Index for Iron and Steel.",
     )
-    energy_kwh = st.number_input(
-        "Energy kWh per part",
-        min_value=0.0,
-        value=preset["default_energy_kwh"],
-        step=0.05,
+    st.metric(
+        "USD/INR FX",
+        f"{market_adjustment.usd_inr:,.2f}",
+        help="Latest USD to INR exchange rate from Frankfurter.",
     )
-    bend_count = st.number_input("Bend count", min_value=0, value=4, step=1)
-    hole_count = st.number_input("Hole count", min_value=0, value=8, step=1)
-    surface_finish = st.selectbox("Surface finish", list(SURFACE_FINISH_COSTS))
-    labour_hours = st.number_input("Labour hours per part", min_value=0.0, value=0.12, step=0.01)
-    erp_price = st.number_input("Current supplier price", min_value=0.0, value=500.0, step=10.0)
+    st.metric(
+        "Material rate factor",
+        f"{market_adjustment.material_rate_factor:,.3f}x",
+        help="Steel index factor multiplied by FX factor.",
+    )
+    st.caption(
+        f"Source: {market_adjustment.source_status}; "
+        f"steel date: {market_adjustment.steel_index_date}; "
+        f"FX date: {market_adjustment.fx_date}."
+    )
+    if market_adjustment.source_status != "live":
+        st.warning("Live API unavailable; baseline market inputs are being used.")
 
 
 parts_raw = read_parts(uploaded_file)
@@ -672,8 +637,6 @@ if errors:
     for error in errors:
         st.error(error)
     st.stop()
-
-market_adjustment = load_market_adjustment()
 
 priced_parts = calculate_should_cost(
     parts_raw,
@@ -691,41 +654,6 @@ except ValueError as exc:
     erp_transactions = pd.DataFrame()
     erp_error = str(exc)
 
-scenario = pd.DataFrame(
-    [
-        {
-            "part_id": "SCENARIO",
-            "part_name": "What-if part",
-            "category": category,
-            "material": "User input",
-            "material_grade": "User input",
-            "thickness_mm": 2.5,
-            "length_mm": 250,
-            "width_mm": 180,
-            "weight_kg": weight_kg,
-            "bend_count": bend_count,
-            "hole_count": hole_count,
-            "surface_finish": surface_finish,
-            "finish_cost_per_part": SURFACE_FINISH_COSTS[surface_finish],
-            "material_rate_per_kg": material_rate,
-            "cycle_time_min": 0,
-            "energy_kwh_per_part": energy_kwh,
-            "energy_rate_per_kwh": 8.5,
-            "labour_hours": labour_hours,
-            "labour_rate_per_hour": preset["default_labour_rate"],
-            "overhead_pct": preset["default_overhead_pct"],
-            "supplier_margin_pct": preset["default_margin_pct"],
-            "current_supplier": "Scenario supplier",
-            "supplier_region": "India",
-            "erp_price": erp_price,
-            "annual_volume": 1,
-        }
-    ]
-)
-scenario_result = calculate_should_cost(
-    scenario,
-    material_rate_factor=market_adjustment.material_rate_factor,
-).iloc[0]
 explanations = explain_price_flags(priced_parts)
 query_part_id = get_selected_part_id(priced_parts)
 selected_part = ai_priced_parts.loc[ai_priced_parts["part_id"] == query_part_id].iloc[0]
@@ -749,7 +677,7 @@ st.caption(
     "Qualified savings excludes parts where predicted fair price is higher than ERP/current supplier price."
 )
 
-tab_overview, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, tab_scenario = st.tabs(
+tab_overview, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo = st.tabs(
     [
         "Portfolio",
         "AI Models",
@@ -758,7 +686,6 @@ tab_overview, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo, ta
         "Explainability",
         "Supplier Benchmark",
         "Geo Cost",
-        "What-if",
     ]
 )
 
@@ -1170,37 +1097,6 @@ with tab_geo:
         labels={"landed_should_cost": "Landed should-cost"},
     )
     st.plotly_chart(fig, use_container_width=True)
-
-with tab_scenario:
-    scenario_cols = st.columns(3)
-    scenario_cols[0].metric("Material Cost", money(scenario_result["material_cost"]))
-    scenario_cols[1].metric("Conversion Cost", money(scenario_result["conversion_cost"]))
-    scenario_cols[2].metric("Should Cost", money(scenario_result["should_cost"]))
-
-    st.caption(
-        f"Scenario assumes {bend_count} bends, {hole_count} holes, and {surface_finish.lower()} finish."
-    )
-
-    comparison = pd.DataFrame(
-        {
-            "metric": ["ERP price", "Predicted fair price", "Price gap"],
-            "amount": [
-                scenario_result["erp_price"],
-                scenario_result["should_cost"],
-                scenario_result["price_gap"],
-            ],
-        }
-    )
-    st.plotly_chart(
-        px.bar(comparison, x="metric", y="amount", color="metric", text_auto=".0f"),
-        use_container_width=True,
-    )
-    if scenario_result["price_gap_pct"] > PRICE_GAP_THRESHOLD:
-        st.warning(
-            f"Scenario price is {percent(scenario_result['price_gap_pct'])} above predicted fair price."
-        )
-    else:
-        st.success("Scenario price is within the 5% review threshold.")
 
 st.divider()
 with st.expander("Cost model"):
