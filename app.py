@@ -8,12 +8,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from dtp.cost_model import PRICE_GAP_THRESHOLD, calculate_should_cost
 from dtp.erp_pipeline import clean_erp_data
 
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
-PRICE_GAP_THRESHOLD = 5.0
 APP_HOME_URL = "./"
 
 
@@ -147,62 +147,6 @@ def validate_parts(parts: pd.DataFrame) -> list[str]:
         if pd.to_numeric(parts[column], errors="coerce").isna().any():
             errors.append(f"Column '{column}' contains non-numeric values.")
     return errors
-
-
-def calculate_should_cost(parts: pd.DataFrame) -> pd.DataFrame:
-    result = parts.copy()
-    numeric_columns = [
-        "weight_kg",
-        "thickness_mm",
-        "length_mm",
-        "width_mm",
-        "bend_count",
-        "hole_count",
-        "finish_cost_per_part",
-        "material_rate_per_kg",
-        "energy_kwh_per_part",
-        "energy_rate_per_kwh",
-        "labour_hours",
-        "labour_rate_per_hour",
-        "overhead_pct",
-        "supplier_margin_pct",
-        "erp_price",
-        "annual_volume",
-    ]
-    result[numeric_columns] = result[numeric_columns].apply(pd.to_numeric, errors="coerce")
-
-    result["blank_area_m2"] = (result["length_mm"] * result["width_mm"]) / 1_000_000
-    result["material_cost"] = result["weight_kg"] * result["material_rate_per_kg"]
-    result["energy_cost"] = result["energy_kwh_per_part"] * result["energy_rate_per_kwh"]
-    result["labour_cost"] = result["labour_hours"] * result["labour_rate_per_hour"]
-    result["bend_cost"] = result["bend_count"] * 12.0
-    result["piercing_cost"] = result["hole_count"] * 3.0
-    result["process_complexity_cost"] = result["bend_cost"] + result["piercing_cost"]
-    result["surface_finish_cost"] = result["finish_cost_per_part"]
-    result["conversion_cost"] = (
-        result["energy_cost"]
-        + result["labour_cost"]
-        + result["process_complexity_cost"]
-        + result["surface_finish_cost"]
-    )
-    result["overhead"] = result["conversion_cost"] * result["overhead_pct"] / 100
-    result["cost_before_margin"] = (
-        result["material_cost"]
-        + result["energy_cost"]
-        + result["labour_cost"]
-        + result["process_complexity_cost"]
-        + result["surface_finish_cost"]
-        + result["overhead"]
-    )
-    result["supplier_margin"] = result["cost_before_margin"] * result["supplier_margin_pct"] / 100
-    result["should_cost"] = result["cost_before_margin"] + result["supplier_margin"]
-    result["price_gap"] = result["erp_price"] - result["should_cost"]
-    result["price_gap_pct"] = result["price_gap"] / result["should_cost"] * 100
-    result["annual_opportunity"] = result["price_gap"].clip(lower=0) * result["annual_volume"]
-    result["gap_status"] = result["price_gap_pct"].apply(
-        lambda value: "Review" if value > PRICE_GAP_THRESHOLD else "OK"
-    )
-    return result
 
 
 def explain_price_flags(priced_parts: pd.DataFrame) -> pd.DataFrame:
@@ -396,7 +340,7 @@ def render_part_detail(
     detail_kpis[0].metric("ERP price", money(selected_part["erp_price"]))
     detail_kpis[1].metric("Should-cost", money(selected_part["should_cost"]))
     detail_kpis[2].metric("Price gap", percent(selected_part["price_gap_pct"]))
-    detail_kpis[3].metric("Annual opportunity", money(selected_part["annual_opportunity"]))
+    detail_kpis[3].metric("Savings opportunity", money(selected_part["savings_opportunity"]))
 
     breakdown_pct = cost_breakdown_percent(selected_part)
     indexed_prices = price_development_index(selected_part, erp_transactions)
@@ -639,7 +583,7 @@ if get_app_view() == "detail":
 total_spend = priced_parts["erp_price"].mul(priced_parts["annual_volume"]).sum()
 total_should_cost = priced_parts["should_cost"].mul(priced_parts["annual_volume"]).sum()
 review_count = int((priced_parts["gap_status"] == "Review").sum())
-opportunity = priced_parts["annual_opportunity"].sum()
+opportunity = priced_parts["savings_opportunity"].sum()
 
 kpi_cols = st.columns(4)
 kpi_cols[0].metric("ERP annual spend", money(total_spend))
@@ -676,7 +620,8 @@ with tab_overview:
         "erp_price",
         "should_cost",
         "price_gap_pct",
-        "annual_opportunity",
+        "savings_opportunity",
+        "opportunity_status",
         "gap_status",
     ]
     portfolio_view = add_part_links(priced_parts)
@@ -693,8 +638,8 @@ with tab_overview:
             "erp_price": st.column_config.NumberColumn("erp_price", format="₹%.0f"),
             "should_cost": st.column_config.NumberColumn("should_cost", format="₹%.0f"),
             "price_gap_pct": st.column_config.NumberColumn("price_gap_pct", format="%.1f%%"),
-            "annual_opportunity": st.column_config.NumberColumn(
-                "annual_opportunity",
+            "savings_opportunity": st.column_config.NumberColumn(
+                "savings_opportunity",
                 format="₹%.0f",
             ),
             "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
@@ -873,7 +818,7 @@ with tab_suppliers:
         .agg(
             parts=("part_id", "count"),
             avg_gap_pct=("price_gap_pct", "mean"),
-            annual_opportunity=("annual_opportunity", "sum"),
+            savings_opportunity=("savings_opportunity", "sum"),
             avg_should_cost=("should_cost", "mean"),
         )
         .merge(
@@ -891,7 +836,7 @@ with tab_suppliers:
                 "region",
                 "parts",
                 "avg_gap_pct",
-                "annual_opportunity",
+                "savings_opportunity",
                 "quality_ppm",
                 "on_time_delivery_pct",
                 "lead_time_days",
@@ -900,7 +845,7 @@ with tab_suppliers:
         ].style.format(
             {
                 "avg_gap_pct": "{:,.1f}%",
-                "annual_opportunity": "₹{:,.0f}",
+                "savings_opportunity": "₹{:,.0f}",
                 "on_time_delivery_pct": "{:,.0f}%",
             }
         ),
@@ -911,7 +856,7 @@ with tab_suppliers:
         supplier_summary,
         x="quality_ppm",
         y="avg_gap_pct",
-        size="annual_opportunity",
+        size="savings_opportunity",
         color="category",
         hover_name="current_supplier",
         labels={"quality_ppm": "Quality defects PPM", "avg_gap_pct": "Average price gap %"},

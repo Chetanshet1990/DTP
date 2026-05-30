@@ -13,6 +13,7 @@ https://github.com/Chetanshet1990/DTP
 - Calculates should-cost for sheet metal brackets, mounting plates, covers, panels, and fabricated assemblies
 - Compares ERP/current supplier price with predicted fair price
 - Flags price gaps above 5%
+- Counts savings opportunity only when predicted fair price is lower than ERP/current supplier spend
 - Explains flagged prices using drawing-derived cost drivers such as thickness, bends, holes, and surface finish
 - Benchmarks suppliers by price gap, quality, delivery, lead time, and risk
 - Compares landed should-cost across regions
@@ -30,6 +31,14 @@ Surface Finish +
 Overhead +
 Supplier Margin
 ```
+
+Savings opportunity rule:
+
+```text
+Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
+```
+
+If predicted fair price is higher than ERP/current supplier price, the part is not counted as a savings opportunity.
 
 ## Run
 
@@ -71,7 +80,8 @@ Run local checks before pushing important changes:
 
 ```bash
 python3 tests/test_erp_pipeline.py
-python3 -m py_compile app.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py
+python3 tests/test_cost_model.py
+python3 -m py_compile app.py dtp/cost_model.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py tests/test_cost_model.py
 ```
 
 Run the app locally:

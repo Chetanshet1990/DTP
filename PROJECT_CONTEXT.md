@@ -12,6 +12,8 @@ This project proposes an Explainable AI-driven procurement intelligence framewor
 
 The system aims to compare actual ERP purchase prices against AI-predicted fair prices and should-cost estimates, helping procurement teams identify negotiation opportunities and potential savings.
 
+Savings opportunity is counted only when predicted fair price is lower than ERP/current supplier spend. If predicted fair price is higher than ERP spend, the result is not treated as savings opportunity.
+
 The research focuses on reducing procurement cycle time from weeks of manual analysis to near real-time decision support.
 
 ---
@@ -156,6 +158,10 @@ Outputs:
 - Price gap percentage
 - Savings opportunity
 
+Important business rule:
+- Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
+- If Predicted Fair Price > ERP Price, Savings Opportunity = 0
+
 ---
 
 ## 3. Supplier / Part Segmentation
@@ -207,6 +213,12 @@ Factory and operational costs.
 
 Supplier Margin:
 Expected supplier profit margin.
+
+Savings Opportunity:
+Calculated only when ERP/current supplier price exceeds predicted fair price.
+
+Formula:
+Savings Opportunity = max(ERP Price - Predicted Fair Price, 0) x Annual Volume
 
 ---
 
@@ -270,6 +282,7 @@ The dedicated part detail page shows:
 - Should-cost.
 - Price gap percentage.
 - Annual savings opportunity.
+- Savings opportunity status.
 - Cost breakdown by percentage.
 - Supplier price development versus fair-market price index.
 - Drawing-derived cost twin inputs.
@@ -429,7 +442,8 @@ Current baseline validation commands:
 
 ```bash
 python3 tests/test_erp_pipeline.py
-python3 -m py_compile app.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py
+python3 tests/test_cost_model.py
+python3 -m py_compile app.py dtp/cost_model.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py tests/test_cost_model.py
 ```
 
 Current run command:
@@ -483,6 +497,7 @@ Completed:
 - Basic ERP Pipeline Test
 - GitHub Repository Push
 - Deployment-Ready Relative Navigation
+- Savings Opportunity Business Rule Test
 
 In Progress:
 - Dataset Refinement
