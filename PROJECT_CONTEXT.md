@@ -77,8 +77,13 @@ To develop an Explainable AI-based procurement intelligence system that:
 ## Primary Data
 
 ### ERP Procurement Data (Target)
-Expected:
-- 3 years procurement history
+Current prototype:
+- Real bracket purchase workbook imported into the app ERP schema
+- Source file used locally: `bracket_purchase_data.xlsx`
+- Imported raw output: `data/erp_raw_sample.csv`
+- Cleaned output: `data/processed/erp_cleaned.csv`
+- Current imported rows: 97 source rows, 90 cleaned usable ERP rows
+- Excluded rows follow normal data-quality rules: duplicates, missing price, and negative-quantity return/credit rows
 
 Fields:
 - Part Number
@@ -90,7 +95,14 @@ Fields:
 - Unit Price
 - Currency
 
-Data will be anonymized.
+Additional source fields retained in the raw converted file:
+- Bracket type
+- Material / process tag
+- Tooling flag
+- Original country code
+- Total purchasing price in local currency
+
+Supplier names are anonymized in processed ERP outputs.
 
 ---
 
@@ -108,12 +120,16 @@ Publicly available market datasets and no-key APIs.
 Current prototype sources:
 - Steel index: FRED `WPU101`, Producer Price Index for Iron and Steel
 - FX: Frankfurter USD/INR latest exchange rate API
+- Live market input panel: sidebar shows steel index, USD/INR FX, source status, dates, and material adjustment factor
+- Fallback behavior: baseline steel index and FX values are used if live APIs are unavailable
 
 ---
 
 ## Engineering Drawing Data
 
-Manufacturing drawings will be used to extract:
+Current prototype uses a synthetic 30-item sheet-metal engineering dataset because the real bracket purchase file contains procurement history but not drawing attributes. Manufacturing drawings or engineering master data are still required to replace these synthetic fields with real values.
+
+Engineering attributes required for the Cost Digital Twin:
 
 - Material
 - Thickness (Gauge)
@@ -143,7 +159,9 @@ Algorithms:
 Outputs:
 - Predicted Price
 - Feature Importance
-- Current ERP supplier price versus predicted fair price index, using the same selected-part prices that drive qualified savings
+- Daily ML-predicted fair price
+- Monthly ERP price versus daily ML fair-price trend
+- Model fit metrics shown in the `AI Models` tab
 
 ---
 
@@ -179,6 +197,7 @@ Algorithms:
 Outputs:
 - Supplier Clusters
 - Part Clusters
+- Cluster summary by ERP price, AI fair price, gap percentage, and qualified savings
 
 ---
 
@@ -257,7 +276,8 @@ This improves procurement trust and decision-making.
 5. Procurement Dashboard
 6. Clickable Part-Level Digital Twin Drill-Down
 7. Cost Breakdown Percentage Chart
-8. Supplier Price Development vs Fair Market Price Index Chart
+8. Monthly ERP Price vs Daily ML-Predicted Fair Price Chart
+9. Live Market Inputs Panel
 
 ---
 
@@ -269,7 +289,9 @@ The current working prototype is a Streamlit application:
 - Main file: `app.py`
 - ERP cleaning pipeline: `dtp/erp_pipeline.py`
 - ERP cleaning script: `scripts/clean_erp_data.py`
-- Test file: `tests/test_erp_pipeline.py`
+- Bracket purchase importer: `scripts/import_bracket_purchase_data.py`
+- ML models: `dtp/ml_models.py`
+- Test files: `tests/test_erp_pipeline.py`, `tests/test_cost_model.py`, `tests/test_ml_models.py`
 
 The application currently supports:
 
@@ -282,24 +304,25 @@ The application currently supports:
 - Supplier anonymization.
 - Currency normalization to USD for ERP intelligence.
 - Live steel index and USD/INR FX adjustment for material cost.
-- Live steel index and FX are hidden model inputs rather than visible dashboard KPIs.
+- Live steel index, USD/INR FX, source status, input dates, and material adjustment factor are visible in the sidebar.
 - Portfolio-level ERP price versus predicted fair price comparison.
 - Part-level cost breakdown.
 - Part-level direct spend digital twin analysis.
+- AI model outputs using Linear Regression, Random Forest, XGBoost, Isolation Forest, and K-Means.
 - Supplier benchmarking.
 - Geographic landed should-cost comparison.
-- What-if scenario modeling.
 - External deployment readiness through Streamlit Community Cloud.
 
 The dedicated part detail page shows:
 
 - ERP price.
-- Should-cost.
-- Price gap percentage.
-- Qualified savings opportunity.
+- ML fair price.
+- ML price gap percentage.
+- ML qualified savings opportunity.
 - Savings opportunity status.
 - Cost breakdown by percentage.
-- Current ERP supplier price versus predicted fair price index.
+- Monthly ERP price versus daily ML-predicted fair price.
+- Auditable fair-price table with ERP data source labels.
 - Drawing-derived cost twin inputs.
 - Market-adjusted steel rate per kg and material cost.
 - Cost breakdown derived from live market-adjusted material cost.
@@ -310,7 +333,8 @@ Deployment route:
 - Repository: `Chetanshet1990/DTP`
 - Branch: `main`
 - Main file path: `app.py`
-- Current public deployment URL: to be added after Streamlit Cloud deployment is completed.
+- Current deployment URL: `https://6zpfp22otgctvsk4laghpj.streamlit.app`
+- Current deployment access note: URL is reachable but redirects to Streamlit authentication unless app visibility/access settings are opened.
 
 Important deployment note:
 
@@ -320,7 +344,7 @@ The application uses relative links for part-level drill-down pages so that clic
 
 # Current Data Assets
 
-The repository currently includes demo datasets:
+The repository currently includes these data assets:
 
 - `data/sample_parts.csv`
 - `data/supplier_benchmarks.csv`
@@ -331,7 +355,12 @@ The repository currently includes demo datasets:
 - `data/processed/supplier_anonymization_map.csv`
 - `data/processed/erp_data_quality_report.csv`
 
-The sample parts dataset uses sheet metal fields:
+Current data split:
+- `data/erp_raw_sample.csv`: real bracket purchase data converted into the ERP schema.
+- `data/processed/erp_cleaned.csv`: cleaned and anonymized ERP history.
+- `data/sample_parts.csv`: synthetic 30-item engineering part master used for should-cost and ML feature training.
+
+The sample parts dataset uses sheet metal engineering fields:
 
 - Part ID
 - Part name
@@ -424,8 +453,6 @@ Libraries:
 - plotly
 - streamlit
 - openpyxl
-
-Planned for later ML phases:
 - numpy
 - scikit-learn
 - xgboost
@@ -439,7 +466,7 @@ Repository:
 
 Deployment:
 - Streamlit Community Cloud
-- Public URL pending deployment
+- Public URL: `https://6zpfp22otgctvsk4laghpj.streamlit.app`
 
 ---
 
@@ -460,7 +487,8 @@ Current baseline validation commands:
 ```bash
 python3 tests/test_erp_pipeline.py
 python3 tests/test_cost_model.py
-python3 -m py_compile app.py dtp/cost_model.py dtp/erp_pipeline.py scripts/clean_erp_data.py tests/test_erp_pipeline.py tests/test_cost_model.py
+python3 tests/test_ml_models.py
+PYTHONPYCACHEPREFIX=.pycache_check python3 -m py_compile app.py dtp/cost_model.py dtp/erp_pipeline.py dtp/market_data.py dtp/ml_models.py scripts/clean_erp_data.py scripts/import_bracket_purchase_data.py tests/test_erp_pipeline.py tests/test_cost_model.py tests/test_ml_models.py
 ```
 
 Current run command:
@@ -503,21 +531,29 @@ Completed:
 - AI Task Identification
 - Sheet Metal Dataset Schema
 - ERP Data Cleaning Pipeline
+- Real Bracket Purchase Data Import Pipeline
 - Supplier Anonymization
 - Currency Normalization
+- Live Market Inputs Sidebar
 - Streamlit Procurement Dashboard
 - Part-Level Digital Twin Drill-Down
 - Explainable Cost Breakdown
+- Monthly ERP vs Daily ML Fair Price Timeline
+- Linear Regression Pricing Model
+- Random Forest Pricing Model
+- XGBoost Pricing Model
+- Isolation Forest Anomaly Detection
+- K-Means Part Segmentation
 - Supplier Benchmark View
 - Geographic Cost Comparison
-- What-if Cost Scenario
 - Basic ERP Pipeline Test
+- ML Model Test
 - GitHub Repository Push
 - Deployment-Ready Relative Navigation
 - Savings Opportunity Business Rule Test
 
 In Progress:
-- Dataset Refinement
+- Replacement of synthetic engineering drawing attributes with real CAD/drawing-derived data
 - Dashboard Polish
 - Literature Review Expansion
 - External Streamlit Deployment
