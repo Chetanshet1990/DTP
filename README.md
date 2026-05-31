@@ -148,6 +148,12 @@ Clean and anonymize raw ERP procurement data:
 python3 scripts/clean_erp_data.py --input data/erp_raw_sample.csv --output-dir data/processed
 ```
 
+Import the real bracket purchase workbook into the same ERP schema:
+
+```bash
+python3 scripts/import_bracket_purchase_data.py --input /path/to/bracket_purchase_data.xlsx --output data/erp_raw_sample.csv --processed-output-dir data/processed
+```
+
 Generated outputs:
 
 - `data/processed/erp_cleaned.csv`
@@ -158,7 +164,7 @@ The portal also accepts raw ERP CSV or Excel uploads in the sidebar and applies 
 
 ## Dataset
 
-The app includes sample CSV datasets in `data/` and an Excel workbook at `data/digital_twin_pricing_demo.xlsx`. The default `data/sample_parts.csv` file contains 30 synthetic sheet-metal items with all required cost-twin and ML attributes populated. The default `data/erp_raw_sample.csv` file contains 95 synthetic historical ERP transactions across 2023-2025 for those parts.
+The app includes sample CSV datasets in `data/` and an Excel workbook at `data/digital_twin_pricing_demo.xlsx`. The default `data/sample_parts.csv` file contains 30 synthetic sheet-metal items with all required cost-twin and ML attributes populated. The default `data/erp_raw_sample.csv` file is imported from real bracket purchase data and converted into the app ERP schema.
 
 For the upload flow, use the workbook's `Parts` sheet exported as Excel/CSV, or upload any `.xlsx`, `.xls`, or `.csv` file with these columns:
 

@@ -26,6 +26,11 @@ CURRENCY_TO_USD = {
     "GBP": 1.25,
     "CNY": 0.14,
     "JPY": 0.0067,
+    "MXN": 0.059,
+    "THB": 0.027,
+    "DKK": 0.145,
+    "HKD": 0.128,
+    "TWD": 0.031,
 }
 
 
@@ -37,6 +42,13 @@ COUNTRY_TO_REGION = {
     "USA": "North America",
     "Germany": "Europe",
     "Poland": "Europe",
+    "Belgium": "Europe",
+    "Denmark": "Europe",
+    "Hong Kong": "East Asia",
+    "Hungary": "Europe",
+    "Japan": "East Asia",
+    "Thailand": "Southeast Asia",
+    "Taiwan": "East Asia",
 }
 
 

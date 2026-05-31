@@ -1,96 +1,98 @@
-Part Number,Part Description,Category,Supplier Name,Supplier Country,PO Date,Quantity,Unit Price,Currency,Incoterms,Plant
-SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2023-02-09,490,2451.5,INR,EXW,Pune
-SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2023-02-09,580,27.44,USD,FOB,Chennai
-SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2023-02-10,1840,504.78,INR,EXW,Pune
-SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2023-02-10,2360,532.62,INR,EXW,Pune
-SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2023-02-11,700,1912.79,INR,EXW,Pune
-SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2023-02-11,990,12.99,USD,FOB,Chennai
-SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2023-02-11,280,84.1,USD,DAP,Bengaluru
-SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2023-02-14,940,14.18,USD,FOB,Chennai
-SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2023-02-14,8170,93.48,INR,EXW,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2023-02-16,3390,288.51,INR,EXW,Pune
-SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2023-02-16,1130,9.55,USD,FOB,Chennai
-SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2023-02-16,1350,10.13,USD,FOB,Chennai
-SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2023-02-17,780,19.66,USD,FOB,Chennai
-SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2023-02-17,260,54.97,USD,DAP,Bengaluru
-SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2023-02-18,7560,135.26,INR,EXW,Pune
-SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2023-02-18,620,22.26,USD,DAP,Bengaluru
-SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2023-02-20,2920,472.35,INR,EXW,Pune
-SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2023-02-21,1790,481.58,INR,EXW,Pune
-SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2023-02-22,350,38.64,USD,FOB,Chennai
-SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2023-02-22,1190,9.18,USD,FOB,Chennai
-SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2023-02-23,1100,984.03,INR,EXW,Pune
-SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2023-02-24,1130,991.6,INR,EXW,Pune
-SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2023-02-25,850,1446.32,INR,EXW,Pune
-SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2023-02-25,1400,8.78,USD,FOB,Chennai
-SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2023-02-25,810,20.25,USD,DAP,Bengaluru
-SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2023-02-25,6700,1.98,USD,FOB,Chennai
-SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2023-02-26,2890,4.97,USD,FOB,Chennai
-SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2023-02-26,1050,12.71,USD,DAP,Bengaluru
-SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2023-02-26,2800,328.41,INR,EXW,Pune
-SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2023-02-26,4530,3.66,USD,FOB,Chennai
-SM-1026,Robot Pedestal Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2023-12-20,180,3520.0,INR,EXW,Pune
-SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2024-06-08,2410,522.25,INR,EXW,Pune
-SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2024-06-08,460,40.97,USD,FOB,Chennai
-SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2024-06-08,980,23.0,USD,DAP,Bengaluru
-SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2024-06-08,1020,13.64,USD,FOB,Chennai
-SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2024-06-08,340,84.37,USD,DAP,Bengaluru
-SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2024-06-09,970,1548.77,INR,EXW,Pune
-SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2024-06-10,1690,11.28,USD,FOB,Chennai
-SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2024-06-10,4860,3.86,USD,FOB,Chennai
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2024-06-11,4050,297.98,INR,EXW,Pune
-SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2024-06-11,1240,976.11,INR,EXW,Pune
-SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2024-06-11,2270,505.59,INR,EXW,Pune
-SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2024-06-13,1170,10.49,USD,FOB,Chennai
-SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2024-06-13,10420,105.33,INR,EXW,Pune
-SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2024-06-13,600,29.34,USD,FOB,Chennai
-SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2024-06-14,1180,15.18,USD,FOB,Chennai
-SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2024-06-17,1340,1052.18,INR,EXW,Pune
-SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2024-06-17,740,23.58,USD,DAP,Bengaluru
-SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2024-06-18,590,2661.15,INR,EXW,Pune
-SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2024-06-18,2610,362.5,INR,EXW,Pune
-SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2024-06-19,690,2018.55,INR,EXW,Pune
-SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2024-06-19,2890,485.21,INR,EXW,Pune
-SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2024-06-20,2790,576.39,INR,EXW,Pune
-SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2024-06-21,1880,9.66,USD,FOB,Chennai
-SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2024-06-22,8100,136.98,INR,EXW,Pune
-SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2024-06-22,1380,9.7,USD,FOB,Chennai
-SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2024-06-23,3570,5.5,USD,FOB,Chennai
-SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2024-06-23,6350,2.1,USD,FOB,Chennai
-SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2024-06-23,1250,13.94,USD,DAP,Bengaluru
-SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2024-06-25,320,56.32,USD,DAP,Bengaluru
-SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2024-06-26,770,19.84,USD,FOB,Chennai
-SM-1015,Inverter Cover Panel,Cover,Precision Fabricators Pvt Ltd,India,2024-08-21,520,1310.0,INR,EXW,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Euro Fab GmbH,Germany,2024-11-18,420,4.2,EUR,FOB,Pune
-SM-1008,Battery Tray Assembly,Fabricated Assembly,Sino Metal Forming Ltd,China,2025-03-12,360,20.8,USD,FOB,Chennai
-SM-1024,Conveyor Transfer Chute,Fabricated Assembly,Euro Fab GmbH,Germany,2025-09-15,140,71.25,EUR,DAP,Bengaluru
-SM-1005,Sensor Guard Bracket,Bracket,Precision Fabricators Pvt Ltd,India,2025-10-09,3630,536.38,INR,EXW,Pune
-SM-1001,Motor Mounting Bracket,Bracket,Acme Steel Works Pvt Ltd,India,2025-10-10,5510,327.51,INR,EXW,Pune
-SM-1030,Busbar Insulation Cover,Cover,US Fabrication Inc,USA,2025-10-10,950,25.48,USD,DAP,Bengaluru
-SM-1015,Inverter Cover Panel,Cover,US Fabrication Inc,USA,2025-10-11,1010,23.76,USD,DAP,Bengaluru
-SM-1021,Actuator Support Bracket,Bracket,US Fabrication Inc,USA,2025-10-11,1400,15.08,USD,DAP,Bengaluru
-SM-1022,Plc Rack Mounting Plate,Mounting Plate,PanelCraft Industries,India,2025-10-11,2580,519.45,INR,EXW,Pune
-SM-1003,Machine Safety Cover,Cover,Viet Fabrication Co,Vietnam,2025-10-12,1450,11.05,USD,FOB,Chennai
-SM-1014,Compressor Mounting Plate,Mounting Plate,Acme Steel Works Pvt Ltd,India,2025-10-14,1410,1111.15,INR,EXW,Pune
-SM-1026,Robot Pedestal Plate,Mounting Plate,US Fabrication Inc,USA,2025-10-14,320,60.95,USD,DAP,Bengaluru
-SM-1007,Electrical Enclosure Panel,Cover,Viet Fabrication Co,Vietnam,2025-10-15,1690,11.89,USD,FOB,Chennai
-SM-1010,Drive Cabinet Back Plate,Mounting Plate,Sino Metal Forming Ltd,China,2025-10-15,1970,10.55,USD,FOB,Chennai
-SM-1019,Access Door Panel,Cover,Vietnam Sheet Metal Works,Vietnam,2025-10-15,1210,14.88,USD,FOB,Chennai
-SM-1024,Conveyor Transfer Chute,Fabricated Assembly,US Fabrication Inc,USA,2025-10-15,380,96.38,USD,DAP,Bengaluru
-SM-1028,Motor Base Welded Assembly,Fabricated Assembly,Vietnam Sheet Metal Works,Vietnam,2025-10-15,680,29.02,USD,FOB,Chennai
-SM-1013,Cable Clamp Bracket,Bracket,PlatePro Components,India,2025-10-16,9860,144.16,INR,EXW,Pune
-SM-1025,Photo Sensor L Bracket,Bracket,PanelCraft Industries,India,2025-10-16,12060,107.64,INR,EXW,Pune
-SM-1008,Battery Tray Assembly,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2025-10-18,1020,1645.84,INR,EXW,Pune
-SM-1006,Base Mounting Plate,Mounting Plate,PlatePro Components,India,2025-10-19,3010,584.69,INR,EXW,Pune
-SM-1018,Hydraulic Manifold Plate,Mounting Plate,Sino Metal Forming Ltd,China,2025-10-19,1230,15.85,USD,FOB,Chennai
-SM-1011,Operator Console Side Panel,Cover,PanelCraft Industries,India,2025-10-21,1450,1041.77,INR,EXW,Pune
-SM-1004,Welded Support Frame,Fabricated Assembly,Acme Steel Works Pvt Ltd,India,2025-10-22,930,2233.51,INR,EXW,Pune
-SM-1009,Pump Support Angle Bracket,Bracket,Sino Metal Forming Ltd,China,2025-10-22,4670,5.63,USD,FOB,Chennai
-SM-1023,Gearbox Splash Cover,Cover,Sino Metal Forming Ltd,China,2025-10-22,1860,10.39,USD,FOB,Chennai
-SM-1016,Cooling Duct Assembly,Fabricated Assembly,Viet Fabrication Co,Vietnam,2025-10-23,840,22.28,USD,FOB,Chennai
-SM-1020,Material Handling Tray,Fabricated Assembly,Precision Fabricators Pvt Ltd,India,2025-10-23,570,2789.41,INR,EXW,Pune
-SM-1017,Limit Switch Bracket,Bracket,Vietnam Sheet Metal Works,Vietnam,2025-10-24,7280,2.26,USD,FOB,Chennai
-SM-1027,Terminal Box Cover,Cover,PlatePro Components,India,2025-10-24,3380,364.51,INR,EXW,Pune
-SM-1029,Cable Tray Support Bracket,Bracket,Sino Metal Forming Ltd,China,2025-10-24,5510,4.15,USD,FOB,Chennai
-SM-1002,Control Cabinet Mounting Plate,Mounting Plate,PlatePro Components,India,2025-10-25,2880,570.03,INR,EXW,Pune
-SM-1012,Heavy Duty Skid Frame,Fabricated Assembly,Sino Metal Forming Ltd,China,2025-10-25,420,44.02,USD,FOB,Chennai
+Part Number,Part Description,Category,Supplier Name,Supplier Country,PO Date,Quantity,Unit Price,Currency,Total Purchasing Price Local,Original Country Code,Bracket Type,Material Process Tag,Tooling Flag
+BR-12456262,Tripp Lite Monitor Rackmount Bracket 4U,Mounting Bracket,CDW DIRECT LLC,USA,2025-01-03,4.0,42.773,USD,171.0,US,Mounting Bracket,,No
+BR-909F6D81,Bracket 2141021501 for new process study,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-03,1.0,120.0,CNY,120.0,CN,Bracket / Other,,No
+BR-C63C9511,Set up tooling fabrication de bracket 20,Tooling / Fixture,HARMINIE ENTERPRISES INC,USA,2025-01-08,1.0,450.0,USD,450.0,US,Tooling / Fixture,,Yes
+BR-E04F9B60,Bracket,Bracket / Other,NIHON DENKEI CO LTD,Japan,2025-01-09,1.0,8100.0,JPY,8100.0,JP,Bracket / Other,,No
+BR-60498DF5,"High Bay Lineal G4, Bracket de Instalaci",Bracket / Other,MISELEC JUAREZ SA DE CV,Mexico,2025-01-13,30.0,223.0,MXN,6690.0,MX,Bracket / Other,,No
+BR-4E80CB17,"Bracket, USB 15.6""",Bracket / Other,"Thales Avionics, Inc.",USA,2025-01-14,118.68,1.0,USD,119.0,US,Bracket / Other,,No
+BR-D287B822,MAR-90570027 - Quick mount bracket,Mounting Bracket,Harman Professional Inc.,USA,2025-01-15,2.0,64.94,USD,130.0,US,Mounting Bracket,,No
+BR-BAD70757,fabricacion de bracket 2150001101A para,Bracket / Other,HARMINIE ENTERPRISES INC,USA,2025-01-15,1.0,6800.0,USD,6800.0,US,Bracket / Other,,No
+BR-DF94B298,Set Up Molde para fabricacion de bracket,Bracket / Other,HARMINIE ENTERPRISES INC,USA,2025-01-15,1.0,450.0,USD,450.0,US,Bracket / Other,,No
+BR-AEC0AFD6,plastic bracket 2307022101,Plastic Bracket,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-15,2.0,240.0,CNY,480.0,CN,Plastic Bracket,Plastic,No
+BR-12456262,Tripp Lite Monitor Rackmount Bracket 4U,Mounting Bracket,CDW DIRECT LLC,USA,2025-01-16,1.0,48.03,USD,48.0,US,Mounting Bracket,,No
+BR-33B4A04C,Scan 3D bracket de aluminio,Bracket / Other,SODISAUT,Mexico,2025-01-20,1.0,8800.0,MXN,8800.0,MX,Bracket / Other,Aluminum,No
+BR-B99565AB,KIA SP3 MY25 AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
+BR-F05772FB,KIA OVK AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
+BR-5CEED564,HKMC SG2 PE AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
+BR-7E7C403D,4100889 KIA OV Bracket hard tooling modi,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-01-21,1.0,7000.0,CNY,7000.0,CN,Tooling / Fixture,,Yes
+BR-C1D72D79,4114792 KIA EV TK1 Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-01-22,1.0,40000.0,CNY,40000.0,CN,Tooling / Fixture,,Yes
+BR-F84EB644,SSD Upgrade Kit Bracket + Heatsink Repla,Bracket / Other,ANANDIT INFOTECH INDIA PVT LTD,India,2025-01-22,9.0,3000.0,INR,27000.0,IN,Bracket / Other,,No
+BR-CC3B382C,Ford P702 C2 Mic Headliner Bracket,Bracket / Other,SHANDONG GETTOP ACOUSTIC CO LTD,China,2025-01-23,100.0,0.13,USD,13.0,CN,Bracket / Other,,No
+BR-A5EA7F3A,6900018901 plastic bracket,Plastic Bracket,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-23,1.0,350.0,CNY,350.0,CN,Plastic Bracket,Plastic,No
+BR-A77E3CB8,BANDA Y BRACKET,Bracket / Other,IC&S SA DE CV,Mexico,2025-01-23,4.0,55.0,MXN,220.0,MX,Bracket / Other,,No
+BR-25927435,4072370_GEELY&E171_Bracket_Tooling moc,Tooling / Fixture,FASTRONG ELECTRICAL APPLIANCES CO,China,2025-01-24,1.0,4000.0,CNY,4000.0,CN,Tooling / Fixture,,Yes
+BR-F12B8D71,4100544_Geely_E371_AMP Bracket tooling,Tooling / Fixture,FASTRONG ELECTRICAL APPLIANCES CO,China,2025-01-24,1.0,171500.0,CNY,171500.0,CN,Tooling / Fixture,,Yes
+BR-EA5A65FD,"YUMORE 14"" Stainless Steel Shelf Bracket",Shelf Bracket,"Amazon Capital Services, Inc.",USA,2025-01-27,-1.0,30.1,USD,-30.0,US,Shelf Bracket,Steel,No
+BR-D526274C,"4 Pcs T Post Bracket, Black T-Plate Meta",Bracket / Other,"Amazon Capital Services, Inc.",USA,2025-01-27,-1.0,32.84,USD,-33.0,US,Bracket / Other,,No
+BR-EA5A65FD,"YUMORE 14"" Stainless Steel Shelf Bracket",Shelf Bracket,"Amazon Capital Services, Inc.",USA,2025-01-27,1.0,30.1,USD,30.0,US,Shelf Bracket,Steel,No
+BR-D526274C,"4 Pcs T Post Bracket, Black T-Plate Meta",Bracket / Other,"Amazon Capital Services, Inc.",USA,2025-01-27,1.0,32.84,USD,33.0,US,Bracket / Other,,No
+BR-64D9D1CB,MAR-90580008 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,5.0,5.27,USD,26.0,US,Mounting Bracket,,No
+BR-26EA35A4,MAR-90580009 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,5.0,5.91,USD,30.0,US,Mounting Bracket,,No
+BR-18CE5002,MAR-90580010 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,4.0,6.38,USD,26.0,US,Mounting Bracket,,No
+BR-F3D6629B,4108675 TATA 14.53 IVI Mounting bracket,Mounting Bracket,DOITER CASTINGS,India,2025-01-31,1.0,891000.0,INR,891000.0,IN,Mounting Bracket,Casting,No
+BR-01A412E5,Article number: 501217 Slot bracket for,Bracket / Other,Solectrix Systems GmbH,Germany,2025-02-04,7.0,14.0,EUR,98.0,DE,Bracket / Other,,No
+BR-4B0367CC,JSEN0031-BRACKET PARA SENSOR 19272-RE,Sensor Bracket,FESTO PNEUMATIC SA,Mexico,2025-02-04,4.0,169.33,MXN,677.0,MX,Sensor Bracket,,No
+BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,8100.0,USD,8100.0,TW,Tooling / Fixture,,Yes
+BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,10800.0,USD,10800.0,TW,Tooling / Fixture,,Yes
+BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,8100.0,USD,8100.0,TW,Tooling / Fixture,,Yes
+BR-90ADC15D,Bracket for Mirror,Bracket / Other,ISQUARE SAFETY EQUIPMENTS PVT LTD,India,2025-02-12,2500.0,1.0,INR,2500.0,IN,Bracket / Other,,No
+BR-A2A9F024,SY5120-5LZ-01-F2 Bracket Valvulas 5/2,Bracket / Other,IC&S SA DE CV,Mexico,2025-02-13,50.0,21.0,MXN,1050.0,MX,Bracket / Other,,No
+BR-795C1F38,2307022801B_BRACKET 25mm Plastic HYUN,Plastic Bracket,Dongguan Forwa Precision Industry,China,2025-02-17,100.0,2.57,USD,257.0,CN,Plastic Bracket,Plastic,No
+BR-0C0D045B,2307022801A_BRACKET 25mm Plastic HYUN,Plastic Bracket,HUIZHOU DESAY PRECISION PARTS CO,China,2025-02-17,112.0,4.53,USD,507.0,CN,Plastic Bracket,Plastic,No
+BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,14100.0,USD,14100.0,CN,Bracket / Other,,No
+BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,18800.0,USD,18800.0,CN,Bracket / Other,,No
+BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,14100.0,USD,14100.0,CN,Bracket / Other,,No
+BR-4552408A,DP3 SRX922 AF Bracket,Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-18,2.0,268.0,USD,536.0,HK,Bracket / Other,,No
+BR-7583B83C,"DP3 SRX912M UBV MAIN BRACKET,OPTION",Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-19,3.0,300.0,USD,900.0,HK,Bracket / Other,,No
+BR-3DFA0639,"DP3 SRX915M UBV MAIN BRACKET,OPTION",Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-19,3.0,300.0,USD,900.0,HK,Bracket / Other,,No
+BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,15000.0,USD,15000.0,CN,Tooling / Fixture,Metal,Yes
+BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,20000.0,USD,20000.0,CN,Tooling / Fixture,Metal,Yes
+BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,15000.0,USD,15000.0,CN,Tooling / Fixture,Metal,Yes
+BR-C596841F,JG Coach DV 250mm 4p Subwoofer Bracket,Bracket / Other,ZHONG SHAN SHI CHENG TOOLING CO LTD,China,2025-02-24,150.0,42.0,CNY,6300.0,CN,Bracket / Other,,No
+BR-FE8DCE61,HKMC KIA EV TK1-bracket modify,Bracket / Other,SCOFED TESTING TECHNOLOGY (SUZHOU),China,2025-02-24,1.0,2581.0,CNY,2581.0,CN,Bracket / Other,,No
+BR-3DFF9943,Bracket para Sensor,Sensor Bracket,SODISAUT,Mexico,2025-02-25,3.0,2166.0,MXN,6498.0,MX,Sensor Bracket,,No
+BR-73D1A142,BRACKET: RIGHT ANGLE LOW PROFILE. FITS,Bracket / Other,International Border Supply Automat,Mexico,2025-02-25,2.0,245.7,MXN,491.0,MX,Bracket / Other,,No
+BR-A0AE73D0,ESD bin with partition for IC Brackets U,Bracket / Other,TRIPAK SOLUTIONS,India,2025-02-27,4624.0,1.0,INR,4624.0,IN,Bracket / Other,,No
+BR-58934C6A,TJ066 bracket base,Bracket / Other,SIP MAXCOM TECHNOLOGY CO LTD,China,2025-02-28,10.0,540.0,CNY,5400.0,CN,Bracket / Other,,No
+BR-B9F71913,SUBARU CID BRACKET L,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-03-04,10.0,32.0,USD,320.0,HK,Bracket / Other,,No
+BR-1A1E5615,SUBARU CID BRACKET R,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-03-04,10.0,32.0,USD,320.0,HK,Bracket / Other,,No
+BR-B5501DEF,Mounting Bracket,Mounting Bracket,SICK AUTOMATION SOLUTIONS SA DE CV,Mexico,2025-03-04,1.0,768.0,MXN,768.0,MX,Mounting Bracket,,No
+BR-7CD26747,Ordering Shelf Brackets (2pcs/set) for P,Shelf Bracket,Climatec Eastern Europe Kft,Hungary,2025-03-04,610.0,1.0,EUR,610.0,HU,Shelf Bracket,,No
+BR-F01FFBD4,ATK - McMaster - Strut Channel L Bracket,Bracket / Other,ATK AUDIOTEK CORP,USA,2025-03-05,93.0,1.072,USD,100.0,US,Bracket / Other,,No
+BR-C39D8BD2,4 steel brackets,Bracket / Other,RUTEC A/S,Denmark,2025-03-11,1.0,,DKK,,DK,Bracket / Other,Steel,No
+BR-2DDE42A0,4144806 HKMC NH2 Bracket hard tooling,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-03-12,1.0,280000.0,CNY,280000.0,CN,Tooling / Fixture,,Yes
+BR-FDC97156,23270042011_BMW_XNF-ALEV4_BRACKET 1,Bracket / Other,SUZHOU GOUTECH PRECISION,China,2025-03-18,1.0,82000.0,CNY,82000.0,CN,Bracket / Other,,No
+BR-662C72E5,23270042021_BMW_XNF-ALEV4_BRACKET 1,Bracket / Other,SUZHOU GOUTECH PRECISION,China,2025-03-18,1.0,82000.0,CNY,82000.0,CN,Bracket / Other,,No
+BR-7EB91D81,4135117 KIA SP3 H288 BRACKET hard toolin,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-03-19,1.0,195000.0,CNY,195000.0,CN,Tooling / Fixture,,Yes
+BR-06B23A0C,Fabricacion de set de Brackets (4 pieza,Bracket / Other,Quetzalcoatl Ferrero Carlos,Mexico,2025-03-20,1.0,5200.0,MXN,5200.0,MX,Bracket / Other,,No
+BR-BBDCB5F7,2307023101A - HKMC - BRACKET 25mm Plas,Bracket / Other,"Hana Steel Co., Ltd.",Thailand,2025-03-21,1.0,592470.0,THB,592470.0,TH,Bracket / Other,,No
+BR-467768E0,Ford ANC Microphone Bracket,Bracket / Other,SHANDONG GETTOP ACOUSTIC CO LTD,China,2025-03-28,1000.0,0.23,USD,230.0,CN,Bracket / Other,,No
+BR-2892A6CC,MY24 bracket LH RH incoming inspection g,Bracket / Other,SURFACE CAM ENGINEERING SOLUTIONS,India,2025-03-29,1.0,48875.0,INR,48875.0,IN,Bracket / Other,,No
+BR-84F5BDA0,TATA 14.54 Bracket inspection gauge,Bracket / Other,SURFACE CAM ENGINEERING SOLUTIONS,India,2025-03-29,1.0,62675.0,INR,62675.0,IN,Bracket / Other,,Yes
+BR-D449E82C,PR028 bracket press tip fixture,Bracket / Other,SUZHOU TITU AUTOMATION TECHNOLOGY,China,2025-04-01,1.0,3463.0,CNY,3463.0,CN,Bracket / Other,,Yes
+BR-38C470B3,5143715-00-D Zoom guild bracket tooling,Tooling / Fixture,MASTARS INDUSTRIES CO LTD,China,2025-04-02,1.0,450.0,USD,450.0,CN,Tooling / Fixture,,Yes
+BR-66795826,2307023102A - HKMC - BRACKET 25mm Plas,Bracket / Other,"Hana Steel Co., Ltd.",Thailand,2025-04-03,1.0,91935.0,THB,91935.0,TH,Bracket / Other,,No
+BR-7F32C554,Chery Exceed T22 Bracket_13mm Heigher,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-07,1.0,850.0,CNY,850.0,CN,Bracket / Other,,No
+BR-BA0A40B6,Chery Exceed T22 Bracket_30mm Heigher,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-07,1.0,850.0,CNY,850.0,CN,Bracket / Other,,No
+BR-2C3B411D,Bracket p/sensor-SMB-8-32 S/N Release C,Sensor Bracket,FESTO PNEUMATIC SA,Mexico,2025-04-08,2.0,126.85,MXN,254.0,MX,Sensor Bracket,,No
+BR-BC9B438F,Fabricacion de brackets para la sujeccio,Bracket / Other,Quetzalcoatl Ferrero Carlos,Mexico,2025-04-08,10.0,1200.0,MXN,12000.0,MX,Bracket / Other,,No
+BR-8426F1ED,Tomorrowland (REA BEAM IP) M12 Bracket,Bracket / Other,DONGGUAN ARES PRECISION LTD CO,China,2025-04-08,20.0,20.0,USD,400.0,CN,Bracket / Other,,No
+BR-C3F8CDD3,BRACKET 22MM PLASTIC,Plastic Bracket,PLASTIC MOLDING TECHNOLOGY LLC,USA,2025-04-09,-1.0,150.0,USD,-150.0,US,Plastic Bracket,Plastic,No
+BR-C220525B,Microphone Array Alu Brackets,Bracket / Other,"2F PROTOTYPES CO., LTD",China,2025-04-09,1.0,1816.0,USD,1816.0,CN,Bracket / Other,Aluminum,No
+BR-C3F8CDD3,BRACKET 22MM PLASTIC,Plastic Bracket,PLASTIC MOLDING TECHNOLOGY LLC,USA,2025-04-09,1.0,150.0,USD,150.0,US,Plastic Bracket,Plastic,No
+BR-C1D749EA,STLA EJ DCSD - PV testing Bracket,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-04-11,5.0,76.0,USD,380.0,HK,Bracket / Other,,No
+BR-E66EDF1C,4117556 NQ5 PE AMP Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,178000.0,CNY,178000.0,CN,Tooling / Fixture,,Yes
+BR-B667A286,4117557 NQ5 PE PHEV AMP Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,160000.0,CNY,160000.0,CN,Tooling / Fixture,,Yes
+BR-C1D72D79,4114792 KIA EV TK1 Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,177000.0,CNY,177000.0,CN,Tooling / Fixture,,Yes
+BR-A4937057,Chery Jetour D01 40MM MIDTWEETER bracket,Bracket / Other,INPLAST PLASTIC & ELECTRONICS,China,2025-04-15,1.0,210000.0,CNY,210000.0,CN,Bracket / Other,,No
+BR-F2D1147B,JSEN1016-BRACKET: RIGHT ANGLE MOUNTIN,Mounting Bracket,International Border Supply Automat,Mexico,2025-04-15,6.0,257.14,MXN,1543.0,MX,Mounting Bracket,,No
+BR-3767B523,Smart Camera Bracket de montaje ajustabl,Bracket / Other,KEYENCE MEXICO SA DE CV,Mexico,2025-04-15,1.0,460.0,MXN,460.0,MX,Bracket / Other,,No
+BR-883BD36B,M.2 2280 SSD Upgrade Kit Bracket + Heats,Bracket / Other,ANANDIT INFOTECH INDIA PVT LTD,India,2025-04-16,1.0,3900.0,INR,3900.0,IN,Bracket / Other,,No
+BR-00497A0E,86150-0W470 Sorting Deformed Bracket_4/,Bracket / Other,GREEN TEC,Japan,2025-04-17,15000.0,1.0,JPY,15000.0,JP,Bracket / Other,,No
+BR-7D980595,T33391_5 Bracket,Bracket / Other,Amplio Automatika Zrt.,Hungary,2025-04-17,6.0,35.9,EUR,215.0,HU,Bracket / Other,,No
+BR-5BD8929B,JG GV90 STD AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
+BR-3438286B,JG GV90 ADV AMP Booster Bracket Screwing,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,No
+BR-12C8C777,JG GV90 ADV AMP Core AMP Bracket Screwi,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,No
+BR-B5501DEF,Mounting Bracket,Mounting Bracket,SICK AUTOMATION SOLUTIONS SA DE CV,Mexico,2025-04-17,1.0,768.0,MXN,768.0,MX,Mounting Bracket,,No
+BR-DBFD71F5,OP-88697 Adjustable Bracket for SR-X ser,Bracket / Other,KEYENCE INTERNATIONAL (BELGIUM) NV,Belgium,2025-04-22,5.0,33.0,EUR,165.0,BE,Bracket / Other,,No
+BR-9839C970,metal bracket,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-23,1.0,120.0,CNY,120.0,CN,Bracket / Other,Metal,No
