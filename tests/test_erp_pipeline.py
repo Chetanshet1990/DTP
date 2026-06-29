@@ -50,6 +50,32 @@ def test_clean_erp_data_anonymizes_and_normalizes_currency() -> None:
     assert result.cleaned_data.loc[1, "category"] == "Mounting plate"
 
 
+def test_clean_erp_data_accepts_review3_generated_schema() -> None:
+    raw = pd.DataFrame(
+        [
+            {
+                "po_number": "PO-1",
+                "po_date": "2026-03-01",
+                "part_id": "SM-1001",
+                "part_description": "Mounting bracket",
+                "category": "Bracket",
+                "supplier_name": "SteelWorks",
+                "country": "India",
+                "currency": "INR",
+                "unit_price": 600,
+                "quantity": 100,
+            }
+        ]
+    )
+
+    result = clean_erp_data(raw)
+
+    assert len(result.cleaned_data) == 1
+    assert result.cleaned_data.loc[0, "part_id"] == "SM-1001"
+    assert result.cleaned_data.loc[0, "unit_price_usd"] == 7.2
+
+
 if __name__ == "__main__":
     test_clean_erp_data_anonymizes_and_normalizes_currency()
+    test_clean_erp_data_accepts_review3_generated_schema()
     print("ERP pipeline tests passed")

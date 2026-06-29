@@ -259,6 +259,19 @@ def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
 def monthly_erp_price_history(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
     """Build monthly ERP price history for the selected part."""
     today = pd.Timestamp.today().normalize()
+    if erp_transactions.empty or "part_id" not in erp_transactions.columns:
+        months = pd.date_range(today - pd.DateOffset(months=35), today, freq="MS")
+        return pd.DataFrame(
+            {
+                "date": months,
+                "erp_monthly_price": [
+                    float(selected_part["erp_price"]) * (0.92 + index / max(len(months) - 1, 1) * 0.10)
+                    for index in range(len(months))
+                ],
+                "erp_data_source": "Generated - ERP data unavailable",
+            }
+        )
+
     part_erp = erp_transactions[erp_transactions["part_id"] == selected_part["part_id"]].copy()
     if part_erp.empty:
         # Demo fallback: if the real ERP file has no matching part history,

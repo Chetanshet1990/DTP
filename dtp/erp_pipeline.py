@@ -23,6 +23,23 @@ REQUIRED_ERP_COLUMNS = [
     "Currency",
 ]
 
+ERP_COLUMN_ALIASES = {
+    "part_id": "Part Number",
+    "part_number": "Part Number",
+    "part_description": "Part Description",
+    "description": "Part Description",
+    "category": "Category",
+    "supplier_name": "Supplier Name",
+    "supplier": "Supplier Name",
+    "country": "Supplier Country",
+    "supplier_country": "Supplier Country",
+    "po_date": "PO Date",
+    "date": "PO Date",
+    "quantity": "Quantity",
+    "unit_price": "Unit Price",
+    "currency": "Currency",
+}
+
 
 CURRENCY_TO_USD = {
     # These fixed rates are demo conversion factors. In a production system this
@@ -128,6 +145,18 @@ def validate_erp_columns(raw_data: pd.DataFrame) -> None:
         raise ValueError(f"Missing required ERP columns: {', '.join(missing)}")
 
 
+def normalize_erp_schema(raw_data: pd.DataFrame) -> pd.DataFrame:
+    """Accept canonical ERP headers and lower-case app-generated headers."""
+    rename_map = {}
+    existing_columns = set(raw_data.columns)
+    for column in raw_data.columns:
+        normalized = normalize_text(column).lower().replace(" ", "_")
+        canonical = ERP_COLUMN_ALIASES.get(normalized)
+        if canonical and canonical not in existing_columns:
+            rename_map[column] = canonical
+    return raw_data.rename(columns=rename_map)
+
+
 def normalize_text(value: object) -> str:
     """Standardize text values so duplicates and mappings behave consistently."""
     if pd.isna(value):
@@ -163,6 +192,7 @@ def anonymize_suppliers(suppliers: pd.Series) -> tuple[pd.Series, pd.DataFrame]:
 
 def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
     """Main ERP pipeline used by both scripts and the Streamlit app."""
+    raw_data = normalize_erp_schema(raw_data)
     validate_erp_columns(raw_data)
     data = raw_data.copy()
     before_rows = len(data)
