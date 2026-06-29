@@ -10,10 +10,17 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from dtp.cost_model import PRICE_GAP_THRESHOLD, calculate_should_cost
+from dtp.drawing_extractor import drawing_results_to_frame, extract_specs_from_text
 from dtp.erp_pipeline import clean_erp_data
 from dtp.market_data import get_market_adjustment
 from dtp.ml_models import run_ai_pricing_models
+from dtp.procurement_explain import build_procurement_explanations
 
+
+# REVIEW EXPLANATION:
+# This is the Streamlit dashboard. It connects all backend modules:
+# data upload -> market data -> should-cost -> ML fair price -> anomaly/XAI
+# outputs -> portfolio and part-level review screens.
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
@@ -29,6 +36,8 @@ st.set_page_config(
 
 
 REQUIRED_PART_COLUMNS = [
+    # Uploaded part datasets must contain these engineering and commercial fields.
+    # In the thesis story these come from drawing/OCR or engineering master data.
     "part_id",
     "part_name",
     "category",
@@ -58,10 +67,12 @@ REQUIRED_PART_COLUMNS = [
 
 
 def load_csv(name: str) -> pd.DataFrame:
+    """Load one default demo CSV from the data folder."""
     return pd.read_csv(DATA_DIR / name)
 
 
 def read_parts(uploaded_file) -> pd.DataFrame:
+    """Read the sheet-metal part master used by cost twin and ML models."""
     if uploaded_file is None:
         return load_csv("sample_parts.csv")
 
@@ -72,6 +83,7 @@ def read_parts(uploaded_file) -> pd.DataFrame:
 
 
 def read_erp_transactions(uploaded_file) -> pd.DataFrame:
+    """Read raw ERP data and immediately pass it through the cleaning pipeline."""
     if uploaded_file is None:
         raw_erp = load_csv("erp_raw_sample.csv")
     else:
@@ -83,12 +95,30 @@ def read_erp_transactions(uploaded_file) -> pd.DataFrame:
     return clean_erp_data(raw_erp).cleaned_data
 
 
+def extract_uploaded_drawing_text(uploaded_file) -> str:
+    """Extract text from uploaded drawing files for specification parsing."""
+    suffix = Path(uploaded_file.name).suffix.lower()
+    if suffix == ".pdf":
+        try:
+            from pypdf import PdfReader
+
+            reader = PdfReader(uploaded_file)
+            return "\n".join(page.extract_text() or "" for page in reader.pages)
+        except Exception:
+            return ""
+    if suffix in {".txt", ".dxf"}:
+        return uploaded_file.getvalue().decode("utf-8", errors="ignore")
+    return ""
+
+
 @st.cache_data(ttl=60 * 60)
 def load_market_adjustment():
+    """Cache live market calls for one hour so the dashboard stays responsive."""
     return get_market_adjustment()
 
 
 def validate_parts(parts: pd.DataFrame) -> list[str]:
+    """Validate uploaded part master before running cost and ML calculations."""
     missing = [column for column in REQUIRED_PART_COLUMNS if column not in parts.columns]
     if missing:
         return [f"Missing required columns: {', '.join(missing)}"]
@@ -120,6 +150,7 @@ def validate_parts(parts: pd.DataFrame) -> list[str]:
 
 
 def explain_price_flags(priced_parts: pd.DataFrame) -> pd.DataFrame:
+    """Create simple procurement-language explanations for should-cost gaps."""
     rows = []
     driver_columns = {
         "Material": "material_cost",
@@ -128,6 +159,7 @@ def explain_price_flags(priced_parts: pd.DataFrame) -> pd.DataFrame:
         "Bends and holes": "process_complexity_cost",
         "Surface finish": "surface_finish_cost",
         "Overhead": "overhead",
+        "Manual template adjustments": "manual_template_adjustment_cost",
         "Supplier margin": "supplier_margin",
     }
     for _, part in priced_parts.iterrows():
@@ -161,6 +193,7 @@ def explain_price_flags(priced_parts: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_selected_part_id(priced_parts: pd.DataFrame) -> str:
+    """Read selected part_id from the URL query string."""
     part_id = st.query_params.get("part_id")
     if isinstance(part_id, list):
         part_id = part_id[0] if part_id else None
@@ -170,6 +203,7 @@ def get_selected_part_id(priced_parts: pd.DataFrame) -> str:
 
 
 def get_app_view() -> str:
+    """Switch between portfolio page and part-detail page using URL state."""
     view = st.query_params.get("view")
     if isinstance(view, list):
         view = view[0] if view else None
@@ -177,18 +211,28 @@ def get_app_view() -> str:
 
 
 def add_part_links(priced_parts: pd.DataFrame) -> pd.DataFrame:
+    """Turn part IDs and gap status into clickable links for the detail page."""
     linked = priced_parts.copy()
     linked["part_id"] = linked["part_id"].map(
         lambda value: f"./?view=detail&part_id={quote(str(value))}"
+    )
+    linked["gap_status"] = priced_parts.apply(
+        lambda row: (
+            f"./?view=detail&part_id={quote(str(row['part_id']))}"
+            f"&gap_status={quote(str(row['gap_status']))}"
+        ),
+        axis=1,
     )
     return linked
 
 
 def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
+    """Convert cost buckets into percentage share for the stacked chart."""
     rows = pd.DataFrame(
         {
             "cost_bucket": [
                 "Supplier Margin",
+                "Manual Template Adjustments",
                 "Overhead",
                 "Surface Finish",
                 "Bends and Holes",
@@ -198,6 +242,7 @@ def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
             ],
             "amount": [
                 selected_part["supplier_margin"],
+                selected_part["manual_template_adjustment_cost"],
                 selected_part["overhead"],
                 selected_part["surface_finish_cost"],
                 selected_part["process_complexity_cost"],
@@ -212,9 +257,12 @@ def cost_breakdown_percent(selected_part: pd.Series) -> pd.DataFrame:
 
 
 def monthly_erp_price_history(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
+    """Build monthly ERP price history for the selected part."""
     today = pd.Timestamp.today().normalize()
     part_erp = erp_transactions[erp_transactions["part_id"] == selected_part["part_id"]].copy()
     if part_erp.empty:
+        # Demo fallback: if the real ERP file has no matching part history,
+        # generate a labelled illustrative trend so the chart still works.
         months = pd.date_range(today - pd.DateOffset(months=35), today, freq="MS")
         return pd.DataFrame(
             {
@@ -250,6 +298,7 @@ def monthly_erp_price_history(selected_part: pd.Series, erp_transactions: pd.Dat
 
 
 def daily_ml_fair_price_history(selected_part: pd.Series, start_date: pd.Timestamp) -> pd.DataFrame:
+    """Generate a daily ML fair-price trend from the current model prediction."""
     today = pd.Timestamp.today().normalize()
     dates = pd.date_range(start_date, today, freq="D")
     base_prediction = float(
@@ -276,6 +325,7 @@ def daily_ml_fair_price_history(selected_part: pd.Series, start_date: pd.Timesta
 
 
 def price_development_history(selected_part: pd.Series, erp_transactions: pd.DataFrame) -> pd.DataFrame:
+    """Join monthly ERP price and daily ML fair price into one trend table."""
     monthly_erp = monthly_erp_price_history(selected_part, erp_transactions)
     daily_fair = daily_ml_fair_price_history(selected_part, monthly_erp["date"].min())
     history = daily_fair.merge(monthly_erp, on="date", how="left")
@@ -291,6 +341,7 @@ def render_part_detail(
     priced_parts: pd.DataFrame,
     erp_transactions: pd.DataFrame,
 ) -> None:
+    """Render the part-level drill-down digital twin page."""
     st.markdown(f"[Back to portfolio]({APP_HOME_URL})")
     st.subheader(f"Illustrative direct spend digital twin analysis: {selected_part['part_id']}")
     st.caption(
@@ -333,6 +384,7 @@ def render_part_detail(
             "#65e4e6",
             "#00a7d7",
             "#122a8f",
+            "#6b8f23",
         ]
         for index, row in breakdown_pct.iterrows():
             fig.add_trace(
@@ -340,7 +392,7 @@ def render_part_detail(
                     x=["Cost breakdown, %"],
                     y=[row["share_pct"]],
                     name=row["cost_bucket"],
-                    marker_color=colors[index],
+                    marker_color=colors[index % len(colors)],
                     text=[f"{row['share_pct']:.0f}"],
                     textposition="inside",
                     hovertemplate="%{fullData.name}: %{y:.1f}%<extra></extra>",
@@ -381,36 +433,6 @@ def render_part_detail(
                 hovertemplate="%{x|%Y-%m}<br>ERP price: ₹%{y:,.0f}<extra></extra>",
             )
         )
-        fig.add_trace(
-            go.Scatter(
-                x=price_history["date"],
-                y=price_history["linear_regression_fair_price"],
-                mode="lines",
-                name="Linear Regression",
-                line={"color": "#8bc6ff", "width": 1, "dash": "dot"},
-                visible="legendonly",
-            )
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=price_history["date"],
-                y=price_history["random_forest_fair_price"],
-                mode="lines",
-                name="Random Forest",
-                line={"color": "#ffb000", "width": 1, "dash": "dot"},
-                visible="legendonly",
-            )
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=price_history["date"],
-                y=price_history["xgboost_fair_price"],
-                mode="lines",
-                name="XGBoost",
-                line={"color": "#d65f5f", "width": 1, "dash": "dot"},
-                visible="legendonly",
-            )
-        )
         fig.update_layout(
             title="Monthly ERP price vs daily ML-predicted fair price",
             height=430,
@@ -446,7 +468,7 @@ def render_part_detail(
                 "ml_price_gap_pct": "{:,.1f}%",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
@@ -474,7 +496,7 @@ def render_part_detail(
                 "material_cost": "₹{:,.0f}",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
@@ -517,13 +539,18 @@ def render_part_detail(
                         "value": money(selected_part["overhead"]),
                     },
                     {
+                        "driver": "Manual template adjustments",
+                        "logic": "rejection allowance, tool maintenance, packing/forwarding, and optional tooling amortization",
+                        "value": money(selected_part["manual_template_adjustment_cost"]),
+                    },
+                    {
                         "driver": "Supplier margin",
                         "logic": "minimum industry margin for the part category",
                         "value": money(selected_part["supplier_margin"]),
                     },
                 ]
             ),
-            width="stretch",
+            use_container_width=True,
             hide_index=True,
         )
         st.caption(
@@ -536,6 +563,7 @@ def render_part_detail(
 
 
 def geo_cost_comparison(selected_part: pd.Series, geo_indices: pd.DataFrame) -> pd.DataFrame:
+    """Compare landed should-cost if the same part is sourced from regions."""
     rows = []
     for _, region in geo_indices.iterrows():
         material_cost = (
@@ -579,33 +607,23 @@ def geo_cost_comparison(selected_part: pd.Series, geo_indices: pd.DataFrame) -> 
 
 
 def money(value: float) -> str:
+    """Format INR values for display."""
     return f"₹{value:,.0f}"
 
 
 def percent(value: float) -> str:
+    """Format percentages for display."""
     return f"{value:,.1f}%"
 
 
+# MAIN APP EXECUTION STARTS HERE.
+# Explain this as: load inputs, run backend models, then render tabs.
 st.title("Sheet Metal Cost Digital Twin")
 st.caption("Explainable procurement intelligence for sheet metal sourcing")
 
 market_adjustment = load_market_adjustment()
 
 with st.sidebar:
-    st.header("Dataset")
-    uploaded_file = st.file_uploader(
-        "Upload ERP or should-cost dataset",
-        type=["xlsx", "xls", "csv"],
-    )
-    st.caption("Leave blank to use the thesis demo dataset.")
-
-    erp_file = st.file_uploader(
-        "Upload raw ERP procurement data",
-        type=["xlsx", "xls", "csv"],
-        key="erp_upload",
-    )
-    st.caption("Raw ERP data is cleaned, normalized, and anonymized before analytics.")
-
     st.header("Live Market Inputs")
     st.metric(
         "Steel index",
@@ -630,6 +648,63 @@ with st.sidebar:
     if market_adjustment.source_status != "live":
         st.warning("Live API unavailable; baseline market inputs are being used.")
 
+tab_overview, tab_upload, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo = st.tabs(
+    [
+        "Portfolio",
+        "Upload Drawing",
+        "AI Models",
+        "ERP Intelligence",
+        "Cost Drivers",
+        "Explainability",
+        "Supplier Benchmark",
+        "Geo Cost",
+    ]
+)
+
+with tab_upload:
+    st.subheader("Upload Drawing")
+    drawing_files = st.file_uploader(
+        "Upload technical drawing",
+        type=["pdf", "png", "jpg", "jpeg", "tif", "tiff", "dxf", "dwg"],
+        accept_multiple_files=True,
+        help="Use drawings when engineering specifications are missing from the dataset.",
+    )
+    if drawing_files:
+        extraction_results = []
+        for drawing_file in drawing_files:
+            text = extract_uploaded_drawing_text(drawing_file)
+            extraction_results.append(extract_specs_from_text(text, file_name=drawing_file.name))
+
+        st.success(f"{len(drawing_files)} drawing file(s) processed for technical specification review.")
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "file_name": drawing_file.name,
+                        "file_type": Path(drawing_file.name).suffix.lower().lstrip("."),
+                        "size_kb": drawing_file.size / 1024,
+                    }
+                    for drawing_file in drawing_files
+                ]
+            ).style.format({"size_kb": "{:,.1f}"}),
+            use_container_width=True,
+            hide_index=True,
+        )
+        st.caption("Extracted manufacturing specifications")
+        st.dataframe(
+            drawing_results_to_frame(extraction_results),
+            use_container_width=True,
+            hide_index=True,
+        )
+        st.caption(
+            "These extracted fields map to the required cost-twin inputs: material grade, "
+            "thickness, dimensions, bends, holes, and surface finish."
+        )
+    else:
+        st.info("Upload a drawing when thickness, material, dimensions, bends, holes, or finish are missing.")
+
+uploaded_file = None
+erp_file = None
 
 parts_raw = read_parts(uploaded_file)
 errors = validate_parts(parts_raw)
@@ -638,11 +713,18 @@ if errors:
         st.error(error)
     st.stop()
 
+# First backend calculation: engineering should-cost from the Cost Digital Twin.
 priced_parts = calculate_should_cost(
     parts_raw,
     material_rate_factor=market_adjustment.material_rate_factor,
 )
-ai_result = run_ai_pricing_models(priced_parts)
+# Second backend calculation: ML fair price, anomaly detection, clusters, XAI.
+ai_result = run_ai_pricing_models(
+    priced_parts,
+    commodity_index=market_adjustment.steel_index,
+    fx_rate=market_adjustment.usd_inr,
+    market_source_status=market_adjustment.source_status,
+)
 ai_priced_parts = ai_result.priced_parts
 geo_indices = load_csv("geo_cost_indices.csv")
 benchmarks = load_csv("supplier_benchmarks.csv")
@@ -655,6 +737,7 @@ except ValueError as exc:
     erp_error = str(exc)
 
 explanations = explain_price_flags(priced_parts)
+procurement_explanations = build_procurement_explanations(ai_priced_parts)
 query_part_id = get_selected_part_id(priced_parts)
 selected_part = ai_priced_parts.loc[ai_priced_parts["part_id"] == query_part_id].iloc[0]
 
@@ -662,38 +745,29 @@ if get_app_view() == "detail":
     render_part_detail(selected_part, ai_priced_parts, erp_transactions)
     st.stop()
 
-total_spend = priced_parts["erp_price"].mul(priced_parts["annual_volume"]).sum()
-total_should_cost = priced_parts["should_cost"].mul(priced_parts["annual_volume"]).sum()
-review_count = int((priced_parts["gap_status"] == "Review").sum())
-opportunity = priced_parts["savings_opportunity"].sum()
-savings_part_count = int((priced_parts["savings_opportunity"] > 0).sum())
-
-kpi_cols = st.columns(4)
-kpi_cols[0].metric("ERP annual spend", money(total_spend))
-kpi_cols[1].metric("Predicted fair spend", money(total_should_cost))
-kpi_cols[2].metric("Qualified savings", money(opportunity))
-kpi_cols[3].metric("Savings-eligible parts", f"{savings_part_count}/{len(priced_parts)}")
-st.caption(
-    "Qualified savings excludes parts where predicted fair price is higher than ERP/current supplier price."
+total_spend = ai_priced_parts["erp_price"].mul(ai_priced_parts["annual_volume"]).sum()
+total_ml_fair_spend = (
+    ai_priced_parts["ai_predicted_fair_price"].mul(ai_priced_parts["annual_volume"]).sum()
 )
-
-tab_overview, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo = st.tabs(
-    [
-        "Portfolio",
-        "AI Models",
-        "ERP Intelligence",
-        "Cost Drivers",
-        "Explainability",
-        "Supplier Benchmark",
-        "Geo Cost",
-    ]
-)
+opportunity = ai_priced_parts["ai_savings_opportunity"].sum()
+savings_part_count = int((ai_priced_parts["ai_savings_opportunity"] > 0).sum())
 
 with tab_overview:
+    kpi_cols = st.columns(4)
+    kpi_cols[0].metric("ERP annual spend", money(total_spend))
+    kpi_cols[1].metric("ML fair spend", money(total_ml_fair_spend))
+    kpi_cols[2].metric("Qualified savings", money(opportunity))
+    kpi_cols[3].metric("Savings-eligible parts", f"{savings_part_count}/{len(ai_priced_parts)}")
+    st.caption(
+        "Qualified savings excludes parts where ML Predicted Fair Price is higher than ERP/current supplier price. "
+        "Should-cost remains visible as the engineering anchor."
+    )
+
     st.subheader("ERP Price vs Predicted Fair Price")
     st.caption("Click a part ID to open its detailed cost digital twin analysis page.")
     display_columns = [
         "part_id",
+        "gap_status",
         "part_name",
         "category",
         "material_grade",
@@ -707,15 +781,19 @@ with tab_overview:
         "supplier_region",
         "erp_price",
         "should_cost",
-        "price_gap_pct",
-        "savings_opportunity",
-        "opportunity_status",
-        "gap_status",
+        "ai_predicted_fair_price",
+        "ai_price_gap_pct",
+        "ai_savings_opportunity",
+        "prediction_confidence",
+        "label_quality_status",
+        "should_cost_variance_pct",
+        "shap_top_feature",
+        "shap_procurement_explanation",
     ]
-    portfolio_view = add_part_links(priced_parts)
+    portfolio_view = add_part_links(ai_priced_parts)
     st.dataframe(
         portfolio_view[display_columns],
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
         column_config={
             "part_id": st.column_config.LinkColumn(
@@ -723,13 +801,25 @@ with tab_overview:
                 display_text=r"part_id=([^&]+)",
                 help="Open detailed part analysis",
             ),
+            "gap_status": st.column_config.LinkColumn(
+                "gap_status",
+                display_text=r"gap_status=([^&]+)",
+                help="Open detailed part analysis",
+            ),
             "erp_price": st.column_config.NumberColumn("erp_price", format="₹%.0f"),
             "should_cost": st.column_config.NumberColumn("should_cost", format="₹%.0f"),
-            "price_gap_pct": st.column_config.NumberColumn("price_gap_pct", format="%.1f%%"),
-            "savings_opportunity": st.column_config.NumberColumn(
-                "qualified_savings",
+            "ai_predicted_fair_price": st.column_config.NumberColumn("ML fair price", format="₹%.0f"),
+            "ai_price_gap_pct": st.column_config.NumberColumn("ML gap %", format="%.1f%%"),
+            "ai_savings_opportunity": st.column_config.NumberColumn(
+                "qualified_ml_savings",
                 format="₹%.0f",
             ),
+            "should_cost_variance_pct": st.column_config.NumberColumn(
+                "ML vs should-cost %",
+                format="%.1f%%",
+            ),
+            "shap_top_feature": st.column_config.TextColumn("top ML driver"),
+            "shap_procurement_explanation": st.column_config.TextColumn("ML explanation"),
             "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
             "weight_kg": st.column_config.NumberColumn("weight_kg", format="%.2f"),
             "material_cost": st.column_config.NumberColumn("material_cost", format="₹%.0f"),
@@ -737,21 +827,21 @@ with tab_overview:
     )
 
     fig = px.scatter(
-        priced_parts,
-        x="should_cost",
+        ai_priced_parts,
+        x="ai_predicted_fair_price",
         y="erp_price",
-        color="gap_status",
+        color="prediction_confidence",
         size="annual_volume",
         hover_name="part_name",
-        hover_data=["category", "current_supplier", "price_gap_pct"],
-        labels={"should_cost": "Predicted fair price", "erp_price": "ERP supplier price"},
+        hover_data=["category", "current_supplier", "ai_price_gap_pct", "should_cost"],
+        labels={"ai_predicted_fair_price": "ML Predicted Fair Price", "erp_price": "ERP supplier price"},
     )
     fig.add_shape(
         type="line",
-        x0=priced_parts["should_cost"].min() * 0.9,
-        y0=priced_parts["should_cost"].min() * 0.9,
-        x1=priced_parts["should_cost"].max() * 1.1,
-        y1=priced_parts["should_cost"].max() * 1.1,
+        x0=ai_priced_parts["ai_predicted_fair_price"].min() * 0.9,
+        y0=ai_priced_parts["ai_predicted_fair_price"].min() * 0.9,
+        x1=ai_priced_parts["ai_predicted_fair_price"].max() * 1.1,
+        y1=ai_priced_parts["ai_predicted_fair_price"].max() * 1.1,
         line={"dash": "dash", "color": "#555"},
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -776,6 +866,11 @@ with tab_ai:
         "ai_predicted_fair_price",
         "ai_price_gap_pct",
         "ai_savings_opportunity",
+        "should_cost_variance_pct",
+        "prediction_confidence",
+        "label_quality_status",
+        "shap_top_feature",
+        "shap_explanation_method",
         "isolation_forest_flag",
         "kmeans_cluster",
     ]
@@ -790,9 +885,10 @@ with tab_ai:
                 "ai_predicted_fair_price": "₹{:,.0f}",
                 "ai_price_gap_pct": "{:,.1f}%",
                 "ai_savings_opportunity": "₹{:,.0f}",
+                "should_cost_variance_pct": "{:,.1f}%",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
@@ -803,12 +899,21 @@ with tab_ai:
             ai_result.model_metrics.style.format(
                 {
                     "training_mae": "₹{:,.2f}",
+                    "training_mape": "{:,.1f}%",
+                    "training_rmse": "₹{:,.2f}",
                     "training_r2": "{:,.3f}",
                 }
             ),
-            width="stretch",
+            use_container_width=True,
             hide_index=True,
         )
+
+    st.caption("Fair-price label and confidence quality")
+    st.dataframe(
+        ai_result.label_quality.style.format({"avg_sample_weight": "{:,.2f}"}),
+        use_container_width=True,
+        hide_index=True,
+    )
     with clusters_col:
         st.caption("K-Means part clusters")
         st.dataframe(
@@ -820,12 +925,19 @@ with tab_ai:
                     "qualified_savings": "₹{:,.0f}",
                 }
             ),
-            width="stretch",
+            use_container_width=True,
             hide_index=True,
         )
 
+    st.caption("Part-level SHAP / model explanation")
+    st.dataframe(
+        ai_result.shap_explanations.style.format({"top_feature_impact": "{:,.3f}"}),
+        use_container_width=True,
+        hide_index=True,
+    )
+
     top_importance = ai_result.feature_importance.groupby(
-        ["algorithm", "feature"],
+        ["algorithm", "feature", "explanation_method"],
         as_index=False,
     ).agg(importance=("importance", "mean"))
     top_importance = (
@@ -912,7 +1024,7 @@ with tab_erp:
                 supplier_price.style.format(
                     {"avg_unit_price_usd": "${:,.2f}", "spend_usd": "${:,.0f}"}
                 ),
-                width="stretch",
+                use_container_width=True,
                 hide_index=True,
             )
 
@@ -922,7 +1034,7 @@ with tab_erp:
                 country_spend.style.format(
                     {"avg_unit_price_usd": "${:,.2f}", "spend_usd": "${:,.0f}"}
                 ),
-                width="stretch",
+                use_container_width=True,
                 hide_index=True,
             )
 
@@ -931,7 +1043,7 @@ with tab_erp:
             erp_transactions.style.format(
                 {"unit_price": "{:,.2f}", "unit_price_usd": "${:,.2f}", "quantity": "{:,.0f}"}
             ),
-            width="stretch",
+            use_container_width=True,
             hide_index=True,
         )
 
@@ -947,6 +1059,7 @@ with tab_cost:
                 "Bends and Holes",
                 "Surface Finish",
                 "Overhead",
+                "Manual Template Adjustments",
                 "Supplier Margin",
             ],
             "amount": [
@@ -956,6 +1069,7 @@ with tab_cost:
                 selected_part["process_complexity_cost"],
                 selected_part["surface_finish_cost"],
                 selected_part["overhead"],
+                selected_part["manual_template_adjustment_cost"],
                 selected_part["supplier_margin"],
             ],
         }
@@ -991,15 +1105,34 @@ with tab_cost:
                 "material_cost": "₹{:,.0f}",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
 with tab_explain:
+    st.subheader("Explainable AI Procurement Answers")
+    st.caption(
+        "This table answers what fair price is, what ERP purchased price is, who the vendor is, "
+        "why ERP price is high, what feature drives the increase, how to negotiate, savings opportunity, and BATNA."
+    )
+    st.dataframe(
+        procurement_explanations.style.format(
+            {
+                "erp_price": "₹{:,.0f}",
+                "fair_price": "₹{:,.0f}",
+                "should_cost": "₹{:,.0f}",
+                "price_gap_pct": "{:,.1f}%",
+                "savings_opportunity": "₹{:,.0f}",
+            }
+        ),
+        use_container_width=True,
+        hide_index=True,
+    )
+
     st.subheader("Why Parts Are Flagged")
     st.dataframe(
         explanations.style.format({"price_gap_pct": "{:,.1f}%"}),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
     driver_summary = (
@@ -1018,12 +1151,13 @@ with tab_explain:
 
 with tab_suppliers:
     supplier_summary = (
-        priced_parts.groupby(["current_supplier", "category"], as_index=False)
+        ai_priced_parts.groupby(["current_supplier", "category"], as_index=False)
         .agg(
             parts=("part_id", "count"),
-            avg_gap_pct=("price_gap_pct", "mean"),
-            qualified_savings=("savings_opportunity", "sum"),
+            avg_gap_pct=("ai_price_gap_pct", "mean"),
+            qualified_savings=("ai_savings_opportunity", "sum"),
             avg_should_cost=("should_cost", "mean"),
+            avg_ml_fair_price=("ai_predicted_fair_price", "mean"),
         )
         .merge(
             benchmarks,
@@ -1053,7 +1187,7 @@ with tab_suppliers:
                 "on_time_delivery_pct": "{:,.0f}%",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
     fig = px.scatter(
@@ -1085,7 +1219,7 @@ with tab_geo:
                 "landed_should_cost": "₹{:,.0f}",
             }
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
     fig = px.bar(

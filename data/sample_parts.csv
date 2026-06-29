@@ -1,31 +1,121 @@
 part_id,part_name,category,material,material_grade,thickness_mm,length_mm,width_mm,weight_kg,bend_count,hole_count,surface_finish,finish_cost_per_part,material_rate_per_kg,cycle_time_min,energy_kwh_per_part,energy_rate_per_kwh,labour_hours,labour_rate_per_hour,overhead_pct,supplier_margin_pct,current_supplier,supplier_region,erp_price,annual_volume
-SM-1001,Motor mounting bracket,Bracket,Mild Steel,IS 2062 E250,3.0,220,140,1.18,4,6,Powder coated,34,78,14,0.52,8.5,0.24,390,23,11,SteelWorks,India,312,14000
-SM-1002,Control cabinet mounting plate,Mounting plate,CRCA Steel,CRCA IS 513,2.0,480,360,2.71,2,18,Zinc plated,52,86,22,0.74,8.5,0.36,390,24,11,PlatePro,India,548,7600
-SM-1003,Machine safety cover,Cover / panel,Galvanized Steel,GI G90,1.6,620,420,3.29,6,12,Powder coated,78,92,30,1.05,7.8,0.52,340,25,12,FabriMax,Vietnam,872,4200
-SM-1004,Welded support frame,Fabricated assembly,Mild Steel,IS 2062 E350,5.0,820,520,8.40,8,10,Painted,115,80,54,1.92,8.5,1.12,420,27,12,SteelWorks,India,2140,2400
-SM-1005,Sensor guard bracket,Bracket,Stainless Steel,SS304,2.5,180,120,0.82,5,8,Passivated,46,245,18,0.61,8.5,0.30,440,24,13,PrecisionFab,India,515,9600
-SM-1006,Base mounting plate,Mounting plate,Mild Steel,IS 2062 E250,4.0,360,260,2.94,1,14,Painted,44,78,20,0.68,8.5,0.34,390,23,11,PlatePro,India,575,8100
-SM-1007,Electrical enclosure panel,Cover / panel,CRCA Steel,CRCA IS 513,1.2,700,480,3.16,7,22,Powder coated,96,86,36,1.16,7.8,0.60,340,26,12,FabriMax,Vietnam,945,5100
-SM-1008,Battery tray assembly,Fabricated assembly,Galvanized Steel,GI G90,2.5,640,420,5.28,9,16,Zinc plated,132,92,48,1.54,8.5,0.92,420,27,12,PrecisionFab,India,1625,3200
-SM-1009,Pump support angle bracket,Bracket,Mild Steel,IS 2062 E250,4.0,260,180,1.72,6,10,Painted,39,78,20,0.74,7.5,0.38,460,24,11,SinoMetal,China,455,11800
-SM-1010,Drive cabinet back plate,Mounting plate,CRCA Steel,CRCA IS 513,2.5,560,430,3.75,2,24,Zinc plated,68,88,28,0.96,7.5,0.46,460,25,11,SinoMetal,China,820,5600
-SM-1011,Operator console side panel,Cover / panel,Galvanized Steel,GI G90,1.5,760,390,3.22,8,18,Powder coated,91,94,38,1.22,8.5,0.66,390,26,12,PanelCraft,India,1035,4400
-SM-1012,Heavy duty skid frame,Fabricated assembly,Mild Steel,IS 2062 E350,6.0,980,620,12.85,12,18,Painted,168,82,72,2.45,7.5,1.58,460,29,13,SinoMetal,China,3480,1300
-SM-1013,Cable clamp bracket,Bracket,CRCA Steel,CRCA IS 513,1.5,160,90,0.36,3,4,Zinc plated,18,86,9,0.28,8.5,0.16,390,22,10,PlatePro,India,145,26000
-SM-1014,Compressor mounting plate,Mounting plate,Mild Steel,IS 2062 E350,5.0,520,340,5.02,3,20,Painted,76,82,32,1.10,8.5,0.54,390,25,11,SteelWorks,India,1045,3900
-SM-1015,Inverter cover panel,Cover / panel,Stainless Steel,SS304,1.2,430,310,1.38,5,16,Passivated,74,248,31,0.98,10.0,0.58,1900,31,13,USFab,USA,1890,2800
-SM-1016,Cooling duct assembly,Fabricated assembly,CRCA Steel,CRCA IS 513,2.0,720,460,5.14,10,28,Powder coated,148,89,58,1.88,7.8,1.04,340,27,12,FabriMax,Vietnam,1725,2600
-SM-1017,Limit switch bracket,Bracket,Mild Steel,IS 2062 E250,2.0,145,95,0.42,4,6,Powder coated,21,78,11,0.32,7.8,0.18,340,22,10,VietFab,Vietnam,175,22000
-SM-1018,Hydraulic manifold plate,Mounting plate,Mild Steel,IS 2062 E350,8.0,420,260,6.86,0,18,Zinc plated,66,84,30,1.04,7.5,0.48,460,25,11,SinoMetal,China,1250,3500
-SM-1019,Access door panel,Cover / panel,CRCA Steel,CRCA IS 513,1.6,840,520,4.26,9,26,Powder coated,126,87,44,1.38,7.8,0.74,340,26,12,VietFab,Vietnam,1185,3600
-SM-1020,Material handling tray,Fabricated assembly,Galvanized Steel,GI G90,3.0,900,580,10.42,11,24,Zinc plated,182,94,68,2.18,8.5,1.36,390,28,12,PrecisionFab,India,2790,1700
-SM-1021,Actuator support bracket,Bracket,Stainless Steel,SS304,3.0,240,160,1.52,5,8,Passivated,58,252,22,0.70,10.0,0.42,1900,33,13,USFab,USA,1180,4200
-SM-1022,PLC rack mounting plate,Mounting plate,CRCA Steel,CRCA IS 513,1.5,500,300,1.76,2,16,Powder coated,54,86,24,0.82,8.5,0.38,390,24,11,PanelCraft,India,520,6800
-SM-1023,Gearbox splash cover,Cover / panel,Mild Steel,IS 2062 E250,2.0,560,380,3.01,6,14,Painted,69,80,34,1.08,7.5,0.62,460,26,12,SinoMetal,China,850,4700
-SM-1024,Conveyor transfer chute,Fabricated assembly,Mild Steel,IS 2062 E350,4.5,1100,720,15.60,14,30,Painted,235,84,84,2.94,10.0,1.86,1900,35,14,USFab,USA,7450,950
-SM-1025,Photo sensor L bracket,Bracket,Galvanized Steel,GI G90,1.2,130,80,0.24,2,4,Zinc plated,16,92,8,0.22,8.5,0.12,390,21,10,PanelCraft,India,105,30000
-SM-1026,Robot pedestal plate,Mounting plate,Mild Steel,IS 2062 E350,10.0,620,480,18.20,0,22,Painted,145,84,46,1.86,10.0,0.82,1900,35,13,USFab,USA,4825,900
-SM-1027,Terminal box cover,Cover / panel,Galvanized Steel,GI G90,1.0,360,250,0.88,4,12,Powder coated,42,92,20,0.64,8.5,0.32,390,24,12,PlatePro,India,365,9200
-SM-1028,Motor base welded assembly,Fabricated assembly,Mild Steel,IS 2062 E250,5.0,760,500,9.35,10,20,Painted,154,80,62,2.05,7.8,1.24,340,27,12,VietFab,Vietnam,2410,2100
-SM-1029,Cable tray support bracket,Bracket,CRCA Steel,CRCA IS 513,2.0,300,150,1.05,6,12,Zinc plated,31,86,17,0.54,7.5,0.28,460,24,11,SinoMetal,China,335,15000
-SM-1030,Busbar insulation cover,Cover / panel,Stainless Steel,SS304,1.5,520,260,1.70,5,10,Passivated,84,250,32,1.02,10.0,0.60,1900,32,13,USFab,USA,2050,2400
+SM-1001,Mounting bracket 001,Bracket,Mild Steel,IS 2062 E250,4.0,401,330,3.42,1,23,Painted,30.44,80.09,23.4,1.2,8.5,0.35,390,22,13,SteelWorks,India,619.72,1469
+SM-1002,Welded support 002,Fabricated assembly,Stainless Steel,SS304,4.0,785,509,10.32,9,10,Painted,91.9,152.05,48.4,2.98,8.5,0.76,390,24,10,PlatePro,India,2622.39,7655
+SM-1003,Control plate 003,Mounting plate,CRCA Steel,CRCA IS 513,1.2,509,179,0.75,5,21,Zinc plated,20.96,90.72,24.0,0.65,8.5,0.45,390,27,9,SteelWorks,India,513.42,10206
+SM-1004,Welded support 004,Fabricated assembly,Stainless Steel,SS304,2.0,711,276,3.03,0,23,Powder coated,45.13,152.32,20.7,1.08,7.8,0.41,340,20,12,AsiaForm,Vietnam,959.33,9708
+SM-1005,Access cover 005,Cover / panel,Galvanized Steel,GI G90,5.0,493,246,4.15,3,23,Zinc plated,27.89,95.79,28.6,1.43,8.5,0.53,390,22,13,BendCraft,India,866.12,8621
+SM-1006,Mounting bracket 006,Bracket,Mild Steel,IS 2062 E350,2.5,396,304,2.31,0,9,Painted,27.69,86.48,14.2,0.83,7.5,0.24,460,35,11,DragonSheet,China,418.07,7567
+SM-1007,Access cover 007,Cover / panel,Galvanized Steel,GI G90,4.0,589,226,3.5,3,25,Zinc plated,30.62,96.33,27.9,1.29,7.5,0.48,460,24,10,DragonSheet,China,904.48,5132
+SM-1008,Welded support 008,Fabricated assembly,Stainless Steel,SS304,1.2,893,128,1.11,2,22,Powder coated,26.29,152.68,19.7,0.67,7.5,0.34,460,27,13,DragonSheet,China,519.35,15937
+SM-1009,Welded support 009,Fabricated assembly,Stainless Steel,SS304,3.0,131,197,0.59,8,26,Zinc plated,5.94,152.24,30.8,0.72,7.8,0.51,340,20,11,FabriMax,Vietnam,683.16,17003
+SM-1010,Mounting bracket 010,Bracket,Mild Steel,IS 2062 E350,1.2,760,385,2.83,8,21,Powder coated,67.3,79.53,34.0,1.23,10.0,0.64,1900,35,9,PrecisionPanel,USA,2023.62,11221
+SM-1011,Access cover 011,Cover / panel,Galvanized Steel,GI G90,1.2,491,394,1.51,3,20,Painted,44.49,88.42,21.7,0.78,8.5,0.38,390,35,10,SteelWorks,India,501.08,4807
+SM-1012,Access cover 012,Cover / panel,Galvanized Steel,GI G90,1.6,391,620,3.16,6,8,Powder coated,55.76,95.93,26.6,1.18,10.0,0.45,1900,24,12,PrecisionPanel,USA,1637.57,17559
+SM-1013,Access cover 013,Cover / panel,Galvanized Steel,GI G90,1.6,350,145,0.55,9,19,Powder coated,11.67,94.44,30.1,0.69,8.5,0.45,390,20,10,SteelWorks,India,576.19,2808
+SM-1014,Mounting bracket 014,Bracket,Mild Steel,IS 2062 E250,2.0,192,606,1.51,10,17,Powder coated,26.76,79.57,33.3,0.94,7.8,0.62,340,35,12,AsiaForm,Vietnam,759.78,8562
+SM-1015,Access cover 015,Cover / panel,Galvanized Steel,GI G90,2.5,314,176,0.85,6,13,Passivated,12.71,92.32,23.2,0.65,7.8,0.45,340,20,9,AsiaForm,Vietnam,433.64,13793
+SM-1016,Control plate 016,Mounting plate,CRCA Steel,CRCA IS 513,5.0,231,334,2.46,8,16,Powder coated,17.75,86.42,31.4,1.11,7.8,0.52,340,20,12,AsiaForm,Vietnam,696.66,3808
+SM-1017,Mounting bracket 017,Bracket,Mild Steel,IS 2062 E250,3.0,135,175,0.59,3,7,Passivated,5.43,79.02,15.1,0.48,8.5,0.24,390,20,10,BendCraft,India,264.57,13018
+SM-1018,Mounting bracket 018,Bracket,Mild Steel,IS 2062 E250,2.0,922,545,6.66,8,23,Passivated,115.57,75.67,43.1,2.16,7.5,0.71,460,35,9,DragonSheet,China,1870.4,10876
+SM-1019,Mounting bracket 019,Bracket,Mild Steel,IS 2062 E250,3.0,608,594,8.96,8,7,Painted,83.06,83.84,42.6,2.61,8.5,0.66,390,35,9,SteelWorks,India,1452.99,8307
+SM-1020,Access cover 020,Cover / panel,Galvanized Steel,GI G90,3.0,372,120,1.0,6,23,Zinc plated,10.27,98.58,27.1,0.75,8.5,0.43,390,22,11,SteelWorks,India,583.7,13569
+SM-1021,Mounting bracket 021,Bracket,Mild Steel,IS 2062 E350,4.0,427,548,6.28,1,2,Passivated,53.82,84.52,22.3,1.76,8.5,0.4,390,35,10,BendCraft,India,875.93,17176
+SM-1022,Control plate 022,Mounting plate,CRCA Steel,CRCA IS 513,2.0,190,330,0.86,2,16,Zinc plated,14.42,88.54,17.1,0.57,8.5,0.34,390,20,13,PlatePro,India,391.92,10410
+SM-1023,Mounting bracket 023,Bracket,Mild Steel,IS 2062 E250,2.0,238,189,0.7,2,10,Zinc plated,10.35,80.23,14.6,0.5,8.5,0.27,390,24,13,PlatePro,India,277.6,16608
+SM-1024,Control plate 024,Mounting plate,CRCA Steel,CRCA IS 513,1.2,214,513,1.06,0,2,Zinc plated,25.25,90.32,9.0,0.49,7.8,0.16,340,27,13,AsiaForm,Vietnam,214.88,14614
+SM-1025,Welded support 025,Fabricated assembly,Stainless Steel,SS304,1.2,197,232,0.4,5,20,Powder coated,10.51,145.85,22.9,0.56,8.5,0.35,390,20,11,SteelWorks,India,426.3,7483
+SM-1026,Mounting bracket 026,Bracket,Mild Steel,IS 2062 E350,1.2,482,496,2.41,2,9,Powder coated,54.99,88.31,18.1,0.9,8.5,0.34,390,20,10,BendCraft,India,611.46,11485
+SM-1027,Access cover 027,Cover / panel,Galvanized Steel,GI G90,4.0,872,334,7.66,1,14,Painted,66.99,97.67,29.6,2.17,7.8,0.48,340,24,10,AsiaForm,Vietnam,1651.22,7904
+SM-1028,Mounting bracket 028,Bracket,Mild Steel,IS 2062 E250,1.6,528,416,2.32,1,26,Zinc plated,50.52,77.66,22.0,0.96,8.5,0.39,390,35,11,BendCraft,India,621.19,1504
+SM-1029,Mounting bracket 029,Bracket,Mild Steel,IS 2062 E250,1.6,714,351,2.4,9,15,Zinc plated,57.64,81.49,32.7,1.11,7.8,0.54,340,35,9,FabriMax,Vietnam,796.07,13222
+SM-1030,Welded support 030,Fabricated assembly,Stainless Steel,SS304,2.0,165,526,1.02,8,23,Powder coated,19.96,144.62,30.7,0.8,8.5,0.47,390,24,13,PlatePro,India,712.53,10886
+SM-1031,Mounting bracket 031,Bracket,Mild Steel,IS 2062 E250,2.0,639,396,3.85,5,14,Zinc plated,58.2,79.72,28.4,1.35,8.5,0.45,390,27,10,BendCraft,India,854.19,10461
+SM-1032,Access cover 032,Cover / panel,Galvanized Steel,GI G90,5.0,120,391,1.56,6,27,Zinc plated,10.79,92.96,29.7,0.91,10.0,0.51,1900,27,10,PrecisionPanel,USA,1467.44,3378
+SM-1033,Control plate 033,Mounting plate,CRCA Steel,CRCA IS 513,4.0,768,423,7.96,3,23,Zinc plated,74.72,84.21,37.0,2.34,10.0,0.59,1900,22,12,PrecisionPanel,USA,2179.61,2986
+SM-1034,Access cover 034,Cover / panel,Galvanized Steel,GI G90,4.0,709,279,6.13,6,17,Passivated,45.5,90.32,36.2,1.94,7.5,0.66,460,20,12,DragonSheet,China,1185.73,7770
+SM-1035,Mounting bracket 035,Bracket,Mild Steel,IS 2062 E350,4.0,650,555,8.68,3,5,Passivated,82.97,79.32,32.3,2.41,7.8,0.56,340,35,13,AsiaForm,Vietnam,1282.39,10997
+SM-1036,Access cover 036,Cover / panel,Galvanized Steel,GI G90,5.0,856,596,17.84,8,16,Powder coated,117.34,96.29,65.2,4.8,10.0,1.13,1900,24,13,PrecisionPanel,USA,5692.54,16479
+SM-1037,Mounting bracket 037,Bracket,Mild Steel,IS 2062 E350,2.5,199,372,1.2,5,12,Painted,17.03,79.38,21.8,0.71,7.8,0.35,340,22,9,FabriMax,Vietnam,453.21,14194
+SM-1038,Access cover 038,Cover / panel,Galvanized Steel,GI G90,3.0,597,505,5.47,6,14,Painted,69.34,97.65,33.7,1.77,7.8,0.64,340,20,11,FabriMax,Vietnam,1166.17,10384
+SM-1039,Access cover 039,Cover / panel,Galvanized Steel,GI G90,5.0,549,305,5.99,4,15,Passivated,38.51,87.75,31.6,1.85,7.8,0.53,340,27,10,AsiaForm,Vietnam,1104.9,15915
+SM-1040,Mounting bracket 040,Bracket,Mild Steel,IS 2062 E350,3.0,147,483,1.58,10,2,Painted,16.33,84.75,28.2,0.86,10.0,0.44,1900,20,11,PrecisionPanel,USA,1351.99,13022
+SM-1041,Control plate 041,Mounting plate,CRCA Steel,CRCA IS 513,2.5,454,425,3.79,6,10,Passivated,44.38,84.52,28.6,1.34,8.5,0.44,390,35,9,PlatePro,India,753.18,12067
+SM-1042,Mounting bracket 042,Bracket,Mild Steel,IS 2062 E350,1.2,919,121,1.05,3,8,Painted,25.58,84.52,16.5,0.59,8.5,0.27,390,20,13,BendCraft,India,359.3,7742
+SM-1043,Access cover 043,Cover / panel,Galvanized Steel,GI G90,2.0,905,457,5.23,9,25,Painted,95.12,96.7,42.5,1.85,8.5,0.67,390,35,9,BendCraft,India,1304.57,10822
+SM-1044,Welded support 044,Fabricated assembly,Stainless Steel,SS304,2.5,526,283,2.26,10,9,Painted,34.24,150.89,32.1,1.07,8.5,0.53,390,20,13,BendCraft,India,988.25,1945
+SM-1045,Control plate 045,Mounting plate,CRCA Steel,CRCA IS 513,2.5,797,459,5.55,10,12,Painted,84.14,91.2,40.4,1.87,10.0,0.77,1900,27,10,PrecisionPanel,USA,3261.4,14870
+SM-1046,Mounting bracket 046,Bracket,Mild Steel,IS 2062 E350,3.0,786,356,6.28,8,26,Passivated,64.36,82.86,43.3,2.08,8.5,0.83,390,24,10,BendCraft,India,1415.03,3439
+SM-1047,Control plate 047,Mounting plate,CRCA Steel,CRCA IS 513,1.6,888,555,5.81,10,14,Zinc plated,113.35,82.02,41.7,1.95,7.5,0.8,460,22,11,DragonSheet,China,1342.68,9065
+SM-1048,Control plate 048,Mounting plate,CRCA Steel,CRCA IS 513,3.0,838,362,6.67,8,8,Painted,69.77,84.4,37.9,2.07,7.8,0.65,340,22,12,FabriMax,Vietnam,1261.57,16683
+SM-1049,Access cover 049,Cover / panel,Galvanized Steel,GI G90,1.2,215,381,0.64,3,11,Zinc plated,18.84,93.06,16.6,0.51,7.8,0.29,340,35,11,AsiaForm,Vietnam,319.9,12128
+SM-1050,Access cover 050,Cover / panel,Galvanized Steel,GI G90,2.0,377,316,1.48,3,12,Painted,27.4,96.28,18.8,0.72,7.8,0.37,340,22,10,FabriMax,Vietnam,491.23,16466
+SM-1051,Control plate 051,Mounting plate,CRCA Steel,CRCA IS 513,3.0,898,617,12.36,1,28,Powder coated,127.44,85.01,44.8,3.38,8.5,0.75,390,35,10,BendCraft,India,1897.28,9588
+SM-1052,Mounting bracket 052,Bracket,Mild Steel,IS 2062 E250,3.0,419,209,1.98,7,5,Painted,20.14,79.92,24.7,0.9,8.5,0.43,390,22,9,SteelWorks,India,578.19,8873
+SM-1053,Access cover 053,Cover / panel,Galvanized Steel,GI G90,5.0,186,490,3.26,9,22,Painted,20.96,89.21,37.1,1.36,8.5,0.71,390,20,10,SteelWorks,India,1079.77,4481
+SM-1054,Welded support 054,Fabricated assembly,Stainless Steel,SS304,2.5,740,311,4.54,6,16,Passivated,52.93,143.36,32.4,1.56,7.8,0.58,340,20,13,AsiaForm,Vietnam,1591.39,3851
+SM-1055,Mounting bracket 055,Bracket,Mild Steel,IS 2062 E350,1.6,390,163,0.64,2,19,Painted,14.62,79.57,17.7,0.54,8.5,0.3,390,27,11,BendCraft,India,357.83,1669
+SM-1056,Mounting bracket 056,Bracket,Mild Steel,IS 2062 E350,4.0,409,544,5.4,3,10,Powder coated,51.17,82.43,26.8,1.65,7.8,0.47,340,24,10,FabriMax,Vietnam,943.85,2939
+SM-1057,Mounting bracket 057,Bracket,Mild Steel,IS 2062 E250,5.0,434,375,5.72,7,24,Zinc plated,37.43,81.2,39.6,1.91,8.5,0.78,390,27,12,PlatePro,India,1237.87,3235
+SM-1058,Welded support 058,Fabricated assembly,Stainless Steel,SS304,2.5,872,410,6.66,0,4,Powder coated,82.23,155.88,22.1,1.84,8.5,0.42,390,20,11,SteelWorks,India,1635.1,1918
+SM-1059,Mounting bracket 059,Bracket,Mild Steel,IS 2062 E350,3.0,787,532,10.38,2,20,Passivated,96.3,84.67,39.4,2.88,7.5,0.69,460,24,12,DragonSheet,China,1591.43,11521
+SM-1060,Control plate 060,Mounting plate,CRCA Steel,CRCA IS 513,1.2,284,417,0.99,7,11,Passivated,27.24,90.8,24.6,0.7,8.5,0.44,390,24,11,BendCraft,India,531.62,11193
+SM-1061,Mounting bracket 061,Bracket,Mild Steel,IS 2062 E250,2.5,646,81,0.99,8,16,Passivated,12.03,74.65,28.2,0.75,7.8,0.5,340,27,12,AsiaForm,Vietnam,552.57,2291
+SM-1062,Mounting bracket 062,Bracket,Mild Steel,IS 2062 E350,3.0,254,374,2.0,7,5,Painted,21.85,88.27,24.8,0.91,7.8,0.45,340,22,11,FabriMax,Vietnam,562.92,1048
+SM-1063,Welded support 063,Fabricated assembly,Stainless Steel,SS304,1.2,350,196,0.58,1,22,Powder coated,15.78,147.14,16.8,0.52,7.5,0.31,460,27,12,DragonSheet,China,489.29,8586
+SM-1064,Access cover 064,Cover / panel,Galvanized Steel,GI G90,1.6,512,275,1.86,8,25,Powder coated,32.38,97.73,33.3,1.02,10.0,0.54,1900,27,11,PrecisionPanel,USA,1820.06,17237
+SM-1065,Control plate 065,Mounting plate,CRCA Steel,CRCA IS 513,1.2,409,385,1.52,9,23,Passivated,36.22,91.37,33.6,0.95,7.8,0.58,340,24,13,AsiaForm,Vietnam,732.78,12960
+SM-1066,Access cover 066,Cover / panel,Galvanized Steel,GI G90,5.0,313,324,3.74,3,26,Passivated,23.32,87.92,28.7,1.35,7.8,0.54,340,27,12,FabriMax,Vietnam,867.12,5584
+SM-1067,Access cover 067,Cover / panel,Galvanized Steel,GI G90,1.6,634,419,3.46,7,5,Passivated,61.1,87.58,28.0,1.26,8.5,0.44,390,22,9,SteelWorks,India,876.37,15984
+SM-1068,Control plate 068,Mounting plate,CRCA Steel,CRCA IS 513,3.0,829,487,9.17,5,23,Passivated,92.86,92.37,43.2,2.68,7.8,0.78,340,27,13,FabriMax,Vietnam,1817.19,1776
+SM-1069,Welded support 069,Fabricated assembly,Stainless Steel,SS304,1.6,766,374,3.88,1,15,Painted,65.89,152.08,21.6,1.27,8.5,0.4,390,22,11,SteelWorks,India,1009.29,1548
+SM-1070,Mounting bracket 070,Bracket,Mild Steel,IS 2062 E250,5.0,177,380,2.29,6,6,Powder coated,15.47,79.49,23.9,0.96,7.8,0.43,340,22,10,FabriMax,Vietnam,598.81,3187
+SM-1071,Welded support 071,Fabricated assembly,Stainless Steel,SS304,2.5,754,326,4.41,9,6,Powder coated,56.53,146.44,34.0,1.54,7.8,0.55,340,20,12,AsiaForm,Vietnam,1249.47,10025
+SM-1072,Welded support 072,Fabricated assembly,Stainless Steel,SS304,1.2,572,433,2.51,4,22,Passivated,56.97,150.76,26.4,1.05,8.5,0.46,390,27,9,PlatePro,India,1175.81,8372
+SM-1073,Access cover 073,Cover / panel,Galvanized Steel,GI G90,2.0,708,382,4.58,4,2,Passivated,62.2,90.68,24.0,1.43,10.0,0.43,1900,20,13,PrecisionPanel,USA,1672.76,16876
+SM-1074,Control plate 074,Mounting plate,CRCA Steel,CRCA IS 513,5.0,355,440,5.04,3,21,Zinc plated,35.93,89.28,29.8,1.63,7.8,0.56,340,22,9,AsiaForm,Vietnam,1017.09,1891
+SM-1075,Control plate 075,Mounting plate,CRCA Steel,CRCA IS 513,2.5,154,453,1.36,1,11,Zinc plated,16.05,90.06,14.6,0.64,7.8,0.23,340,35,11,AsiaForm,Vietnam,313.65,17994
+SM-1076,Welded support 076,Fabricated assembly,Stainless Steel,SS304,5.0,288,343,4.08,7,27,Zinc plated,22.72,151.82,37.0,1.54,7.8,0.62,340,20,10,FabriMax,Vietnam,1222.62,7992
+SM-1077,Access cover 077,Cover / panel,Galvanized Steel,GI G90,5.0,690,454,9.59,6,2,Zinc plated,72.05,93.82,38.6,2.68,7.8,0.67,340,24,13,AsiaForm,Vietnam,1669.23,13085
+SM-1078,Control plate 078,Mounting plate,CRCA Steel,CRCA IS 513,4.0,359,562,4.8,8,12,Powder coated,46.4,88.94,35.2,1.64,8.5,0.64,390,24,12,SteelWorks,India,1095.55,4423
+SM-1079,Mounting bracket 079,Bracket,Mild Steel,IS 2062 E350,1.2,431,584,1.87,3,19,Powder coated,57.89,82.04,22.2,0.86,8.5,0.37,390,35,12,SteelWorks,India,626.42,5663
+SM-1080,Access cover 080,Cover / panel,Galvanized Steel,GI G90,1.2,621,497,3.08,4,3,Zinc plated,70.99,90.0,21.0,1.08,8.5,0.36,390,24,9,BendCraft,India,659.05,12636
+SM-1081,Welded support 081,Fabricated assembly,Stainless Steel,SS304,2.0,182,487,1.17,1,28,Passivated,20.39,139.48,20.2,0.69,8.5,0.32,390,20,11,BendCraft,India,692.9,8581
+SM-1082,Mounting bracket 082,Bracket,Mild Steel,IS 2062 E350,3.0,330,150,1.19,8,8,Powder coated,11.38,86.57,25.8,0.75,7.8,0.42,340,35,9,AsiaForm,Vietnam,535.32,9685
+SM-1083,Mounting bracket 083,Bracket,Mild Steel,IS 2062 E350,3.0,376,258,1.8,0,6,Painted,22.31,81.72,12.1,0.69,8.5,0.23,390,20,10,PlatePro,India,349.16,9295
+SM-1084,Mounting bracket 084,Bracket,Mild Steel,IS 2062 E250,4.0,551,618,8.42,1,17,Passivated,78.32,81.99,32.3,2.37,8.5,0.57,390,35,10,PlatePro,India,1226.58,2020
+SM-1085,Welded support 085,Fabricated assembly,Stainless Steel,SS304,2.5,778,111,1.31,7,14,Passivated,19.86,150.68,26.4,0.79,7.8,0.46,340,20,9,FabriMax,Vietnam,709.22,11154
+SM-1086,Welded support 086,Fabricated assembly,Stainless Steel,SS304,1.2,249,361,0.81,9,19,Zinc plated,20.67,144.93,30.6,0.75,8.5,0.55,390,35,13,PlatePro,India,664.99,14696
+SM-1087,Mounting bracket 087,Bracket,Mild Steel,IS 2062 E250,4.0,237,300,1.99,3,15,Zinc plated,16.35,82.49,21.0,0.86,7.8,0.36,340,24,12,AsiaForm,Vietnam,519.76,10840
+SM-1088,Control plate 088,Mounting plate,CRCA Steel,CRCA IS 513,1.6,823,565,4.51,1,4,Passivated,106.95,82.78,19.1,1.35,7.8,0.36,340,35,9,FabriMax,Vietnam,820.71,11401
+SM-1089,Mounting bracket 089,Bracket,Mild Steel,IS 2062 E250,2.0,801,513,6.69,0,11,Zinc plated,94.51,77.67,24.6,1.89,7.5,0.44,460,27,10,DragonSheet,China,995.21,4146
+SM-1090,Control plate 090,Mounting plate,CRCA Steel,CRCA IS 513,3.0,496,197,2.3,9,9,Passivated,22.47,91.15,30.4,1.05,7.8,0.6,340,35,9,AsiaForm,Vietnam,979.57,9363
+SM-1091,Mounting bracket 091,Bracket,Mild Steel,IS 2062 E250,2.0,839,396,5.5,5,2,Powder coated,76.42,82.92,27.8,1.68,8.5,0.5,390,22,9,PlatePro,India,984.37,3606
+SM-1092,Welded support 092,Fabricated assembly,Stainless Steel,SS304,2.5,549,544,5.06,5,11,Zinc plated,68.69,152.39,30.0,1.62,8.5,0.53,390,20,10,PlatePro,India,1333.29,5758
+SM-1093,Welded support 093,Fabricated assembly,Stainless Steel,SS304,4.0,203,358,2.05,6,17,Passivated,16.72,145.56,27.2,0.96,8.5,0.44,390,24,12,SteelWorks,India,795.43,4233
+SM-1094,Control plate 094,Mounting plate,CRCA Steel,CRCA IS 513,4.0,727,578,12.19,4,3,Powder coated,96.65,86.12,41.1,3.26,8.5,0.74,390,24,10,BendCraft,India,1703.63,5096
+SM-1095,Control plate 095,Mounting plate,CRCA Steel,CRCA IS 513,2.0,242,87,0.3,6,7,Powder coated,4.84,85.95,19.9,0.48,7.8,0.37,340,24,9,FabriMax,Vietnam,338.9,13611
+SM-1096,Mounting bracket 096,Bracket,Mild Steel,IS 2062 E250,1.2,590,159,0.91,9,15,Passivated,21.58,81.29,29.5,0.75,7.5,0.5,460,20,11,DragonSheet,China,593.05,6231
+SM-1097,Welded support 097,Fabricated assembly,Stainless Steel,SS304,5.0,826,450,11.37,1,9,Passivated,85.49,148.85,36.0,3.03,7.5,0.63,460,24,11,DragonSheet,China,2576.48,7860
+SM-1098,Control plate 098,Mounting plate,CRCA Steel,CRCA IS 513,1.6,198,602,1.44,8,18,Powder coated,27.42,91.83,29.9,0.87,7.8,0.5,340,22,10,AsiaForm,Vietnam,668.55,3968
+SM-1099,Mounting bracket 099,Bracket,Mild Steel,IS 2062 E350,1.6,297,236,0.88,10,4,Powder coated,16.12,88.04,27.3,0.71,7.8,0.5,340,35,12,FabriMax,Vietnam,654.96,11190
+SM-1100,Control plate 100,Mounting plate,CRCA Steel,CRCA IS 513,2.5,189,560,1.86,4,27,Zinc plated,24.34,88.31,26.7,0.93,8.5,0.45,390,27,12,PlatePro,India,593.7,1832
+SM-1101,Mounting bracket 101,Bracket,Mild Steel,IS 2062 E250,5.0,413,158,2.47,1,21,Passivated,15.01,78.79,20.6,0.96,7.8,0.37,340,20,12,FabriMax,Vietnam,553.34,6768
+SM-1102,Control plate 102,Mounting plate,CRCA Steel,CRCA IS 513,2.5,633,234,3.1,7,5,Zinc plated,34.07,92.68,27.2,1.17,10.0,0.42,1900,20,10,PrecisionPanel,USA,1519.74,14944
+SM-1103,Access cover 103,Cover / panel,Galvanized Steel,GI G90,3.0,744,242,3.69,4,14,Passivated,41.41,96.66,26.2,1.29,10.0,0.48,1900,24,9,PrecisionPanel,USA,1551.95,11403
+SM-1104,Mounting bracket 104,Bracket,Mild Steel,IS 2062 E250,4.0,515,370,4.99,10,21,Powder coated,43.83,77.48,42.3,1.79,10.0,0.76,1900,24,11,PrecisionPanel,USA,2321.72,13443
+SM-1105,Mounting bracket 105,Bracket,Mild Steel,IS 2062 E350,4.0,206,397,2.4,10,27,Zinc plated,18.81,86.57,38.7,1.21,10.0,0.71,1900,35,9,PrecisionPanel,USA,2285.02,14474
+SM-1106,Welded support 106,Fabricated assembly,Stainless Steel,SS304,1.2,491,396,1.48,3,12,Passivated,44.72,141.37,18.9,0.72,7.8,0.38,340,24,9,FabriMax,Vietnam,543.15,17235
+SM-1107,Welded support 107,Fabricated assembly,Stainless Steel,SS304,4.0,659,118,2.36,9,6,Passivated,17.89,140.66,29.5,1.05,7.8,0.47,340,35,10,AsiaForm,Vietnam,866.89,14941
+SM-1108,Mounting bracket 108,Bracket,Mild Steel,IS 2062 E250,2.0,812,323,4.41,9,11,Passivated,60.32,76.47,35.7,1.57,7.5,0.58,460,22,11,DragonSheet,China,1403.56,15037
+SM-1109,Access cover 109,Cover / panel,Galvanized Steel,GI G90,2.0,916,471,6.2,6,7,Powder coated,99.23,96.98,32.9,1.9,7.8,0.52,340,27,11,AsiaForm,Vietnam,1177.19,3961
+SM-1110,Welded support 110,Fabricated assembly,Stainless Steel,SS304,1.2,411,165,0.64,4,16,Powder coated,15.6,153.42,20.2,0.57,7.8,0.31,340,27,11,AsiaForm,Vietnam,452.16,1473
+SM-1111,Access cover 111,Cover / panel,Galvanized Steel,GI G90,2.5,634,462,4.76,1,13,Powder coated,67.37,87.74,22.8,1.47,8.5,0.45,390,24,10,SteelWorks,India,945.65,5108
+SM-1112,Mounting bracket 112,Bracket,Mild Steel,IS 2062 E250,5.0,603,222,5.26,7,16,Painted,30.79,83.29,35.8,1.75,7.8,0.54,340,22,13,FabriMax,Vietnam,967.3,17894
+SM-1113,Access cover 113,Cover / panel,Galvanized Steel,GI G90,5.0,415,323,4.47,0,9,Passivated,30.83,95.04,19.0,1.35,8.5,0.34,390,27,13,SteelWorks,India,708.92,1138
+SM-1114,Welded support 114,Fabricated assembly,Stainless Steel,SS304,1.6,855,227,2.06,0,21,Zinc plated,44.64,142.28,17.9,0.84,10.0,0.31,1900,20,13,PrecisionPanel,USA,1216.84,12416
+SM-1115,Mounting bracket 115,Bracket,Mild Steel,IS 2062 E250,3.0,639,599,8.41,6,17,Painted,88.04,80.55,41.2,2.49,10.0,0.82,1900,20,11,PrecisionPanel,USA,2810.02,2813
+SM-1116,Control plate 116,Mounting plate,CRCA Steel,CRCA IS 513,4.0,792,186,4.65,5,6,Painted,33.88,85.64,27.3,1.5,8.5,0.46,390,27,12,PlatePro,India,904.29,6572
+SM-1117,Mounting bracket 117,Bracket,Mild Steel,IS 2062 E350,4.0,914,548,11.99,3,3,Powder coated,115.2,87.34,38.8,3.19,8.5,0.64,390,35,12,SteelWorks,India,2137.52,8900
+SM-1118,Mounting bracket 118,Bracket,Mild Steel,IS 2062 E250,4.0,315,372,3.19,0,22,Zinc plated,26.95,76.87,20.7,1.12,7.8,0.39,340,27,12,AsiaForm,Vietnam,591.76,13269
+SM-1119,Control plate 119,Mounting plate,CRCA Steel,CRCA IS 513,2.5,828,589,8.34,8,10,Painted,112.17,89.83,42.2,2.48,8.5,0.65,390,22,13,PlatePro,India,1613.14,10226
+SM-1120,Control plate 120,Mounting plate,CRCA Steel,CRCA IS 513,1.2,455,382,1.39,9,24,Passivated,39.98,83.56,33.7,0.92,8.5,0.58,390,24,13,SteelWorks,India,741.78,14852

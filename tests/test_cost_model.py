@@ -94,6 +94,32 @@ def test_regional_rates_drive_energy_labour_and_machine_costs() -> None:
     assert result.loc[0, "process_complexity_cost"] > 0
 
 
+def test_manual_should_cost_template_adjustments_are_supported() -> None:
+    part = _base_part(erp_price=500)
+    part.update(
+        {
+            "blank_weight_kg": 1.25,
+            "scrap_weight_kg": 0.25,
+            "scrap_rate_per_kg": 40,
+            "scrap_recovery_pct": 95,
+            "rejection_pct": 2,
+            "tool_maintenance_pct": 0.5,
+            "packing_forwarding_pct": 2,
+            "tooling_cost": 1000,
+            "annual_volume": 100,
+        }
+    )
+    result = calculate_should_cost(pd.DataFrame([part]))
+
+    assert result.loc[0, "raw_material_cost_gross"] > result.loc[0, "material_cost"]
+    assert round(result.loc[0, "scrap_recovery"], 2) == 9.5
+    assert result.loc[0, "rejection_allowance"] > 0
+    assert result.loc[0, "tool_maintenance_cost"] >= 0
+    assert result.loc[0, "packing_forwarding_cost"] > 0
+    assert result.loc[0, "tooling_amortization_cost"] == 10
+    assert result.loc[0, "manual_template_adjustment_cost"] > 10
+
+
 def test_qualified_savings_means_erp_price_is_above_predicted_fair_price() -> None:
     result = calculate_should_cost(pd.read_csv("data/sample_parts.csv"))
     savings_parts = result[result["savings_opportunity"] > 0]
@@ -106,5 +132,6 @@ if __name__ == "__main__":
     test_savings_opportunity_only_exists_when_erp_price_exceeds_fair_price()
     test_material_cost_uses_weight_and_market_adjusted_steel_rate()
     test_regional_rates_drive_energy_labour_and_machine_costs()
+    test_manual_should_cost_template_adjustments_are_supported()
     test_qualified_savings_means_erp_price_is_above_predicted_fair_price()
     print("Cost model tests passed")

@@ -1,98 +1,481 @@
-Part Number,Part Description,Category,Supplier Name,Supplier Country,PO Date,Quantity,Unit Price,Currency,Total Purchasing Price Local,Original Country Code,Bracket Type,Material Process Tag,Tooling Flag
-BR-12456262,Tripp Lite Monitor Rackmount Bracket 4U,Mounting Bracket,CDW DIRECT LLC,USA,2025-01-03,4.0,42.773,USD,171.0,US,Mounting Bracket,,No
-BR-909F6D81,Bracket 2141021501 for new process study,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-03,1.0,120.0,CNY,120.0,CN,Bracket / Other,,No
-BR-C63C9511,Set up tooling fabrication de bracket 20,Tooling / Fixture,HARMINIE ENTERPRISES INC,USA,2025-01-08,1.0,450.0,USD,450.0,US,Tooling / Fixture,,Yes
-BR-E04F9B60,Bracket,Bracket / Other,NIHON DENKEI CO LTD,Japan,2025-01-09,1.0,8100.0,JPY,8100.0,JP,Bracket / Other,,No
-BR-60498DF5,"High Bay Lineal G4, Bracket de Instalaci",Bracket / Other,MISELEC JUAREZ SA DE CV,Mexico,2025-01-13,30.0,223.0,MXN,6690.0,MX,Bracket / Other,,No
-BR-4E80CB17,"Bracket, USB 15.6""",Bracket / Other,"Thales Avionics, Inc.",USA,2025-01-14,118.68,1.0,USD,119.0,US,Bracket / Other,,No
-BR-D287B822,MAR-90570027 - Quick mount bracket,Mounting Bracket,Harman Professional Inc.,USA,2025-01-15,2.0,64.94,USD,130.0,US,Mounting Bracket,,No
-BR-BAD70757,fabricacion de bracket 2150001101A para,Bracket / Other,HARMINIE ENTERPRISES INC,USA,2025-01-15,1.0,6800.0,USD,6800.0,US,Bracket / Other,,No
-BR-DF94B298,Set Up Molde para fabricacion de bracket,Bracket / Other,HARMINIE ENTERPRISES INC,USA,2025-01-15,1.0,450.0,USD,450.0,US,Bracket / Other,,No
-BR-AEC0AFD6,plastic bracket 2307022101,Plastic Bracket,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-15,2.0,240.0,CNY,480.0,CN,Plastic Bracket,Plastic,No
-BR-12456262,Tripp Lite Monitor Rackmount Bracket 4U,Mounting Bracket,CDW DIRECT LLC,USA,2025-01-16,1.0,48.03,USD,48.0,US,Mounting Bracket,,No
-BR-33B4A04C,Scan 3D bracket de aluminio,Bracket / Other,SODISAUT,Mexico,2025-01-20,1.0,8800.0,MXN,8800.0,MX,Bracket / Other,Aluminum,No
-BR-B99565AB,KIA SP3 MY25 AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
-BR-F05772FB,KIA OVK AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
-BR-5CEED564,HKMC SG2 PE AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-01-20,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
-BR-7E7C403D,4100889 KIA OV Bracket hard tooling modi,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-01-21,1.0,7000.0,CNY,7000.0,CN,Tooling / Fixture,,Yes
-BR-C1D72D79,4114792 KIA EV TK1 Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-01-22,1.0,40000.0,CNY,40000.0,CN,Tooling / Fixture,,Yes
-BR-F84EB644,SSD Upgrade Kit Bracket + Heatsink Repla,Bracket / Other,ANANDIT INFOTECH INDIA PVT LTD,India,2025-01-22,9.0,3000.0,INR,27000.0,IN,Bracket / Other,,No
-BR-CC3B382C,Ford P702 C2 Mic Headliner Bracket,Bracket / Other,SHANDONG GETTOP ACOUSTIC CO LTD,China,2025-01-23,100.0,0.13,USD,13.0,CN,Bracket / Other,,No
-BR-A5EA7F3A,6900018901 plastic bracket,Plastic Bracket,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-01-23,1.0,350.0,CNY,350.0,CN,Plastic Bracket,Plastic,No
-BR-A77E3CB8,BANDA Y BRACKET,Bracket / Other,IC&S SA DE CV,Mexico,2025-01-23,4.0,55.0,MXN,220.0,MX,Bracket / Other,,No
-BR-25927435,4072370_GEELY&E171_Bracket_Tooling moc,Tooling / Fixture,FASTRONG ELECTRICAL APPLIANCES CO,China,2025-01-24,1.0,4000.0,CNY,4000.0,CN,Tooling / Fixture,,Yes
-BR-F12B8D71,4100544_Geely_E371_AMP Bracket tooling,Tooling / Fixture,FASTRONG ELECTRICAL APPLIANCES CO,China,2025-01-24,1.0,171500.0,CNY,171500.0,CN,Tooling / Fixture,,Yes
-BR-EA5A65FD,"YUMORE 14"" Stainless Steel Shelf Bracket",Shelf Bracket,"Amazon Capital Services, Inc.",USA,2025-01-27,-1.0,30.1,USD,-30.0,US,Shelf Bracket,Steel,No
-BR-D526274C,"4 Pcs T Post Bracket, Black T-Plate Meta",Bracket / Other,"Amazon Capital Services, Inc.",USA,2025-01-27,-1.0,32.84,USD,-33.0,US,Bracket / Other,,No
-BR-EA5A65FD,"YUMORE 14"" Stainless Steel Shelf Bracket",Shelf Bracket,"Amazon Capital Services, Inc.",USA,2025-01-27,1.0,30.1,USD,30.0,US,Shelf Bracket,Steel,No
-BR-D526274C,"4 Pcs T Post Bracket, Black T-Plate Meta",Bracket / Other,"Amazon Capital Services, Inc.",USA,2025-01-27,1.0,32.84,USD,33.0,US,Bracket / Other,,No
-BR-64D9D1CB,MAR-90580008 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,5.0,5.27,USD,26.0,US,Mounting Bracket,,No
-BR-26EA35A4,MAR-90580009 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,5.0,5.91,USD,30.0,US,Mounting Bracket,,No
-BR-18CE5002,MAR-90580010 - Mounting Bracket Ext. Do,Mounting Bracket,Harman Professional Inc.,USA,2025-01-29,4.0,6.38,USD,26.0,US,Mounting Bracket,,No
-BR-F3D6629B,4108675 TATA 14.53 IVI Mounting bracket,Mounting Bracket,DOITER CASTINGS,India,2025-01-31,1.0,891000.0,INR,891000.0,IN,Mounting Bracket,Casting,No
-BR-01A412E5,Article number: 501217 Slot bracket for,Bracket / Other,Solectrix Systems GmbH,Germany,2025-02-04,7.0,14.0,EUR,98.0,DE,Bracket / Other,,No
-BR-4B0367CC,JSEN0031-BRACKET PARA SENSOR 19272-RE,Sensor Bracket,FESTO PNEUMATIC SA,Mexico,2025-02-04,4.0,169.33,MXN,677.0,MX,Sensor Bracket,,No
-BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,8100.0,USD,8100.0,TW,Tooling / Fixture,,Yes
-BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,10800.0,USD,10800.0,TW,Tooling / Fixture,,Yes
-BR-6077BC4A,4160418_KIA CL4 wagon Bracket Hard Tooli,Tooling / Fixture,FASTRONG TECHNOLOGIES CORP,Taiwan,2025-02-10,1.0,8100.0,USD,8100.0,TW,Tooling / Fixture,,Yes
-BR-90ADC15D,Bracket for Mirror,Bracket / Other,ISQUARE SAFETY EQUIPMENTS PVT LTD,India,2025-02-12,2500.0,1.0,INR,2500.0,IN,Bracket / Other,,No
-BR-A2A9F024,SY5120-5LZ-01-F2 Bracket Valvulas 5/2,Bracket / Other,IC&S SA DE CV,Mexico,2025-02-13,50.0,21.0,MXN,1050.0,MX,Bracket / Other,,No
-BR-795C1F38,2307022801B_BRACKET 25mm Plastic HYUN,Plastic Bracket,Dongguan Forwa Precision Industry,China,2025-02-17,100.0,2.57,USD,257.0,CN,Plastic Bracket,Plastic,No
-BR-0C0D045B,2307022801A_BRACKET 25mm Plastic HYUN,Plastic Bracket,HUIZHOU DESAY PRECISION PARTS CO,China,2025-02-17,112.0,4.53,USD,507.0,CN,Plastic Bracket,Plastic,No
-BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,14100.0,USD,14100.0,CN,Bracket / Other,,No
-BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,18800.0,USD,18800.0,CN,Bracket / Other,,No
-BR-B1F8CCA2,4068848 Ford AVAS V363 RHD Bracket Al to,Bracket / Other,FULLTECH INDUSTRY CO LTD,China,2025-02-18,1.0,14100.0,USD,14100.0,CN,Bracket / Other,,No
-BR-4552408A,DP3 SRX922 AF Bracket,Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-18,2.0,268.0,USD,536.0,HK,Bracket / Other,,No
-BR-7583B83C,"DP3 SRX912M UBV MAIN BRACKET,OPTION",Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-19,3.0,300.0,USD,900.0,HK,Bracket / Other,,No
-BR-3DFA0639,"DP3 SRX915M UBV MAIN BRACKET,OPTION",Bracket / Other,PENN & ELCOM HONG KONG LTD,Hong Kong,2025-02-19,3.0,300.0,USD,900.0,HK,Bracket / Other,,No
-BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,15000.0,USD,15000.0,CN,Tooling / Fixture,Metal,Yes
-BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,20000.0,USD,20000.0,CN,Tooling / Fixture,Metal,Yes
-BR-17B5C1DF,P703 Metal Bracket Tooling PO.,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-02-21,1.0,15000.0,USD,15000.0,CN,Tooling / Fixture,Metal,Yes
-BR-C596841F,JG Coach DV 250mm 4p Subwoofer Bracket,Bracket / Other,ZHONG SHAN SHI CHENG TOOLING CO LTD,China,2025-02-24,150.0,42.0,CNY,6300.0,CN,Bracket / Other,,No
-BR-FE8DCE61,HKMC KIA EV TK1-bracket modify,Bracket / Other,SCOFED TESTING TECHNOLOGY (SUZHOU),China,2025-02-24,1.0,2581.0,CNY,2581.0,CN,Bracket / Other,,No
-BR-3DFF9943,Bracket para Sensor,Sensor Bracket,SODISAUT,Mexico,2025-02-25,3.0,2166.0,MXN,6498.0,MX,Sensor Bracket,,No
-BR-73D1A142,BRACKET: RIGHT ANGLE LOW PROFILE. FITS,Bracket / Other,International Border Supply Automat,Mexico,2025-02-25,2.0,245.7,MXN,491.0,MX,Bracket / Other,,No
-BR-A0AE73D0,ESD bin with partition for IC Brackets U,Bracket / Other,TRIPAK SOLUTIONS,India,2025-02-27,4624.0,1.0,INR,4624.0,IN,Bracket / Other,,No
-BR-58934C6A,TJ066 bracket base,Bracket / Other,SIP MAXCOM TECHNOLOGY CO LTD,China,2025-02-28,10.0,540.0,CNY,5400.0,CN,Bracket / Other,,No
-BR-B9F71913,SUBARU CID BRACKET L,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-03-04,10.0,32.0,USD,320.0,HK,Bracket / Other,,No
-BR-1A1E5615,SUBARU CID BRACKET R,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-03-04,10.0,32.0,USD,320.0,HK,Bracket / Other,,No
-BR-B5501DEF,Mounting Bracket,Mounting Bracket,SICK AUTOMATION SOLUTIONS SA DE CV,Mexico,2025-03-04,1.0,768.0,MXN,768.0,MX,Mounting Bracket,,No
-BR-7CD26747,Ordering Shelf Brackets (2pcs/set) for P,Shelf Bracket,Climatec Eastern Europe Kft,Hungary,2025-03-04,610.0,1.0,EUR,610.0,HU,Shelf Bracket,,No
-BR-F01FFBD4,ATK - McMaster - Strut Channel L Bracket,Bracket / Other,ATK AUDIOTEK CORP,USA,2025-03-05,93.0,1.072,USD,100.0,US,Bracket / Other,,No
-BR-C39D8BD2,4 steel brackets,Bracket / Other,RUTEC A/S,Denmark,2025-03-11,1.0,,DKK,,DK,Bracket / Other,Steel,No
-BR-2DDE42A0,4144806 HKMC NH2 Bracket hard tooling,Tooling / Fixture,SUZHOU CHEERSSON PRECISION INDUSTRY,China,2025-03-12,1.0,280000.0,CNY,280000.0,CN,Tooling / Fixture,,Yes
-BR-FDC97156,23270042011_BMW_XNF-ALEV4_BRACKET 1,Bracket / Other,SUZHOU GOUTECH PRECISION,China,2025-03-18,1.0,82000.0,CNY,82000.0,CN,Bracket / Other,,No
-BR-662C72E5,23270042021_BMW_XNF-ALEV4_BRACKET 1,Bracket / Other,SUZHOU GOUTECH PRECISION,China,2025-03-18,1.0,82000.0,CNY,82000.0,CN,Bracket / Other,,No
-BR-7EB91D81,4135117 KIA SP3 H288 BRACKET hard toolin,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-03-19,1.0,195000.0,CNY,195000.0,CN,Tooling / Fixture,,Yes
-BR-06B23A0C,Fabricacion de set de Brackets (4 pieza,Bracket / Other,Quetzalcoatl Ferrero Carlos,Mexico,2025-03-20,1.0,5200.0,MXN,5200.0,MX,Bracket / Other,,No
-BR-BBDCB5F7,2307023101A - HKMC - BRACKET 25mm Plas,Bracket / Other,"Hana Steel Co., Ltd.",Thailand,2025-03-21,1.0,592470.0,THB,592470.0,TH,Bracket / Other,,No
-BR-467768E0,Ford ANC Microphone Bracket,Bracket / Other,SHANDONG GETTOP ACOUSTIC CO LTD,China,2025-03-28,1000.0,0.23,USD,230.0,CN,Bracket / Other,,No
-BR-2892A6CC,MY24 bracket LH RH incoming inspection g,Bracket / Other,SURFACE CAM ENGINEERING SOLUTIONS,India,2025-03-29,1.0,48875.0,INR,48875.0,IN,Bracket / Other,,No
-BR-84F5BDA0,TATA 14.54 Bracket inspection gauge,Bracket / Other,SURFACE CAM ENGINEERING SOLUTIONS,India,2025-03-29,1.0,62675.0,INR,62675.0,IN,Bracket / Other,,Yes
-BR-D449E82C,PR028 bracket press tip fixture,Bracket / Other,SUZHOU TITU AUTOMATION TECHNOLOGY,China,2025-04-01,1.0,3463.0,CNY,3463.0,CN,Bracket / Other,,Yes
-BR-38C470B3,5143715-00-D Zoom guild bracket tooling,Tooling / Fixture,MASTARS INDUSTRIES CO LTD,China,2025-04-02,1.0,450.0,USD,450.0,CN,Tooling / Fixture,,Yes
-BR-66795826,2307023102A - HKMC - BRACKET 25mm Plas,Bracket / Other,"Hana Steel Co., Ltd.",Thailand,2025-04-03,1.0,91935.0,THB,91935.0,TH,Bracket / Other,,No
-BR-7F32C554,Chery Exceed T22 Bracket_13mm Heigher,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-07,1.0,850.0,CNY,850.0,CN,Bracket / Other,,No
-BR-BA0A40B6,Chery Exceed T22 Bracket_30mm Heigher,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-07,1.0,850.0,CNY,850.0,CN,Bracket / Other,,No
-BR-2C3B411D,Bracket p/sensor-SMB-8-32 S/N Release C,Sensor Bracket,FESTO PNEUMATIC SA,Mexico,2025-04-08,2.0,126.85,MXN,254.0,MX,Sensor Bracket,,No
-BR-BC9B438F,Fabricacion de brackets para la sujeccio,Bracket / Other,Quetzalcoatl Ferrero Carlos,Mexico,2025-04-08,10.0,1200.0,MXN,12000.0,MX,Bracket / Other,,No
-BR-8426F1ED,Tomorrowland (REA BEAM IP) M12 Bracket,Bracket / Other,DONGGUAN ARES PRECISION LTD CO,China,2025-04-08,20.0,20.0,USD,400.0,CN,Bracket / Other,,No
-BR-C3F8CDD3,BRACKET 22MM PLASTIC,Plastic Bracket,PLASTIC MOLDING TECHNOLOGY LLC,USA,2025-04-09,-1.0,150.0,USD,-150.0,US,Plastic Bracket,Plastic,No
-BR-C220525B,Microphone Array Alu Brackets,Bracket / Other,"2F PROTOTYPES CO., LTD",China,2025-04-09,1.0,1816.0,USD,1816.0,CN,Bracket / Other,Aluminum,No
-BR-C3F8CDD3,BRACKET 22MM PLASTIC,Plastic Bracket,PLASTIC MOLDING TECHNOLOGY LLC,USA,2025-04-09,1.0,150.0,USD,150.0,US,Plastic Bracket,Plastic,No
-BR-C1D749EA,STLA EJ DCSD - PV testing Bracket,Bracket / Other,SHI CHENG TOOLING HONG KONG CO LTD,Hong Kong,2025-04-11,5.0,76.0,USD,380.0,HK,Bracket / Other,,No
-BR-E66EDF1C,4117556 NQ5 PE AMP Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,178000.0,CNY,178000.0,CN,Tooling / Fixture,,Yes
-BR-B667A286,4117557 NQ5 PE PHEV AMP Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,160000.0,CNY,160000.0,CN,Tooling / Fixture,,Yes
-BR-C1D72D79,4114792 KIA EV TK1 Bracket hard tooling,Tooling / Fixture,SUZHOU HIGH FRAME PRECISION MOLD CO,China,2025-04-11,1.0,177000.0,CNY,177000.0,CN,Tooling / Fixture,,Yes
-BR-A4937057,Chery Jetour D01 40MM MIDTWEETER bracket,Bracket / Other,INPLAST PLASTIC & ELECTRONICS,China,2025-04-15,1.0,210000.0,CNY,210000.0,CN,Bracket / Other,,No
-BR-F2D1147B,JSEN1016-BRACKET: RIGHT ANGLE MOUNTIN,Mounting Bracket,International Border Supply Automat,Mexico,2025-04-15,6.0,257.14,MXN,1543.0,MX,Mounting Bracket,,No
-BR-3767B523,Smart Camera Bracket de montaje ajustabl,Bracket / Other,KEYENCE MEXICO SA DE CV,Mexico,2025-04-15,1.0,460.0,MXN,460.0,MX,Bracket / Other,,No
-BR-883BD36B,M.2 2280 SSD Upgrade Kit Bracket + Heats,Bracket / Other,ANANDIT INFOTECH INDIA PVT LTD,India,2025-04-16,1.0,3900.0,INR,3900.0,IN,Bracket / Other,,No
-BR-00497A0E,86150-0W470 Sorting Deformed Bracket_4/,Bracket / Other,GREEN TEC,Japan,2025-04-17,15000.0,1.0,JPY,15000.0,JP,Bracket / Other,,No
-BR-7D980595,T33391_5 Bracket,Bracket / Other,Amplio Automatika Zrt.,Hungary,2025-04-17,6.0,35.9,EUR,215.0,HU,Bracket / Other,,No
-BR-5BD8929B,JG GV90 STD AMP Bracket Screwing Fixture,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,Yes
-BR-3438286B,JG GV90 ADV AMP Booster Bracket Screwing,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,No
-BR-12C8C777,JG GV90 ADV AMP Core AMP Bracket Screwi,Bracket / Other,Suzhou Breting Electronics Co. Ltd,China,2025-04-17,1.0,6840.0,CNY,6840.0,CN,Bracket / Other,,No
-BR-B5501DEF,Mounting Bracket,Mounting Bracket,SICK AUTOMATION SOLUTIONS SA DE CV,Mexico,2025-04-17,1.0,768.0,MXN,768.0,MX,Mounting Bracket,,No
-BR-DBFD71F5,OP-88697 Adjustable Bracket for SR-X ser,Bracket / Other,KEYENCE INTERNATIONAL (BELGIUM) NV,Belgium,2025-04-22,5.0,33.0,EUR,165.0,BE,Bracket / Other,,No
-BR-9839C970,metal bracket,Bracket / Other,KUNSHAN SHOUJIA MACHINING PARTS,China,2025-04-23,1.0,120.0,CNY,120.0,CN,Bracket / Other,Metal,No
+po_number,po_date,part_id,part_description,category,supplier_name,country,currency,unit_price,quantity
+PO-R3-SM-1001-1,2026-02-18,SM-1001,Mounting bracket 001,Bracket,SteelWorks,India,INR,607.14,843
+PO-R3-SM-1001-2,2026-03-31,SM-1001,Mounting bracket 001,Bracket,SteelWorks,India,INR,624.97,584
+PO-R3-SM-1001-3,2026-04-20,SM-1001,Mounting bracket 001,Bracket,SteelWorks,India,INR,610.17,251
+PO-R3-SM-1001-4,2026-05-23,SM-1001,Mounting bracket 001,Bracket,SteelWorks,India,INR,625.81,614
+PO-R3-SM-1002-1,2026-02-17,SM-1002,Welded support 002,Fabricated assembly,PlatePro,India,INR,2736.46,673
+PO-R3-SM-1002-2,2026-03-29,SM-1002,Welded support 002,Fabricated assembly,PlatePro,India,INR,2665.1,824
+PO-R3-SM-1002-3,2026-04-19,SM-1002,Welded support 002,Fabricated assembly,PlatePro,India,INR,2560.99,528
+PO-R3-SM-1002-4,2026-05-24,SM-1002,Welded support 002,Fabricated assembly,PlatePro,India,INR,2792.16,793
+PO-R3-SM-1003-1,2026-02-24,SM-1003,Control plate 003,Mounting plate,SteelWorks,India,INR,525.96,178
+PO-R3-SM-1003-2,2026-03-21,SM-1003,Control plate 003,Mounting plate,SteelWorks,India,INR,550.08,94
+PO-R3-SM-1003-3,2026-04-22,SM-1003,Control plate 003,Mounting plate,SteelWorks,India,INR,540.9,202
+PO-R3-SM-1003-4,2026-05-30,SM-1003,Control plate 003,Mounting plate,SteelWorks,India,INR,518.53,753
+PO-R3-SM-1004-1,2026-02-25,SM-1004,Welded support 004,Fabricated assembly,AsiaForm,Vietnam,USD,11.73,62
+PO-R3-SM-1004-2,2026-03-28,SM-1004,Welded support 004,Fabricated assembly,AsiaForm,Vietnam,USD,11.19,482
+PO-R3-SM-1004-3,2026-04-28,SM-1004,Welded support 004,Fabricated assembly,AsiaForm,Vietnam,USD,11.34,165
+PO-R3-SM-1004-4,2026-05-26,SM-1004,Welded support 004,Fabricated assembly,AsiaForm,Vietnam,USD,11.06,798
+PO-R3-SM-1005-1,2026-02-28,SM-1005,Access cover 005,Cover / panel,BendCraft,India,INR,880.14,526
+PO-R3-SM-1005-2,2026-03-23,SM-1005,Access cover 005,Cover / panel,BendCraft,India,INR,817.72,830
+PO-R3-SM-1005-3,2026-04-18,SM-1005,Access cover 005,Cover / panel,BendCraft,India,INR,934.19,795
+PO-R3-SM-1005-4,2026-05-19,SM-1005,Access cover 005,Cover / panel,BendCraft,India,INR,872.48,778
+PO-R3-SM-1006-1,2026-02-20,SM-1006,Mounting bracket 006,Bracket,DragonSheet,China,USD,5.18,188
+PO-R3-SM-1006-2,2026-03-17,SM-1006,Mounting bracket 006,Bracket,DragonSheet,China,USD,5.12,680
+PO-R3-SM-1006-3,2026-04-16,SM-1006,Mounting bracket 006,Bracket,DragonSheet,China,USD,4.87,320
+PO-R3-SM-1006-4,2026-05-28,SM-1006,Mounting bracket 006,Bracket,DragonSheet,China,USD,4.96,426
+PO-R3-SM-1007-1,2026-02-21,SM-1007,Access cover 007,Cover / panel,DragonSheet,China,USD,10.71,877
+PO-R3-SM-1007-2,2026-03-17,SM-1007,Access cover 007,Cover / panel,DragonSheet,China,USD,11.74,482
+PO-R3-SM-1007-3,2026-04-28,SM-1007,Access cover 007,Cover / panel,DragonSheet,China,USD,11.1,712
+PO-R3-SM-1007-4,2026-05-17,SM-1007,Access cover 007,Cover / panel,DragonSheet,China,USD,11.2,883
+PO-R3-SM-1008-1,2026-02-28,SM-1008,Welded support 008,Fabricated assembly,DragonSheet,China,USD,5.89,276
+PO-R3-SM-1008-2,2026-03-22,SM-1008,Welded support 008,Fabricated assembly,DragonSheet,China,USD,6.11,138
+PO-R3-SM-1008-3,2026-04-20,SM-1008,Welded support 008,Fabricated assembly,DragonSheet,China,USD,6.61,496
+PO-R3-SM-1008-4,2026-05-22,SM-1008,Welded support 008,Fabricated assembly,DragonSheet,China,USD,6.45,444
+PO-R3-SM-1009-1,2026-02-23,SM-1009,Welded support 009,Fabricated assembly,FabriMax,Vietnam,USD,8.48,326
+PO-R3-SM-1009-2,2026-03-26,SM-1009,Welded support 009,Fabricated assembly,FabriMax,Vietnam,USD,8.89,721
+PO-R3-SM-1009-3,2026-04-25,SM-1009,Welded support 009,Fabricated assembly,FabriMax,Vietnam,USD,8.69,155
+PO-R3-SM-1009-4,2026-05-30,SM-1009,Welded support 009,Fabricated assembly,FabriMax,Vietnam,USD,8.65,342
+PO-R3-SM-1010-1,2026-02-20,SM-1010,Mounting bracket 010,Bracket,PrecisionPanel,USA,USD,24.12,759
+PO-R3-SM-1010-2,2026-03-23,SM-1010,Mounting bracket 010,Bracket,PrecisionPanel,USA,USD,23.97,122
+PO-R3-SM-1010-3,2026-04-21,SM-1010,Mounting bracket 010,Bracket,PrecisionPanel,USA,USD,26.24,778
+PO-R3-SM-1010-4,2026-05-16,SM-1010,Mounting bracket 010,Bracket,PrecisionPanel,USA,USD,25.71,636
+PO-R3-SM-1011-1,2026-02-20,SM-1011,Access cover 011,Cover / panel,SteelWorks,India,INR,489.93,832
+PO-R3-SM-1011-2,2026-03-26,SM-1011,Access cover 011,Cover / panel,SteelWorks,India,INR,518.92,574
+PO-R3-SM-1011-3,2026-04-26,SM-1011,Access cover 011,Cover / panel,SteelWorks,India,INR,532.38,52
+PO-R3-SM-1011-4,2026-05-24,SM-1011,Access cover 011,Cover / panel,SteelWorks,India,INR,471.76,331
+PO-R3-SM-1012-1,2026-02-16,SM-1012,Access cover 012,Cover / panel,PrecisionPanel,USA,USD,18.84,276
+PO-R3-SM-1012-2,2026-03-27,SM-1012,Access cover 012,Cover / panel,PrecisionPanel,USA,USD,20.53,231
+PO-R3-SM-1012-3,2026-04-23,SM-1012,Access cover 012,Cover / panel,PrecisionPanel,USA,USD,20.86,499
+PO-R3-SM-1012-4,2026-05-21,SM-1012,Access cover 012,Cover / panel,PrecisionPanel,USA,USD,20.82,177
+PO-R3-SM-1013-1,2026-02-28,SM-1013,Access cover 013,Cover / panel,SteelWorks,India,INR,547.77,610
+PO-R3-SM-1013-2,2026-03-29,SM-1013,Access cover 013,Cover / panel,SteelWorks,India,INR,552.32,295
+PO-R3-SM-1013-3,2026-04-16,SM-1013,Access cover 013,Cover / panel,SteelWorks,India,INR,567.1,226
+PO-R3-SM-1013-4,2026-05-25,SM-1013,Access cover 013,Cover / panel,SteelWorks,India,INR,591.06,715
+PO-R3-SM-1014-1,2026-03-01,SM-1014,Mounting bracket 014,Bracket,AsiaForm,Vietnam,USD,9.71,629
+PO-R3-SM-1014-2,2026-03-18,SM-1014,Mounting bracket 014,Bracket,AsiaForm,Vietnam,USD,9.24,486
+PO-R3-SM-1014-3,2026-04-25,SM-1014,Mounting bracket 014,Bracket,AsiaForm,Vietnam,USD,8.88,242
+PO-R3-SM-1014-4,2026-05-25,SM-1014,Mounting bracket 014,Bracket,AsiaForm,Vietnam,USD,9.05,525
+PO-R3-SM-1015-1,2026-02-21,SM-1015,Access cover 015,Cover / panel,AsiaForm,Vietnam,USD,4.91,803
+PO-R3-SM-1015-2,2026-03-17,SM-1015,Access cover 015,Cover / panel,AsiaForm,Vietnam,USD,5.0,153
+PO-R3-SM-1015-3,2026-04-30,SM-1015,Access cover 015,Cover / panel,AsiaForm,Vietnam,USD,5.41,815
+PO-R3-SM-1015-4,2026-05-25,SM-1015,Access cover 015,Cover / panel,AsiaForm,Vietnam,USD,5.34,410
+PO-R3-SM-1016-1,2026-02-17,SM-1016,Control plate 016,Mounting plate,AsiaForm,Vietnam,USD,8.98,173
+PO-R3-SM-1016-2,2026-03-22,SM-1016,Control plate 016,Mounting plate,AsiaForm,Vietnam,USD,8.7,71
+PO-R3-SM-1016-3,2026-04-23,SM-1016,Control plate 016,Mounting plate,AsiaForm,Vietnam,USD,9.01,506
+PO-R3-SM-1016-4,2026-05-18,SM-1016,Control plate 016,Mounting plate,AsiaForm,Vietnam,USD,8.19,364
+PO-R3-SM-1017-1,2026-02-28,SM-1017,Mounting bracket 017,Bracket,BendCraft,India,INR,261.3,299
+PO-R3-SM-1017-2,2026-03-27,SM-1017,Mounting bracket 017,Bracket,BendCraft,India,INR,258.43,542
+PO-R3-SM-1017-3,2026-04-28,SM-1017,Mounting bracket 017,Bracket,BendCraft,India,INR,262.89,171
+PO-R3-SM-1017-4,2026-05-23,SM-1017,Mounting bracket 017,Bracket,BendCraft,India,INR,281.72,370
+PO-R3-SM-1018-1,2026-02-21,SM-1018,Mounting bracket 018,Bracket,DragonSheet,China,USD,24.12,762
+PO-R3-SM-1018-2,2026-03-25,SM-1018,Mounting bracket 018,Bracket,DragonSheet,China,USD,24.22,764
+PO-R3-SM-1018-3,2026-04-23,SM-1018,Mounting bracket 018,Bracket,DragonSheet,China,USD,24.17,537
+PO-R3-SM-1018-4,2026-05-19,SM-1018,Mounting bracket 018,Bracket,DragonSheet,China,USD,23.44,684
+PO-R3-SM-1019-1,2026-02-25,SM-1019,Mounting bracket 019,Bracket,SteelWorks,India,INR,1374.81,101
+PO-R3-SM-1019-2,2026-03-19,SM-1019,Mounting bracket 019,Bracket,SteelWorks,India,INR,1365.94,161
+PO-R3-SM-1019-3,2026-04-19,SM-1019,Mounting bracket 019,Bracket,SteelWorks,India,INR,1385.54,446
+PO-R3-SM-1019-4,2026-05-16,SM-1019,Mounting bracket 019,Bracket,SteelWorks,India,INR,1468.96,139
+PO-R3-SM-1020-1,2026-02-15,SM-1020,Access cover 020,Cover / panel,SteelWorks,India,INR,588.3,577
+PO-R3-SM-1020-2,2026-03-21,SM-1020,Access cover 020,Cover / panel,SteelWorks,India,INR,593.58,518
+PO-R3-SM-1020-3,2026-04-30,SM-1020,Access cover 020,Cover / panel,SteelWorks,India,INR,600.9,597
+PO-R3-SM-1020-4,2026-05-27,SM-1020,Access cover 020,Cover / panel,SteelWorks,India,INR,580.55,633
+PO-R3-SM-1021-1,2026-02-24,SM-1021,Mounting bracket 021,Bracket,BendCraft,India,INR,921.35,356
+PO-R3-SM-1021-2,2026-03-26,SM-1021,Mounting bracket 021,Bracket,BendCraft,India,INR,892.81,56
+PO-R3-SM-1021-3,2026-04-29,SM-1021,Mounting bracket 021,Bracket,BendCraft,India,INR,923.51,137
+PO-R3-SM-1021-4,2026-05-19,SM-1021,Mounting bracket 021,Bracket,BendCraft,India,INR,913.35,750
+PO-R3-SM-1022-1,2026-02-23,SM-1022,Control plate 022,Mounting plate,PlatePro,India,INR,399.22,372
+PO-R3-SM-1022-2,2026-03-24,SM-1022,Control plate 022,Mounting plate,PlatePro,India,INR,418.17,824
+PO-R3-SM-1022-3,2026-04-17,SM-1022,Control plate 022,Mounting plate,PlatePro,India,INR,389.77,899
+PO-R3-SM-1022-4,2026-05-22,SM-1022,Control plate 022,Mounting plate,PlatePro,India,INR,369.0,840
+PO-R3-SM-1023-1,2026-02-25,SM-1023,Mounting bracket 023,Bracket,PlatePro,India,INR,265.22,662
+PO-R3-SM-1023-2,2026-03-21,SM-1023,Mounting bracket 023,Bracket,PlatePro,India,INR,289.15,192
+PO-R3-SM-1023-3,2026-04-29,SM-1023,Mounting bracket 023,Bracket,PlatePro,India,INR,271.96,260
+PO-R3-SM-1023-4,2026-05-19,SM-1023,Mounting bracket 023,Bracket,PlatePro,India,INR,270.5,316
+PO-R3-SM-1024-1,2026-02-27,SM-1024,Control plate 024,Mounting plate,AsiaForm,Vietnam,USD,2.79,86
+PO-R3-SM-1024-2,2026-03-21,SM-1024,Control plate 024,Mounting plate,AsiaForm,Vietnam,USD,2.78,388
+PO-R3-SM-1024-3,2026-04-28,SM-1024,Control plate 024,Mounting plate,AsiaForm,Vietnam,USD,2.67,805
+PO-R3-SM-1024-4,2026-05-26,SM-1024,Control plate 024,Mounting plate,AsiaForm,Vietnam,USD,2.75,723
+PO-R3-SM-1025-1,2026-02-21,SM-1025,Welded support 025,Fabricated assembly,SteelWorks,India,INR,437.88,531
+PO-R3-SM-1025-2,2026-03-27,SM-1025,Welded support 025,Fabricated assembly,SteelWorks,India,INR,401.43,804
+PO-R3-SM-1025-3,2026-04-24,SM-1025,Welded support 025,Fabricated assembly,SteelWorks,India,INR,446.66,483
+PO-R3-SM-1025-4,2026-05-30,SM-1025,Welded support 025,Fabricated assembly,SteelWorks,India,INR,416.05,408
+PO-R3-SM-1026-1,2026-02-20,SM-1026,Mounting bracket 026,Bracket,BendCraft,India,INR,583.17,548
+PO-R3-SM-1026-2,2026-03-27,SM-1026,Mounting bracket 026,Bracket,BendCraft,India,INR,611.89,490
+PO-R3-SM-1026-3,2026-04-26,SM-1026,Mounting bracket 026,Bracket,BendCraft,India,INR,596.06,538
+PO-R3-SM-1026-4,2026-05-29,SM-1026,Mounting bracket 026,Bracket,BendCraft,India,INR,622.81,804
+PO-R3-SM-1027-1,2026-02-17,SM-1027,Access cover 027,Cover / panel,AsiaForm,Vietnam,USD,21.26,741
+PO-R3-SM-1027-2,2026-03-22,SM-1027,Access cover 027,Cover / panel,AsiaForm,Vietnam,USD,20.63,342
+PO-R3-SM-1027-3,2026-04-16,SM-1027,Access cover 027,Cover / panel,AsiaForm,Vietnam,USD,20.25,791
+PO-R3-SM-1027-4,2026-05-20,SM-1027,Access cover 027,Cover / panel,AsiaForm,Vietnam,USD,18.96,786
+PO-R3-SM-1028-1,2026-02-16,SM-1028,Mounting bracket 028,Bracket,BendCraft,India,INR,648.26,672
+PO-R3-SM-1028-2,2026-03-22,SM-1028,Mounting bracket 028,Bracket,BendCraft,India,INR,619.46,290
+PO-R3-SM-1028-3,2026-04-27,SM-1028,Mounting bracket 028,Bracket,BendCraft,India,INR,639.38,189
+PO-R3-SM-1028-4,2026-05-21,SM-1028,Mounting bracket 028,Bracket,BendCraft,India,INR,589.51,565
+PO-R3-SM-1029-1,2026-02-22,SM-1029,Mounting bracket 029,Bracket,FabriMax,Vietnam,USD,9.69,663
+PO-R3-SM-1029-2,2026-03-31,SM-1029,Mounting bracket 029,Bracket,FabriMax,Vietnam,USD,9.67,470
+PO-R3-SM-1029-3,2026-04-17,SM-1029,Mounting bracket 029,Bracket,FabriMax,Vietnam,USD,9.67,836
+PO-R3-SM-1029-4,2026-05-17,SM-1029,Mounting bracket 029,Bracket,FabriMax,Vietnam,USD,10.34,406
+PO-R3-SM-1030-1,2026-02-17,SM-1030,Welded support 030,Fabricated assembly,PlatePro,India,INR,705.02,472
+PO-R3-SM-1030-2,2026-03-22,SM-1030,Welded support 030,Fabricated assembly,PlatePro,India,INR,704.37,468
+PO-R3-SM-1030-3,2026-04-27,SM-1030,Welded support 030,Fabricated assembly,PlatePro,India,INR,735.0,185
+PO-R3-SM-1030-4,2026-05-16,SM-1030,Welded support 030,Fabricated assembly,PlatePro,India,INR,742.9,599
+PO-R3-SM-1031-1,2026-02-21,SM-1031,Mounting bracket 031,Bracket,BendCraft,India,INR,822.84,739
+PO-R3-SM-1031-2,2026-03-22,SM-1031,Mounting bracket 031,Bracket,BendCraft,India,INR,828.53,580
+PO-R3-SM-1031-3,2026-04-28,SM-1031,Mounting bracket 031,Bracket,BendCraft,India,INR,869.93,179
+PO-R3-SM-1031-4,2026-05-28,SM-1031,Mounting bracket 031,Bracket,BendCraft,India,INR,895.46,109
+PO-R3-SM-1032-1,2026-02-18,SM-1032,Access cover 032,Cover / panel,PrecisionPanel,USA,USD,18.24,540
+PO-R3-SM-1032-2,2026-03-19,SM-1032,Access cover 032,Cover / panel,PrecisionPanel,USA,USD,17.44,97
+PO-R3-SM-1032-3,2026-04-16,SM-1032,Access cover 032,Cover / panel,PrecisionPanel,USA,USD,16.93,518
+PO-R3-SM-1032-4,2026-05-22,SM-1032,Access cover 032,Cover / panel,PrecisionPanel,USA,USD,17.06,299
+PO-R3-SM-1033-1,2026-02-21,SM-1033,Control plate 033,Mounting plate,PrecisionPanel,USA,USD,25.88,550
+PO-R3-SM-1033-2,2026-03-28,SM-1033,Control plate 033,Mounting plate,PrecisionPanel,USA,USD,26.87,346
+PO-R3-SM-1033-3,2026-04-22,SM-1033,Control plate 033,Mounting plate,PrecisionPanel,USA,USD,26.47,712
+PO-R3-SM-1033-4,2026-05-18,SM-1033,Control plate 033,Mounting plate,PrecisionPanel,USA,USD,27.08,696
+PO-R3-SM-1034-1,2026-02-24,SM-1034,Access cover 034,Cover / panel,DragonSheet,China,USD,15.0,327
+PO-R3-SM-1034-2,2026-03-25,SM-1034,Access cover 034,Cover / panel,DragonSheet,China,USD,15.02,163
+PO-R3-SM-1034-3,2026-04-19,SM-1034,Access cover 034,Cover / panel,DragonSheet,China,USD,13.83,725
+PO-R3-SM-1034-4,2026-05-18,SM-1034,Access cover 034,Cover / panel,DragonSheet,China,USD,13.64,498
+PO-R3-SM-1035-1,2026-02-21,SM-1035,Mounting bracket 035,Bracket,AsiaForm,Vietnam,USD,16.42,654
+PO-R3-SM-1035-2,2026-03-17,SM-1035,Mounting bracket 035,Bracket,AsiaForm,Vietnam,USD,16.37,189
+PO-R3-SM-1035-3,2026-04-22,SM-1035,Mounting bracket 035,Bracket,AsiaForm,Vietnam,USD,16.16,204
+PO-R3-SM-1035-4,2026-05-24,SM-1035,Mounting bracket 035,Bracket,AsiaForm,Vietnam,USD,14.85,898
+PO-R3-SM-1036-1,2026-02-26,SM-1036,Access cover 036,Cover / panel,PrecisionPanel,USA,USD,66.9,379
+PO-R3-SM-1036-2,2026-03-17,SM-1036,Access cover 036,Cover / panel,PrecisionPanel,USA,USD,67.79,461
+PO-R3-SM-1036-3,2026-04-18,SM-1036,Access cover 036,Cover / panel,PrecisionPanel,USA,USD,71.46,565
+PO-R3-SM-1036-4,2026-05-23,SM-1036,Access cover 036,Cover / panel,PrecisionPanel,USA,USD,71.67,738
+PO-R3-SM-1037-1,2026-02-15,SM-1037,Mounting bracket 037,Bracket,FabriMax,Vietnam,USD,5.39,758
+PO-R3-SM-1037-2,2026-03-18,SM-1037,Mounting bracket 037,Bracket,FabriMax,Vietnam,USD,5.79,76
+PO-R3-SM-1037-3,2026-04-22,SM-1037,Mounting bracket 037,Bracket,FabriMax,Vietnam,USD,5.51,620
+PO-R3-SM-1037-4,2026-05-27,SM-1037,Mounting bracket 037,Bracket,FabriMax,Vietnam,USD,5.43,213
+PO-R3-SM-1038-1,2026-02-26,SM-1038,Access cover 038,Cover / panel,FabriMax,Vietnam,USD,15.06,811
+PO-R3-SM-1038-2,2026-03-19,SM-1038,Access cover 038,Cover / panel,FabriMax,Vietnam,USD,13.98,239
+PO-R3-SM-1038-3,2026-04-20,SM-1038,Access cover 038,Cover / panel,FabriMax,Vietnam,USD,14.21,138
+PO-R3-SM-1038-4,2026-05-28,SM-1038,Access cover 038,Cover / panel,FabriMax,Vietnam,USD,14.99,52
+PO-R3-SM-1039-1,2026-02-28,SM-1039,Access cover 039,Cover / panel,AsiaForm,Vietnam,USD,14.12,378
+PO-R3-SM-1039-2,2026-03-20,SM-1039,Access cover 039,Cover / panel,AsiaForm,Vietnam,USD,13.95,422
+PO-R3-SM-1039-3,2026-04-24,SM-1039,Access cover 039,Cover / panel,AsiaForm,Vietnam,USD,12.85,610
+PO-R3-SM-1039-4,2026-05-17,SM-1039,Access cover 039,Cover / panel,AsiaForm,Vietnam,USD,13.0,296
+PO-R3-SM-1040-1,2026-02-26,SM-1040,Mounting bracket 040,Bracket,PrecisionPanel,USA,USD,16.46,508
+PO-R3-SM-1040-2,2026-03-28,SM-1040,Mounting bracket 040,Bracket,PrecisionPanel,USA,USD,17.57,818
+PO-R3-SM-1040-3,2026-04-24,SM-1040,Mounting bracket 040,Bracket,PrecisionPanel,USA,USD,15.58,462
+PO-R3-SM-1040-4,2026-05-22,SM-1040,Mounting bracket 040,Bracket,PrecisionPanel,USA,USD,17.55,204
+PO-R3-SM-1041-1,2026-02-27,SM-1041,Control plate 041,Mounting plate,PlatePro,India,INR,721.7,278
+PO-R3-SM-1041-2,2026-03-23,SM-1041,Control plate 041,Mounting plate,PlatePro,India,INR,710.84,542
+PO-R3-SM-1041-3,2026-04-21,SM-1041,Control plate 041,Mounting plate,PlatePro,India,INR,751.18,405
+PO-R3-SM-1041-4,2026-05-27,SM-1041,Control plate 041,Mounting plate,PlatePro,India,INR,747.69,504
+PO-R3-SM-1042-1,2026-02-17,SM-1042,Mounting bracket 042,Bracket,BendCraft,India,INR,370.34,573
+PO-R3-SM-1042-2,2026-03-25,SM-1042,Mounting bracket 042,Bracket,BendCraft,India,INR,366.77,555
+PO-R3-SM-1042-3,2026-04-16,SM-1042,Mounting bracket 042,Bracket,BendCraft,India,INR,375.92,399
+PO-R3-SM-1042-4,2026-05-18,SM-1042,Mounting bracket 042,Bracket,BendCraft,India,INR,374.8,429
+PO-R3-SM-1043-1,2026-02-18,SM-1043,Access cover 043,Cover / panel,BendCraft,India,INR,1384.83,408
+PO-R3-SM-1043-2,2026-03-21,SM-1043,Access cover 043,Cover / panel,BendCraft,India,INR,1235.54,355
+PO-R3-SM-1043-3,2026-04-21,SM-1043,Access cover 043,Cover / panel,BendCraft,India,INR,1382.85,325
+PO-R3-SM-1043-4,2026-05-25,SM-1043,Access cover 043,Cover / panel,BendCraft,India,INR,1240.0,66
+PO-R3-SM-1044-1,2026-02-24,SM-1044,Welded support 044,Fabricated assembly,BendCraft,India,INR,981.62,340
+PO-R3-SM-1044-2,2026-03-23,SM-1044,Welded support 044,Fabricated assembly,BendCraft,India,INR,975.15,847
+PO-R3-SM-1044-3,2026-04-23,SM-1044,Welded support 044,Fabricated assembly,BendCraft,India,INR,1011.18,195
+PO-R3-SM-1044-4,2026-05-30,SM-1044,Welded support 044,Fabricated assembly,BendCraft,India,INR,1032.53,400
+PO-R3-SM-1045-1,2026-02-24,SM-1045,Control plate 045,Mounting plate,PrecisionPanel,USA,USD,38.09,249
+PO-R3-SM-1045-2,2026-03-20,SM-1045,Control plate 045,Mounting plate,PrecisionPanel,USA,USD,38.23,239
+PO-R3-SM-1045-3,2026-04-20,SM-1045,Control plate 045,Mounting plate,PrecisionPanel,USA,USD,38.53,776
+PO-R3-SM-1045-4,2026-05-20,SM-1045,Control plate 045,Mounting plate,PrecisionPanel,USA,USD,38.04,117
+PO-R3-SM-1046-1,2026-02-20,SM-1046,Mounting bracket 046,Bracket,BendCraft,India,INR,1423.17,486
+PO-R3-SM-1046-2,2026-03-19,SM-1046,Mounting bracket 046,Bracket,BendCraft,India,INR,1424.38,574
+PO-R3-SM-1046-3,2026-04-17,SM-1046,Mounting bracket 046,Bracket,BendCraft,India,INR,1371.76,442
+PO-R3-SM-1046-4,2026-05-28,SM-1046,Mounting bracket 046,Bracket,BendCraft,India,INR,1426.08,797
+PO-R3-SM-1047-1,2026-02-19,SM-1047,Control plate 047,Mounting plate,DragonSheet,China,USD,16.1,452
+PO-R3-SM-1047-2,2026-03-18,SM-1047,Control plate 047,Mounting plate,DragonSheet,China,USD,16.56,132
+PO-R3-SM-1047-3,2026-04-27,SM-1047,Control plate 047,Mounting plate,DragonSheet,China,USD,15.47,702
+PO-R3-SM-1047-4,2026-05-21,SM-1047,Control plate 047,Mounting plate,DragonSheet,China,USD,15.44,542
+PO-R3-SM-1048-1,2026-02-22,SM-1048,Control plate 048,Mounting plate,FabriMax,Vietnam,USD,15.68,449
+PO-R3-SM-1048-2,2026-03-17,SM-1048,Control plate 048,Mounting plate,FabriMax,Vietnam,USD,14.34,822
+PO-R3-SM-1048-3,2026-04-28,SM-1048,Control plate 048,Mounting plate,FabriMax,Vietnam,USD,14.84,210
+PO-R3-SM-1048-4,2026-05-23,SM-1048,Control plate 048,Mounting plate,FabriMax,Vietnam,USD,15.12,584
+PO-R3-SM-1049-1,2026-02-16,SM-1049,Access cover 049,Cover / panel,AsiaForm,Vietnam,USD,4.15,671
+PO-R3-SM-1049-2,2026-03-28,SM-1049,Access cover 049,Cover / panel,AsiaForm,Vietnam,USD,3.97,871
+PO-R3-SM-1049-3,2026-04-17,SM-1049,Access cover 049,Cover / panel,AsiaForm,Vietnam,USD,4.13,198
+PO-R3-SM-1049-4,2026-05-26,SM-1049,Access cover 049,Cover / panel,AsiaForm,Vietnam,USD,4.1,771
+PO-R3-SM-1050-1,2026-02-26,SM-1050,Access cover 050,Cover / panel,FabriMax,Vietnam,USD,6.35,625
+PO-R3-SM-1050-2,2026-03-30,SM-1050,Access cover 050,Cover / panel,FabriMax,Vietnam,USD,6.09,200
+PO-R3-SM-1050-3,2026-04-25,SM-1050,Access cover 050,Cover / panel,FabriMax,Vietnam,USD,5.92,685
+PO-R3-SM-1050-4,2026-05-18,SM-1050,Access cover 050,Cover / panel,FabriMax,Vietnam,USD,5.94,730
+PO-R3-SM-1051-1,2026-02-21,SM-1051,Control plate 051,Mounting plate,BendCraft,India,INR,1890.24,898
+PO-R3-SM-1051-2,2026-03-24,SM-1051,Control plate 051,Mounting plate,BendCraft,India,INR,1896.12,731
+PO-R3-SM-1051-3,2026-04-26,SM-1051,Control plate 051,Mounting plate,BendCraft,India,INR,1899.75,764
+PO-R3-SM-1051-4,2026-05-22,SM-1051,Control plate 051,Mounting plate,BendCraft,India,INR,1837.19,895
+PO-R3-SM-1052-1,2026-02-22,SM-1052,Mounting bracket 052,Bracket,SteelWorks,India,INR,568.5,309
+PO-R3-SM-1052-2,2026-03-17,SM-1052,Mounting bracket 052,Bracket,SteelWorks,India,INR,563.4,192
+PO-R3-SM-1052-3,2026-04-24,SM-1052,Mounting bracket 052,Bracket,SteelWorks,India,INR,550.68,364
+PO-R3-SM-1052-4,2026-05-29,SM-1052,Mounting bracket 052,Bracket,SteelWorks,India,INR,544.65,893
+PO-R3-SM-1053-1,2026-02-16,SM-1053,Access cover 053,Cover / panel,SteelWorks,India,INR,1117.87,480
+PO-R3-SM-1053-2,2026-03-21,SM-1053,Access cover 053,Cover / panel,SteelWorks,India,INR,1082.03,454
+PO-R3-SM-1053-3,2026-04-27,SM-1053,Access cover 053,Cover / panel,SteelWorks,India,INR,1049.26,270
+PO-R3-SM-1053-4,2026-05-19,SM-1053,Access cover 053,Cover / panel,SteelWorks,India,INR,1043.97,434
+PO-R3-SM-1054-1,2026-02-15,SM-1054,Welded support 054,Fabricated assembly,AsiaForm,Vietnam,USD,20.06,615
+PO-R3-SM-1054-2,2026-03-18,SM-1054,Welded support 054,Fabricated assembly,AsiaForm,Vietnam,USD,19.85,724
+PO-R3-SM-1054-3,2026-04-29,SM-1054,Welded support 054,Fabricated assembly,AsiaForm,Vietnam,USD,18.78,62
+PO-R3-SM-1054-4,2026-05-18,SM-1054,Welded support 054,Fabricated assembly,AsiaForm,Vietnam,USD,19.58,685
+PO-R3-SM-1055-1,2026-02-20,SM-1055,Mounting bracket 055,Bracket,BendCraft,India,INR,384.74,535
+PO-R3-SM-1055-2,2026-03-17,SM-1055,Mounting bracket 055,Bracket,BendCraft,India,INR,355.06,269
+PO-R3-SM-1055-3,2026-04-22,SM-1055,Mounting bracket 055,Bracket,BendCraft,India,INR,385.67,802
+PO-R3-SM-1055-4,2026-05-19,SM-1055,Mounting bracket 055,Bracket,BendCraft,India,INR,357.31,624
+PO-R3-SM-1056-1,2026-02-18,SM-1056,Mounting bracket 056,Bracket,FabriMax,Vietnam,USD,10.77,360
+PO-R3-SM-1056-2,2026-03-26,SM-1056,Mounting bracket 056,Bracket,FabriMax,Vietnam,USD,10.72,395
+PO-R3-SM-1056-3,2026-04-27,SM-1056,Mounting bracket 056,Bracket,FabriMax,Vietnam,USD,11.16,670
+PO-R3-SM-1056-4,2026-05-27,SM-1056,Mounting bracket 056,Bracket,FabriMax,Vietnam,USD,11.96,832
+PO-R3-SM-1057-1,2026-02-23,SM-1057,Mounting bracket 057,Bracket,PlatePro,India,INR,1242.02,145
+PO-R3-SM-1057-2,2026-03-22,SM-1057,Mounting bracket 057,Bracket,PlatePro,India,INR,1194.63,747
+PO-R3-SM-1057-3,2026-04-25,SM-1057,Mounting bracket 057,Bracket,PlatePro,India,INR,1265.01,753
+PO-R3-SM-1057-4,2026-05-28,SM-1057,Mounting bracket 057,Bracket,PlatePro,India,INR,1168.64,404
+PO-R3-SM-1058-1,2026-02-26,SM-1058,Welded support 058,Fabricated assembly,SteelWorks,India,INR,1563.0,81
+PO-R3-SM-1058-2,2026-03-20,SM-1058,Welded support 058,Fabricated assembly,SteelWorks,India,INR,1612.57,377
+PO-R3-SM-1058-3,2026-04-16,SM-1058,Welded support 058,Fabricated assembly,SteelWorks,India,INR,1721.76,785
+PO-R3-SM-1058-4,2026-05-30,SM-1058,Welded support 058,Fabricated assembly,SteelWorks,India,INR,1690.08,329
+PO-R3-SM-1059-1,2026-03-01,SM-1059,Mounting bracket 059,Bracket,DragonSheet,China,USD,20.08,349
+PO-R3-SM-1059-2,2026-03-17,SM-1059,Mounting bracket 059,Bracket,DragonSheet,China,USD,18.95,667
+PO-R3-SM-1059-3,2026-04-28,SM-1059,Mounting bracket 059,Bracket,DragonSheet,China,USD,19.32,568
+PO-R3-SM-1059-4,2026-05-29,SM-1059,Mounting bracket 059,Bracket,DragonSheet,China,USD,19.2,702
+PO-R3-SM-1060-1,2026-02-15,SM-1060,Control plate 060,Mounting plate,BendCraft,India,INR,562.73,53
+PO-R3-SM-1060-2,2026-03-30,SM-1060,Control plate 060,Mounting plate,BendCraft,India,INR,519.3,242
+PO-R3-SM-1060-3,2026-04-19,SM-1060,Control plate 060,Mounting plate,BendCraft,India,INR,564.39,731
+PO-R3-SM-1060-4,2026-05-16,SM-1060,Control plate 060,Mounting plate,BendCraft,India,INR,553.92,746
+PO-R3-SM-1061-1,2026-02-20,SM-1061,Mounting bracket 061,Bracket,AsiaForm,Vietnam,USD,6.38,265
+PO-R3-SM-1061-2,2026-03-18,SM-1061,Mounting bracket 061,Bracket,AsiaForm,Vietnam,USD,6.97,694
+PO-R3-SM-1061-3,2026-04-30,SM-1061,Mounting bracket 061,Bracket,AsiaForm,Vietnam,USD,6.3,154
+PO-R3-SM-1061-4,2026-05-27,SM-1061,Mounting bracket 061,Bracket,AsiaForm,Vietnam,USD,6.47,751
+PO-R3-SM-1062-1,2026-02-24,SM-1062,Mounting bracket 062,Bracket,FabriMax,Vietnam,USD,6.88,746
+PO-R3-SM-1062-2,2026-03-28,SM-1062,Mounting bracket 062,Bracket,FabriMax,Vietnam,USD,6.53,615
+PO-R3-SM-1062-3,2026-04-16,SM-1062,Mounting bracket 062,Bracket,FabriMax,Vietnam,USD,6.96,214
+PO-R3-SM-1062-4,2026-05-22,SM-1062,Mounting bracket 062,Bracket,FabriMax,Vietnam,USD,6.83,124
+PO-R3-SM-1063-1,2026-02-28,SM-1063,Welded support 063,Fabricated assembly,DragonSheet,China,USD,5.89,781
+PO-R3-SM-1063-2,2026-03-31,SM-1063,Welded support 063,Fabricated assembly,DragonSheet,China,USD,5.61,439
+PO-R3-SM-1063-3,2026-04-24,SM-1063,Welded support 063,Fabricated assembly,DragonSheet,China,USD,5.71,87
+PO-R3-SM-1063-4,2026-05-19,SM-1063,Welded support 063,Fabricated assembly,DragonSheet,China,USD,5.69,305
+PO-R3-SM-1064-1,2026-02-18,SM-1064,Access cover 064,Cover / panel,PrecisionPanel,USA,USD,23.68,494
+PO-R3-SM-1064-2,2026-03-17,SM-1064,Access cover 064,Cover / panel,PrecisionPanel,USA,USD,23.27,612
+PO-R3-SM-1064-3,2026-04-23,SM-1064,Access cover 064,Cover / panel,PrecisionPanel,USA,USD,23.07,764
+PO-R3-SM-1064-4,2026-05-25,SM-1064,Access cover 064,Cover / panel,PrecisionPanel,USA,USD,23.36,215
+PO-R3-SM-1065-1,2026-02-17,SM-1065,Control plate 065,Mounting plate,AsiaForm,Vietnam,USD,8.97,597
+PO-R3-SM-1065-2,2026-03-20,SM-1065,Control plate 065,Mounting plate,AsiaForm,Vietnam,USD,9.03,419
+PO-R3-SM-1065-3,2026-04-17,SM-1065,Control plate 065,Mounting plate,AsiaForm,Vietnam,USD,8.76,258
+PO-R3-SM-1065-4,2026-05-18,SM-1065,Control plate 065,Mounting plate,AsiaForm,Vietnam,USD,8.56,821
+PO-R3-SM-1066-1,2026-02-18,SM-1066,Access cover 066,Cover / panel,FabriMax,Vietnam,USD,10.53,362
+PO-R3-SM-1066-2,2026-03-29,SM-1066,Access cover 066,Cover / panel,FabriMax,Vietnam,USD,9.94,210
+PO-R3-SM-1066-3,2026-04-29,SM-1066,Access cover 066,Cover / panel,FabriMax,Vietnam,USD,10.59,797
+PO-R3-SM-1066-4,2026-05-27,SM-1066,Access cover 066,Cover / panel,FabriMax,Vietnam,USD,11.09,313
+PO-R3-SM-1067-1,2026-02-22,SM-1067,Access cover 067,Cover / panel,SteelWorks,India,INR,897.48,248
+PO-R3-SM-1067-2,2026-03-17,SM-1067,Access cover 067,Cover / panel,SteelWorks,India,INR,945.51,139
+PO-R3-SM-1067-3,2026-04-23,SM-1067,Access cover 067,Cover / panel,SteelWorks,India,INR,867.31,196
+PO-R3-SM-1067-4,2026-05-24,SM-1067,Access cover 067,Cover / panel,SteelWorks,India,INR,871.63,232
+PO-R3-SM-1068-1,2026-02-26,SM-1068,Control plate 068,Mounting plate,FabriMax,Vietnam,USD,22.07,283
+PO-R3-SM-1068-2,2026-03-22,SM-1068,Control plate 068,Mounting plate,FabriMax,Vietnam,USD,21.58,699
+PO-R3-SM-1068-3,2026-04-19,SM-1068,Control plate 068,Mounting plate,FabriMax,Vietnam,USD,23.44,843
+PO-R3-SM-1068-4,2026-05-23,SM-1068,Control plate 068,Mounting plate,FabriMax,Vietnam,USD,21.99,509
+PO-R3-SM-1069-1,2026-02-18,SM-1069,Welded support 069,Fabricated assembly,SteelWorks,India,INR,1013.46,882
+PO-R3-SM-1069-2,2026-03-26,SM-1069,Welded support 069,Fabricated assembly,SteelWorks,India,INR,1020.0,94
+PO-R3-SM-1069-3,2026-04-18,SM-1069,Welded support 069,Fabricated assembly,SteelWorks,India,INR,983.91,446
+PO-R3-SM-1069-4,2026-05-22,SM-1069,Welded support 069,Fabricated assembly,SteelWorks,India,INR,960.56,492
+PO-R3-SM-1070-1,2026-02-18,SM-1070,Mounting bracket 070,Bracket,FabriMax,Vietnam,USD,7.04,751
+PO-R3-SM-1070-2,2026-03-19,SM-1070,Mounting bracket 070,Bracket,FabriMax,Vietnam,USD,7.56,184
+PO-R3-SM-1070-3,2026-04-30,SM-1070,Mounting bracket 070,Bracket,FabriMax,Vietnam,USD,6.95,92
+PO-R3-SM-1070-4,2026-05-21,SM-1070,Mounting bracket 070,Bracket,FabriMax,Vietnam,USD,7.5,250
+PO-R3-SM-1071-1,2026-02-17,SM-1071,Welded support 071,Fabricated assembly,AsiaForm,Vietnam,USD,15.0,82
+PO-R3-SM-1071-2,2026-03-22,SM-1071,Welded support 071,Fabricated assembly,AsiaForm,Vietnam,USD,14.9,92
+PO-R3-SM-1071-3,2026-04-23,SM-1071,Welded support 071,Fabricated assembly,AsiaForm,Vietnam,USD,14.87,128
+PO-R3-SM-1071-4,2026-05-25,SM-1071,Welded support 071,Fabricated assembly,AsiaForm,Vietnam,USD,14.21,168
+PO-R3-SM-1072-1,2026-02-27,SM-1072,Welded support 072,Fabricated assembly,PlatePro,India,INR,1264.83,110
+PO-R3-SM-1072-2,2026-03-31,SM-1072,Welded support 072,Fabricated assembly,PlatePro,India,INR,1236.21,800
+PO-R3-SM-1072-3,2026-04-29,SM-1072,Welded support 072,Fabricated assembly,PlatePro,India,INR,1238.83,66
+PO-R3-SM-1072-4,2026-05-27,SM-1072,Welded support 072,Fabricated assembly,PlatePro,India,INR,1182.97,777
+PO-R3-SM-1073-1,2026-02-27,SM-1073,Access cover 073,Cover / panel,PrecisionPanel,USA,USD,20.4,315
+PO-R3-SM-1073-2,2026-03-28,SM-1073,Access cover 073,Cover / panel,PrecisionPanel,USA,USD,20.57,538
+PO-R3-SM-1073-3,2026-04-25,SM-1073,Access cover 073,Cover / panel,PrecisionPanel,USA,USD,19.86,401
+PO-R3-SM-1073-4,2026-05-30,SM-1073,Access cover 073,Cover / panel,PrecisionPanel,USA,USD,20.11,472
+PO-R3-SM-1074-1,2026-02-21,SM-1074,Control plate 074,Mounting plate,AsiaForm,Vietnam,USD,12.48,605
+PO-R3-SM-1074-2,2026-03-29,SM-1074,Control plate 074,Mounting plate,AsiaForm,Vietnam,USD,12.54,414
+PO-R3-SM-1074-3,2026-04-23,SM-1074,Control plate 074,Mounting plate,AsiaForm,Vietnam,USD,12.74,440
+PO-R3-SM-1074-4,2026-05-25,SM-1074,Control plate 074,Mounting plate,AsiaForm,Vietnam,USD,12.7,593
+PO-R3-SM-1075-1,2026-02-16,SM-1075,Control plate 075,Mounting plate,AsiaForm,Vietnam,USD,3.97,424
+PO-R3-SM-1075-2,2026-03-20,SM-1075,Control plate 075,Mounting plate,AsiaForm,Vietnam,USD,3.73,292
+PO-R3-SM-1075-3,2026-04-24,SM-1075,Control plate 075,Mounting plate,AsiaForm,Vietnam,USD,3.61,292
+PO-R3-SM-1075-4,2026-05-19,SM-1075,Control plate 075,Mounting plate,AsiaForm,Vietnam,USD,3.87,704
+PO-R3-SM-1076-1,2026-02-21,SM-1076,Welded support 076,Fabricated assembly,FabriMax,Vietnam,USD,14.53,238
+PO-R3-SM-1076-2,2026-03-25,SM-1076,Welded support 076,Fabricated assembly,FabriMax,Vietnam,USD,13.93,68
+PO-R3-SM-1076-3,2026-04-21,SM-1076,Welded support 076,Fabricated assembly,FabriMax,Vietnam,USD,14.49,687
+PO-R3-SM-1076-4,2026-05-29,SM-1076,Welded support 076,Fabricated assembly,FabriMax,Vietnam,USD,15.6,265
+PO-R3-SM-1077-1,2026-02-26,SM-1077,Access cover 077,Cover / panel,AsiaForm,Vietnam,USD,21.29,802
+PO-R3-SM-1077-2,2026-03-24,SM-1077,Access cover 077,Cover / panel,AsiaForm,Vietnam,USD,20.13,743
+PO-R3-SM-1077-3,2026-04-25,SM-1077,Access cover 077,Cover / panel,AsiaForm,Vietnam,USD,21.24,656
+PO-R3-SM-1077-4,2026-05-21,SM-1077,Access cover 077,Cover / panel,AsiaForm,Vietnam,USD,19.77,201
+PO-R3-SM-1078-1,2026-02-18,SM-1078,Control plate 078,Mounting plate,SteelWorks,India,INR,1045.64,899
+PO-R3-SM-1078-2,2026-03-22,SM-1078,Control plate 078,Mounting plate,SteelWorks,India,INR,1080.03,890
+PO-R3-SM-1078-3,2026-04-24,SM-1078,Control plate 078,Mounting plate,SteelWorks,India,INR,1096.23,92
+PO-R3-SM-1078-4,2026-05-17,SM-1078,Control plate 078,Mounting plate,SteelWorks,India,INR,1077.21,502
+PO-R3-SM-1079-1,2026-02-23,SM-1079,Mounting bracket 079,Bracket,SteelWorks,India,INR,666.12,794
+PO-R3-SM-1079-2,2026-03-24,SM-1079,Mounting bracket 079,Bracket,SteelWorks,India,INR,598.44,763
+PO-R3-SM-1079-3,2026-04-24,SM-1079,Mounting bracket 079,Bracket,SteelWorks,India,INR,662.64,519
+PO-R3-SM-1079-4,2026-05-16,SM-1079,Mounting bracket 079,Bracket,SteelWorks,India,INR,657.87,565
+PO-R3-SM-1080-1,2026-02-16,SM-1080,Access cover 080,Cover / panel,BendCraft,India,INR,648.62,319
+PO-R3-SM-1080-2,2026-03-31,SM-1080,Access cover 080,Cover / panel,BendCraft,India,INR,700.66,412
+PO-R3-SM-1080-3,2026-04-29,SM-1080,Access cover 080,Cover / panel,BendCraft,India,INR,636.72,385
+PO-R3-SM-1080-4,2026-05-22,SM-1080,Access cover 080,Cover / panel,BendCraft,India,INR,708.7,497
+PO-R3-SM-1081-1,2026-02-17,SM-1081,Welded support 081,Fabricated assembly,BendCraft,India,INR,715.49,398
+PO-R3-SM-1081-2,2026-03-29,SM-1081,Welded support 081,Fabricated assembly,BendCraft,India,INR,729.44,289
+PO-R3-SM-1081-3,2026-04-23,SM-1081,Welded support 081,Fabricated assembly,BendCraft,India,INR,742.89,550
+PO-R3-SM-1081-4,2026-05-30,SM-1081,Welded support 081,Fabricated assembly,BendCraft,India,INR,729.72,675
+PO-R3-SM-1082-1,2026-02-17,SM-1082,Mounting bracket 082,Bracket,AsiaForm,Vietnam,USD,6.79,859
+PO-R3-SM-1082-2,2026-03-20,SM-1082,Mounting bracket 082,Bracket,AsiaForm,Vietnam,USD,6.62,179
+PO-R3-SM-1082-3,2026-04-18,SM-1082,Mounting bracket 082,Bracket,AsiaForm,Vietnam,USD,6.31,392
+PO-R3-SM-1082-4,2026-05-24,SM-1082,Mounting bracket 082,Bracket,AsiaForm,Vietnam,USD,6.41,225
+PO-R3-SM-1083-1,2026-02-23,SM-1083,Mounting bracket 083,Bracket,PlatePro,India,INR,352.07,651
+PO-R3-SM-1083-2,2026-03-21,SM-1083,Mounting bracket 083,Bracket,PlatePro,India,INR,358.75,202
+PO-R3-SM-1083-3,2026-04-17,SM-1083,Mounting bracket 083,Bracket,PlatePro,India,INR,369.26,405
+PO-R3-SM-1083-4,2026-05-28,SM-1083,Mounting bracket 083,Bracket,PlatePro,India,INR,329.3,776
+PO-R3-SM-1084-1,2026-02-20,SM-1084,Mounting bracket 084,Bracket,PlatePro,India,INR,1200.69,729
+PO-R3-SM-1084-2,2026-03-18,SM-1084,Mounting bracket 084,Bracket,PlatePro,India,INR,1199.94,688
+PO-R3-SM-1084-3,2026-04-25,SM-1084,Mounting bracket 084,Bracket,PlatePro,India,INR,1233.98,73
+PO-R3-SM-1084-4,2026-05-26,SM-1084,Mounting bracket 084,Bracket,PlatePro,India,INR,1286.92,571
+PO-R3-SM-1085-1,2026-02-26,SM-1085,Welded support 085,Fabricated assembly,FabriMax,Vietnam,USD,8.63,269
+PO-R3-SM-1085-2,2026-03-17,SM-1085,Welded support 085,Fabricated assembly,FabriMax,Vietnam,USD,8.3,776
+PO-R3-SM-1085-3,2026-04-16,SM-1085,Welded support 085,Fabricated assembly,FabriMax,Vietnam,USD,8.22,236
+PO-R3-SM-1085-4,2026-05-18,SM-1085,Welded support 085,Fabricated assembly,FabriMax,Vietnam,USD,8.83,265
+PO-R3-SM-1086-1,2026-02-15,SM-1086,Welded support 086,Fabricated assembly,PlatePro,India,INR,649.02,202
+PO-R3-SM-1086-2,2026-03-20,SM-1086,Welded support 086,Fabricated assembly,PlatePro,India,INR,695.9,847
+PO-R3-SM-1086-3,2026-04-29,SM-1086,Welded support 086,Fabricated assembly,PlatePro,India,INR,707.83,552
+PO-R3-SM-1086-4,2026-05-29,SM-1086,Welded support 086,Fabricated assembly,PlatePro,India,INR,717.05,72
+PO-R3-SM-1087-1,2026-02-22,SM-1087,Mounting bracket 087,Bracket,AsiaForm,Vietnam,USD,5.98,873
+PO-R3-SM-1087-2,2026-03-21,SM-1087,Mounting bracket 087,Bracket,AsiaForm,Vietnam,USD,6.35,115
+PO-R3-SM-1087-3,2026-04-22,SM-1087,Mounting bracket 087,Bracket,AsiaForm,Vietnam,USD,6.24,742
+PO-R3-SM-1087-4,2026-05-22,SM-1087,Mounting bracket 087,Bracket,AsiaForm,Vietnam,USD,6.49,687
+PO-R3-SM-1088-1,2026-02-22,SM-1088,Control plate 088,Mounting plate,FabriMax,Vietnam,USD,9.68,106
+PO-R3-SM-1088-2,2026-03-20,SM-1088,Control plate 088,Mounting plate,FabriMax,Vietnam,USD,9.42,646
+PO-R3-SM-1088-3,2026-04-26,SM-1088,Control plate 088,Mounting plate,FabriMax,Vietnam,USD,9.49,328
+PO-R3-SM-1088-4,2026-05-30,SM-1088,Control plate 088,Mounting plate,FabriMax,Vietnam,USD,9.82,86
+PO-R3-SM-1089-1,2026-02-22,SM-1089,Mounting bracket 089,Bracket,DragonSheet,China,USD,12.94,741
+PO-R3-SM-1089-2,2026-03-27,SM-1089,Mounting bracket 089,Bracket,DragonSheet,China,USD,12.34,753
+PO-R3-SM-1089-3,2026-04-25,SM-1089,Mounting bracket 089,Bracket,DragonSheet,China,USD,12.01,575
+PO-R3-SM-1089-4,2026-05-26,SM-1089,Mounting bracket 089,Bracket,DragonSheet,China,USD,12.43,534
+PO-R3-SM-1090-1,2026-02-25,SM-1090,Control plate 090,Mounting plate,AsiaForm,Vietnam,USD,12.24,787
+PO-R3-SM-1090-2,2026-03-17,SM-1090,Control plate 090,Mounting plate,AsiaForm,Vietnam,USD,12.47,833
+PO-R3-SM-1090-3,2026-04-30,SM-1090,Control plate 090,Mounting plate,AsiaForm,Vietnam,USD,12.71,411
+PO-R3-SM-1090-4,2026-05-18,SM-1090,Control plate 090,Mounting plate,AsiaForm,Vietnam,USD,11.46,798
+PO-R3-SM-1091-1,2026-02-27,SM-1091,Mounting bracket 091,Bracket,PlatePro,India,INR,962.55,477
+PO-R3-SM-1091-2,2026-03-24,SM-1091,Mounting bracket 091,Bracket,PlatePro,India,INR,988.83,429
+PO-R3-SM-1091-3,2026-04-17,SM-1091,Mounting bracket 091,Bracket,PlatePro,India,INR,1057.4,764
+PO-R3-SM-1091-4,2026-05-25,SM-1091,Mounting bracket 091,Bracket,PlatePro,India,INR,945.74,714
+PO-R3-SM-1092-1,2026-02-24,SM-1092,Welded support 092,Fabricated assembly,PlatePro,India,INR,1333.91,694
+PO-R3-SM-1092-2,2026-03-17,SM-1092,Welded support 092,Fabricated assembly,PlatePro,India,INR,1320.79,278
+PO-R3-SM-1092-3,2026-04-29,SM-1092,Welded support 092,Fabricated assembly,PlatePro,India,INR,1284.98,387
+PO-R3-SM-1092-4,2026-05-20,SM-1092,Welded support 092,Fabricated assembly,PlatePro,India,INR,1293.18,506
+PO-R3-SM-1093-1,2026-02-24,SM-1093,Welded support 093,Fabricated assembly,SteelWorks,India,INR,760.02,653
+PO-R3-SM-1093-2,2026-03-31,SM-1093,Welded support 093,Fabricated assembly,SteelWorks,India,INR,826.71,486
+PO-R3-SM-1093-3,2026-04-22,SM-1093,Welded support 093,Fabricated assembly,SteelWorks,India,INR,828.67,461
+PO-R3-SM-1093-4,2026-05-25,SM-1093,Welded support 093,Fabricated assembly,SteelWorks,India,INR,808.53,893
+PO-R3-SM-1094-1,2026-02-19,SM-1094,Control plate 094,Mounting plate,BendCraft,India,INR,1645.77,861
+PO-R3-SM-1094-2,2026-03-18,SM-1094,Control plate 094,Mounting plate,BendCraft,India,INR,1780.9,213
+PO-R3-SM-1094-3,2026-04-24,SM-1094,Control plate 094,Mounting plate,BendCraft,India,INR,1649.86,465
+PO-R3-SM-1094-4,2026-05-24,SM-1094,Control plate 094,Mounting plate,BendCraft,India,INR,1820.4,156
+PO-R3-SM-1095-1,2026-02-22,SM-1095,Control plate 095,Mounting plate,FabriMax,Vietnam,USD,4.2,712
+PO-R3-SM-1095-2,2026-03-20,SM-1095,Control plate 095,Mounting plate,FabriMax,Vietnam,USD,3.99,851
+PO-R3-SM-1095-3,2026-04-21,SM-1095,Control plate 095,Mounting plate,FabriMax,Vietnam,USD,4.31,742
+PO-R3-SM-1095-4,2026-05-21,SM-1095,Control plate 095,Mounting plate,FabriMax,Vietnam,USD,3.94,554
+PO-R3-SM-1096-1,2026-02-28,SM-1096,Mounting bracket 096,Bracket,DragonSheet,China,USD,7.5,206
+PO-R3-SM-1096-2,2026-03-24,SM-1096,Mounting bracket 096,Bracket,DragonSheet,China,USD,7.21,186
+PO-R3-SM-1096-3,2026-04-26,SM-1096,Mounting bracket 096,Bracket,DragonSheet,China,USD,6.95,79
+PO-R3-SM-1096-4,2026-05-21,SM-1096,Mounting bracket 096,Bracket,DragonSheet,China,USD,7.0,100
+PO-R3-SM-1097-1,2026-02-28,SM-1097,Welded support 097,Fabricated assembly,DragonSheet,China,USD,30.54,445
+PO-R3-SM-1097-2,2026-03-31,SM-1097,Welded support 097,Fabricated assembly,DragonSheet,China,USD,30.01,591
+PO-R3-SM-1097-3,2026-04-24,SM-1097,Welded support 097,Fabricated assembly,DragonSheet,China,USD,33.34,117
+PO-R3-SM-1097-4,2026-05-25,SM-1097,Welded support 097,Fabricated assembly,DragonSheet,China,USD,29.63,636
+PO-R3-SM-1098-1,2026-02-20,SM-1098,Control plate 098,Mounting plate,AsiaForm,Vietnam,USD,7.92,598
+PO-R3-SM-1098-2,2026-03-23,SM-1098,Control plate 098,Mounting plate,AsiaForm,Vietnam,USD,8.28,285
+PO-R3-SM-1098-3,2026-04-27,SM-1098,Control plate 098,Mounting plate,AsiaForm,Vietnam,USD,7.9,748
+PO-R3-SM-1098-4,2026-05-20,SM-1098,Control plate 098,Mounting plate,AsiaForm,Vietnam,USD,8.54,814
+PO-R3-SM-1099-1,2026-02-23,SM-1099,Mounting bracket 099,Bracket,FabriMax,Vietnam,USD,7.47,459
+PO-R3-SM-1099-2,2026-03-20,SM-1099,Mounting bracket 099,Bracket,FabriMax,Vietnam,USD,7.87,519
+PO-R3-SM-1099-3,2026-04-26,SM-1099,Mounting bracket 099,Bracket,FabriMax,Vietnam,USD,7.48,550
+PO-R3-SM-1099-4,2026-05-19,SM-1099,Mounting bracket 099,Bracket,FabriMax,Vietnam,USD,7.48,784
+PO-R3-SM-1100-1,2026-02-28,SM-1100,Control plate 100,Mounting plate,PlatePro,India,INR,638.87,671
+PO-R3-SM-1100-2,2026-03-28,SM-1100,Control plate 100,Mounting plate,PlatePro,India,INR,576.28,703
+PO-R3-SM-1100-3,2026-04-20,SM-1100,Control plate 100,Mounting plate,PlatePro,India,INR,560.04,174
+PO-R3-SM-1100-4,2026-05-16,SM-1100,Control plate 100,Mounting plate,PlatePro,India,INR,639.37,778
+PO-R3-SM-1101-1,2026-02-19,SM-1101,Mounting bracket 101,Bracket,FabriMax,Vietnam,USD,6.52,211
+PO-R3-SM-1101-2,2026-03-21,SM-1101,Mounting bracket 101,Bracket,FabriMax,Vietnam,USD,6.63,338
+PO-R3-SM-1101-3,2026-04-18,SM-1101,Mounting bracket 101,Bracket,FabriMax,Vietnam,USD,6.62,675
+PO-R3-SM-1101-4,2026-05-28,SM-1101,Mounting bracket 101,Bracket,FabriMax,Vietnam,USD,6.68,491
+PO-R3-SM-1102-1,2026-03-01,SM-1102,Control plate 102,Mounting plate,PrecisionPanel,USA,USD,19.33,528
+PO-R3-SM-1102-2,2026-03-18,SM-1102,Control plate 102,Mounting plate,PrecisionPanel,USA,USD,19.29,370
+PO-R3-SM-1102-3,2026-04-21,SM-1102,Control plate 102,Mounting plate,PrecisionPanel,USA,USD,17.56,686
+PO-R3-SM-1102-4,2026-05-17,SM-1102,Control plate 102,Mounting plate,PrecisionPanel,USA,USD,18.78,330
+PO-R3-SM-1103-1,2026-02-19,SM-1103,Access cover 103,Cover / panel,PrecisionPanel,USA,USD,19.11,111
+PO-R3-SM-1103-2,2026-03-22,SM-1103,Access cover 103,Cover / panel,PrecisionPanel,USA,USD,18.86,541
+PO-R3-SM-1103-3,2026-04-30,SM-1103,Access cover 103,Cover / panel,PrecisionPanel,USA,USD,19.09,768
+PO-R3-SM-1103-4,2026-05-18,SM-1103,Access cover 103,Cover / panel,PrecisionPanel,USA,USD,19.81,817
+PO-R3-SM-1104-1,2026-02-28,SM-1104,Mounting bracket 104,Bracket,PrecisionPanel,USA,USD,28.04,766
+PO-R3-SM-1104-2,2026-03-21,SM-1104,Mounting bracket 104,Bracket,PrecisionPanel,USA,USD,28.92,700
+PO-R3-SM-1104-3,2026-04-17,SM-1104,Mounting bracket 104,Bracket,PrecisionPanel,USA,USD,29.0,116
+PO-R3-SM-1104-4,2026-05-20,SM-1104,Mounting bracket 104,Bracket,PrecisionPanel,USA,USD,27.15,792
+PO-R3-SM-1105-1,2026-02-18,SM-1105,Mounting bracket 105,Bracket,PrecisionPanel,USA,USD,27.76,569
+PO-R3-SM-1105-2,2026-03-22,SM-1105,Mounting bracket 105,Bracket,PrecisionPanel,USA,USD,25.94,754
+PO-R3-SM-1105-3,2026-04-25,SM-1105,Mounting bracket 105,Bracket,PrecisionPanel,USA,USD,27.11,631
+PO-R3-SM-1105-4,2026-05-23,SM-1105,Mounting bracket 105,Bracket,PrecisionPanel,USA,USD,29.26,854
+PO-R3-SM-1106-1,2026-02-24,SM-1106,Welded support 106,Fabricated assembly,FabriMax,Vietnam,USD,7.0,193
+PO-R3-SM-1106-2,2026-03-24,SM-1106,Welded support 106,Fabricated assembly,FabriMax,Vietnam,USD,6.95,580
+PO-R3-SM-1106-3,2026-04-24,SM-1106,Welded support 106,Fabricated assembly,FabriMax,Vietnam,USD,6.24,174
+PO-R3-SM-1106-4,2026-05-22,SM-1106,Welded support 106,Fabricated assembly,FabriMax,Vietnam,USD,6.65,369
+PO-R3-SM-1107-1,2026-02-27,SM-1107,Welded support 107,Fabricated assembly,AsiaForm,Vietnam,USD,11.02,492
+PO-R3-SM-1107-2,2026-03-27,SM-1107,Welded support 107,Fabricated assembly,AsiaForm,Vietnam,USD,10.27,789
+PO-R3-SM-1107-3,2026-04-19,SM-1107,Welded support 107,Fabricated assembly,AsiaForm,Vietnam,USD,10.25,718
+PO-R3-SM-1107-4,2026-05-18,SM-1107,Welded support 107,Fabricated assembly,AsiaForm,Vietnam,USD,11.19,505
+PO-R3-SM-1108-1,2026-02-22,SM-1108,Mounting bracket 108,Bracket,DragonSheet,China,USD,18.16,130
+PO-R3-SM-1108-2,2026-03-29,SM-1108,Mounting bracket 108,Bracket,DragonSheet,China,USD,16.05,626
+PO-R3-SM-1108-3,2026-04-30,SM-1108,Mounting bracket 108,Bracket,DragonSheet,China,USD,16.6,816
+PO-R3-SM-1108-4,2026-05-18,SM-1108,Mounting bracket 108,Bracket,DragonSheet,China,USD,17.09,606
+PO-R3-SM-1109-1,2026-02-27,SM-1109,Access cover 109,Cover / panel,AsiaForm,Vietnam,USD,14.0,764
+PO-R3-SM-1109-2,2026-03-28,SM-1109,Access cover 109,Cover / panel,AsiaForm,Vietnam,USD,13.4,116
+PO-R3-SM-1109-3,2026-04-23,SM-1109,Access cover 109,Cover / panel,AsiaForm,Vietnam,USD,14.93,264
+PO-R3-SM-1109-4,2026-05-21,SM-1109,Access cover 109,Cover / panel,AsiaForm,Vietnam,USD,13.59,332
+PO-R3-SM-1110-1,2026-02-20,SM-1110,Welded support 110,Fabricated assembly,AsiaForm,Vietnam,USD,5.87,322
+PO-R3-SM-1110-2,2026-03-28,SM-1110,Welded support 110,Fabricated assembly,AsiaForm,Vietnam,USD,5.16,299
+PO-R3-SM-1110-3,2026-04-28,SM-1110,Welded support 110,Fabricated assembly,AsiaForm,Vietnam,USD,5.65,297
+PO-R3-SM-1110-4,2026-05-29,SM-1110,Welded support 110,Fabricated assembly,AsiaForm,Vietnam,USD,5.53,642
+PO-R3-SM-1111-1,2026-02-20,SM-1111,Access cover 111,Cover / panel,SteelWorks,India,INR,949.08,61
+PO-R3-SM-1111-2,2026-03-20,SM-1111,Access cover 111,Cover / panel,SteelWorks,India,INR,989.62,589
+PO-R3-SM-1111-3,2026-04-17,SM-1111,Access cover 111,Cover / panel,SteelWorks,India,INR,971.22,542
+PO-R3-SM-1111-4,2026-05-24,SM-1111,Access cover 111,Cover / panel,SteelWorks,India,INR,922.96,181
+PO-R3-SM-1112-1,2026-02-18,SM-1112,Mounting bracket 112,Bracket,FabriMax,Vietnam,USD,11.27,495
+PO-R3-SM-1112-2,2026-03-18,SM-1112,Mounting bracket 112,Bracket,FabriMax,Vietnam,USD,12.12,460
+PO-R3-SM-1112-3,2026-04-19,SM-1112,Mounting bracket 112,Bracket,FabriMax,Vietnam,USD,11.19,685
+PO-R3-SM-1112-4,2026-05-22,SM-1112,Mounting bracket 112,Bracket,FabriMax,Vietnam,USD,11.51,163
+PO-R3-SM-1113-1,2026-02-15,SM-1113,Access cover 113,Cover / panel,SteelWorks,India,INR,698.13,231
+PO-R3-SM-1113-2,2026-03-30,SM-1113,Access cover 113,Cover / panel,SteelWorks,India,INR,749.65,538
+PO-R3-SM-1113-3,2026-04-22,SM-1113,Access cover 113,Cover / panel,SteelWorks,India,INR,678.74,802
+PO-R3-SM-1113-4,2026-05-29,SM-1113,Access cover 113,Cover / panel,SteelWorks,India,INR,674.04,458
+PO-R3-SM-1114-1,2026-02-26,SM-1114,Welded support 114,Fabricated assembly,PrecisionPanel,USA,USD,14.35,534
+PO-R3-SM-1114-2,2026-03-28,SM-1114,Welded support 114,Fabricated assembly,PrecisionPanel,USA,USD,13.78,171
+PO-R3-SM-1114-3,2026-04-28,SM-1114,Welded support 114,Fabricated assembly,PrecisionPanel,USA,USD,15.24,437
+PO-R3-SM-1114-4,2026-05-17,SM-1114,Welded support 114,Fabricated assembly,PrecisionPanel,USA,USD,15.79,491
+PO-R3-SM-1115-1,2026-02-18,SM-1115,Mounting bracket 115,Bracket,PrecisionPanel,USA,USD,34.73,347
+PO-R3-SM-1115-2,2026-03-29,SM-1115,Mounting bracket 115,Bracket,PrecisionPanel,USA,USD,35.3,93
+PO-R3-SM-1115-3,2026-04-22,SM-1115,Mounting bracket 115,Bracket,PrecisionPanel,USA,USD,33.71,561
+PO-R3-SM-1115-4,2026-05-22,SM-1115,Mounting bracket 115,Bracket,PrecisionPanel,USA,USD,33.63,835
+PO-R3-SM-1116-1,2026-02-26,SM-1116,Control plate 116,Mounting plate,PlatePro,India,INR,932.53,318
+PO-R3-SM-1116-2,2026-03-22,SM-1116,Control plate 116,Mounting plate,PlatePro,India,INR,893.55,198
+PO-R3-SM-1116-3,2026-04-27,SM-1116,Control plate 116,Mounting plate,PlatePro,India,INR,963.15,619
+PO-R3-SM-1116-4,2026-05-27,SM-1116,Control plate 116,Mounting plate,PlatePro,India,INR,951.9,627
+PO-R3-SM-1117-1,2026-02-20,SM-1117,Mounting bracket 117,Bracket,SteelWorks,India,INR,2087.91,99
+PO-R3-SM-1117-2,2026-03-22,SM-1117,Mounting bracket 117,Bracket,SteelWorks,India,INR,2095.58,138
+PO-R3-SM-1117-3,2026-04-19,SM-1117,Mounting bracket 117,Bracket,SteelWorks,India,INR,2016.07,669
+PO-R3-SM-1117-4,2026-05-29,SM-1117,Mounting bracket 117,Bracket,SteelWorks,India,INR,2100.85,818
+PO-R3-SM-1118-1,2026-02-28,SM-1118,Mounting bracket 118,Bracket,AsiaForm,Vietnam,USD,7.41,731
+PO-R3-SM-1118-2,2026-03-26,SM-1118,Mounting bracket 118,Bracket,AsiaForm,Vietnam,USD,6.92,162
+PO-R3-SM-1118-3,2026-04-16,SM-1118,Mounting bracket 118,Bracket,AsiaForm,Vietnam,USD,6.93,775
+PO-R3-SM-1118-4,2026-05-17,SM-1118,Mounting bracket 118,Bracket,AsiaForm,Vietnam,USD,6.73,239
+PO-R3-SM-1119-1,2026-02-23,SM-1119,Control plate 119,Mounting plate,PlatePro,India,INR,1648.36,660
+PO-R3-SM-1119-2,2026-03-23,SM-1119,Control plate 119,Mounting plate,PlatePro,India,INR,1714.08,72
+PO-R3-SM-1119-3,2026-04-19,SM-1119,Control plate 119,Mounting plate,PlatePro,India,INR,1602.84,331
+PO-R3-SM-1119-4,2026-05-18,SM-1119,Control plate 119,Mounting plate,PlatePro,India,INR,1525.32,898
+PO-R3-SM-1120-1,2026-02-21,SM-1120,Control plate 120,Mounting plate,SteelWorks,India,INR,718.49,96
+PO-R3-SM-1120-2,2026-03-20,SM-1120,Control plate 120,Mounting plate,SteelWorks,India,INR,748.17,544
+PO-R3-SM-1120-3,2026-04-28,SM-1120,Control plate 120,Mounting plate,SteelWorks,India,INR,788.14,454
+PO-R3-SM-1120-4,2026-05-27,SM-1120,Control plate 120,Mounting plate,SteelWorks,India,INR,743.75,238

@@ -6,6 +6,11 @@ from pathlib import Path
 import pandas as pd
 
 
+# REVIEW EXPLANATION:
+# This file is the ERP data preparation layer. It takes raw purchase records
+# from CSV/Excel and converts them into a clean, anonymized schema that the
+# dashboard can safely use for procurement analytics.
+
 REQUIRED_ERP_COLUMNS = [
     "Part Number",
     "Part Description",
@@ -20,6 +25,8 @@ REQUIRED_ERP_COLUMNS = [
 
 
 CURRENCY_TO_USD = {
+    # These fixed rates are demo conversion factors. In a production system this
+    # would come from dated FX tables so each PO is converted using its PO date.
     "USD": 1.0,
     "INR": 0.012,
     "EUR": 1.08,
@@ -35,6 +42,8 @@ CURRENCY_TO_USD = {
 
 
 COUNTRY_TO_REGION = {
+    # Country-to-region mapping is used for supplier benchmarking and analytics.
+    # It is separate from the cost model's manufacturing-region assumptions.
     "India": "South Asia",
     "China": "East Asia",
     "Vietnam": "Southeast Asia",
@@ -53,6 +62,8 @@ COUNTRY_TO_REGION = {
 
 
 CATEGORY_KEYWORDS = {
+    # If ERP category text is inconsistent, the description is used to infer a
+    # simple sheet-metal category such as bracket, plate, cover, or assembly.
     "Bracket": [
         "bracket",
     ],
@@ -103,6 +114,7 @@ class PipelineResult:
 
 
 def load_erp_file(path: str | Path) -> pd.DataFrame:
+    """Read either Excel or CSV ERP data into a pandas DataFrame."""
     source = Path(path)
     if source.suffix.lower() in {".xlsx", ".xls"}:
         return pd.read_excel(source)
@@ -110,18 +122,21 @@ def load_erp_file(path: str | Path) -> pd.DataFrame:
 
 
 def validate_erp_columns(raw_data: pd.DataFrame) -> None:
+    """Stop early if mandatory ERP columns are missing."""
     missing = [column for column in REQUIRED_ERP_COLUMNS if column not in raw_data.columns]
     if missing:
         raise ValueError(f"Missing required ERP columns: {', '.join(missing)}")
 
 
 def normalize_text(value: object) -> str:
+    """Standardize text values so duplicates and mappings behave consistently."""
     if pd.isna(value):
         return ""
     return " ".join(str(value).strip().split())
 
 
 def map_category(raw_category: object, description: object) -> str:
+    """Map noisy ERP category/description text to the project part categories."""
     combined = f"{normalize_text(raw_category)} {normalize_text(description)}".lower()
     for category, keywords in CATEGORY_KEYWORDS.items():
         if any(keyword in combined for keyword in keywords):
@@ -130,6 +145,7 @@ def map_category(raw_category: object, description: object) -> str:
 
 
 def anonymize_suppliers(suppliers: pd.Series) -> tuple[pd.Series, pd.DataFrame]:
+    """Replace supplier names with Supplier_1, Supplier_2, etc. for privacy."""
     normalized = suppliers.map(normalize_text)
     unique_suppliers = sorted(supplier for supplier in normalized.dropna().unique() if supplier)
     mapping = {
@@ -146,16 +162,20 @@ def anonymize_suppliers(suppliers: pd.Series) -> tuple[pd.Series, pd.DataFrame]:
 
 
 def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
+    """Main ERP pipeline used by both scripts and the Streamlit app."""
     validate_erp_columns(raw_data)
     data = raw_data.copy()
     before_rows = len(data)
 
+    # 1) Normalize text columns before duplicate checks and mappings.
     for column in ["Part Number", "Part Description", "Category", "Supplier Name", "Supplier Country", "Currency"]:
         data[column] = data[column].map(normalize_text)
 
+    # 2) Remove exact duplicate purchase rows and record how many were removed.
     data = data.drop_duplicates()
     duplicate_rows_removed = before_rows - len(data)
 
+    # 3) Convert dates, quantity, and price into proper numeric/date types.
     data["PO Date"] = pd.to_datetime(data["PO Date"], errors="coerce")
     data["Quantity"] = pd.to_numeric(data["Quantity"], errors="coerce")
     data["Unit Price"] = pd.to_numeric(data["Unit Price"], errors="coerce")
@@ -178,6 +198,8 @@ def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
         .any(axis=1)
         .sum()
     )
+    # 4) Remove unusable rows: missing fields, returns/credits, zero quantities,
+    #    zero prices, and currencies that are not supported in the demo mapping.
     data = data.dropna(
         subset=[
             "Part Number",
@@ -195,6 +217,8 @@ def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
     unknown_currency_rows = int((~data["Currency"].isin(CURRENCY_TO_USD)).sum())
     data = data[data["Currency"].isin(CURRENCY_TO_USD)]
 
+    # 5) Create analysis fields: anonymized supplier, mapped category,
+    #    USD-normalized price, calendar fields, and broad supplier region.
     supplier_ids, supplier_map = anonymize_suppliers(data["Supplier Name"])
     data["supplier_id"] = supplier_ids
     data["category_mapped"] = data.apply(
@@ -224,6 +248,8 @@ def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
         }
     )
 
+    # Data-quality counts are exported so the review can show what happened to
+    # the raw file. Current sample: 97 source rows -> 90 clean usable rows.
     quality = {
         "source_rows": before_rows,
         "duplicate_rows_removed": duplicate_rows_removed,
@@ -240,6 +266,7 @@ def clean_erp_data(raw_data: pd.DataFrame) -> PipelineResult:
 
 
 def save_pipeline_outputs(result: PipelineResult, output_dir: str | Path) -> None:
+    """Write cleaned ERP data, supplier map, and quality report as CSV files."""
     target = Path(output_dir)
     target.mkdir(parents=True, exist_ok=True)
     result.cleaned_data.to_csv(target / "erp_cleaned.csv", index=False)

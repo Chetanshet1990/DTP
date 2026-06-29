@@ -1,0 +1,4 @@
+algorithm,training_mae,training_mape,training_rmse,training_r2,backend,target_label
+Linear Regression,131.7334976058312,12.441050661298423,194.7736183552009,0.9464171766789844,Linear Regression,ml_fair_price_label
+Random Forest,58.10935779542103,4.857610194343864,116.13706128566659,0.9809494730267606,Random Forest,ml_fair_price_label
+XGBoost,16.197413470419853,1.8951477576447127,19.605801159832197,0.9994570816556231,GradientBoosting fallback; install libomp for native XGBoost on macOS,ml_fair_price_label

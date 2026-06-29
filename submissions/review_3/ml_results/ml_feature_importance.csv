@@ -1,0 +1,88 @@
+algorithm,feature,importance,explanation_method
+Random Forest,Supplier_Region_USA,0.3721274431515456,Tree feature importance
+Random Forest,Energy_Kwh_Per_Part,0.3530068597809796,Tree feature importance
+Random Forest,Labour_Hours,0.13891967260939672,Tree feature importance
+Random Forest,Weight_Kg,0.04925425597880472,Tree feature importance
+Random Forest,Length_Mm,0.024436467662013638,Tree feature importance
+Random Forest,Material_Rate_Per_Kg,0.01625517921118381,Tree feature importance
+Random Forest,Annual_Volume,0.009321305412945798,Tree feature importance
+Random Forest,Thickness_Mm,0.007366933962328573,Tree feature importance
+Random Forest,Category_Fabricated assembly,0.005213179922754132,Tree feature importance
+Random Forest,Hole_Count,0.004686676779308298,Tree feature importance
+Random Forest,Width_Mm,0.004113701276219879,Tree feature importance
+Random Forest,Bend_Count,0.004033130161238388,Tree feature importance
+Random Forest,Material_Grade_SS304,0.003509748416677104,Tree feature importance
+Random Forest,Material_Grade_GI G90,0.001506188801980022,Tree feature importance
+Random Forest,Surface_Finish_Painted,0.0007854582342372523,Tree feature importance
+Random Forest,Category_Bracket,0.0006894497562336067,Tree feature importance
+Random Forest,Category_Cover / panel,0.0006446744787708621,Tree feature importance
+Random Forest,Surface_Finish_Passivated,0.0005604970539671079,Tree feature importance
+Random Forest,Surface_Finish_Zinc plated,0.0005555619403649887,Tree feature importance
+Random Forest,Material_Grade_CRCA IS 513,0.0005167942964290344,Tree feature importance
+Random Forest,Surface_Finish_Powder coated,0.0004841022786393223,Tree feature importance
+Random Forest,Material_Grade_IS 2062 E250,0.00047278706629049464,Tree feature importance
+Random Forest,Category_Mounting plate,0.0004154438776729756,Tree feature importance
+Random Forest,Material_Grade_IS 2062 E350,0.0003529501325953692,Tree feature importance
+Random Forest,Supplier_Region_India,0.00034860286251568956,Tree feature importance
+Random Forest,Supplier_Region_Vietnam,0.00024842414233148977,Tree feature importance
+Random Forest,Supplier_Region_China,0.00017451075257544785,Tree feature importance
+Random Forest,Commodity_Index,0.0,Tree feature importance
+Random Forest,Fx_Rate,0.0,Tree feature importance
+XGBoost,Supplier_Region_USA,0.4125717477230398,Tree feature importance
+XGBoost,Energy_Kwh_Per_Part,0.31231839863732935,Tree feature importance
+XGBoost,Labour_Hours,0.15260072504900468,Tree feature importance
+XGBoost,Weight_Kg,0.04258448117149683,Tree feature importance
+XGBoost,Material_Rate_Per_Kg,0.03735370483488543,Tree feature importance
+XGBoost,Length_Mm,0.015112363440604893,Tree feature importance
+XGBoost,Category_Cover / panel,0.007290294818320128,Tree feature importance
+XGBoost,Material_Grade_SS304,0.006495558598900301,Tree feature importance
+XGBoost,Thickness_Mm,0.005048388840787266,Tree feature importance
+XGBoost,Material_Grade_GI G90,0.0036030023515629494,Tree feature importance
+XGBoost,Hole_Count,0.0016400327658989227,Tree feature importance
+XGBoost,Width_Mm,0.0013438414127310296,Tree feature importance
+XGBoost,Annual_Volume,0.001107210906654692,Tree feature importance
+XGBoost,Bend_Count,0.000378506054782641,Tree feature importance
+XGBoost,Surface_Finish_Passivated,0.00016212340674174588,Tree feature importance
+XGBoost,Material_Grade_IS 2062 E350,9.3629509759358e-05,Tree feature importance
+XGBoost,Surface_Finish_Painted,7.459564718076923e-05,Tree feature importance
+XGBoost,Material_Grade_CRCA IS 513,6.899825383873317e-05,Tree feature importance
+XGBoost,Surface_Finish_Zinc plated,5.109388460790788e-05,Tree feature importance
+XGBoost,Surface_Finish_Powder coated,4.668157052353005e-05,Tree feature importance
+XGBoost,Category_Mounting plate,2.6367525200369103e-05,Tree feature importance
+XGBoost,Supplier_Region_China,1.2931690424189398e-05,Tree feature importance
+XGBoost,Supplier_Region_Vietnam,7.999795805112332e-06,Tree feature importance
+XGBoost,Supplier_Region_India,5.545782992346851e-06,Tree feature importance
+XGBoost,Category_Bracket,1.7746277866836686e-06,Tree feature importance
+XGBoost,Material_Grade_IS 2062 E250,1.6991403639878774e-09,Tree feature importance
+XGBoost,Fx_Rate,0.0,Tree feature importance
+XGBoost,Commodity_Index,0.0,Tree feature importance
+XGBoost,Category_Fabricated assembly,0.0,Tree feature importance
+XGBoost,Supplier_Region_USA,285.088452689726,SHAP TreeExplainer mean absolute value
+XGBoost,Energy_Kwh_Per_Part,226.49059573611336,SHAP TreeExplainer mean absolute value
+XGBoost,Labour_Hours,154.83813502288484,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Rate_Per_Kg,68.18345631367616,SHAP TreeExplainer mean absolute value
+XGBoost,Length_Mm,36.56953207754986,SHAP TreeExplainer mean absolute value
+XGBoost,Weight_Kg,16.632316373590257,SHAP TreeExplainer mean absolute value
+XGBoost,Annual_Volume,9.773585513160818,SHAP TreeExplainer mean absolute value
+XGBoost,Width_Mm,9.516021337214545,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Grade_SS304,6.303616560723684,SHAP TreeExplainer mean absolute value
+XGBoost,Hole_Count,4.755040943939505,SHAP TreeExplainer mean absolute value
+XGBoost,Category_Cover / panel,4.181330483501823,SHAP TreeExplainer mean absolute value
+XGBoost,Bend_Count,4.077152560285266,SHAP TreeExplainer mean absolute value
+XGBoost,Surface_Finish_Passivated,4.019561037413816,SHAP TreeExplainer mean absolute value
+XGBoost,Thickness_Mm,2.9440918066123083,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Grade_GI G90,1.907137854474567,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Grade_IS 2062 E350,1.5706246227708802,SHAP TreeExplainer mean absolute value
+XGBoost,Category_Mounting plate,0.9589925592758365,SHAP TreeExplainer mean absolute value
+XGBoost,Surface_Finish_Powder coated,0.5832394853894309,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Grade_CRCA IS 513,0.4962254333451021,SHAP TreeExplainer mean absolute value
+XGBoost,Surface_Finish_Painted,0.4179042270913301,SHAP TreeExplainer mean absolute value
+XGBoost,Surface_Finish_Zinc plated,0.3106141071275554,SHAP TreeExplainer mean absolute value
+XGBoost,Supplier_Region_China,0.1581351246374814,SHAP TreeExplainer mean absolute value
+XGBoost,Supplier_Region_India,0.1310669662070177,SHAP TreeExplainer mean absolute value
+XGBoost,Supplier_Region_Vietnam,0.11827732535449223,SHAP TreeExplainer mean absolute value
+XGBoost,Category_Bracket,0.0309411280051677,SHAP TreeExplainer mean absolute value
+XGBoost,Material_Grade_IS 2062 E250,0.0007160058380851201,SHAP TreeExplainer mean absolute value
+XGBoost,Fx_Rate,0.0,SHAP TreeExplainer mean absolute value
+XGBoost,Commodity_Index,0.0,SHAP TreeExplainer mean absolute value
+XGBoost,Category_Fabricated assembly,0.0,SHAP TreeExplainer mean absolute value

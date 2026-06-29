@@ -1,0 +1,9 @@
+result,value
+Parts evaluated,120.0
+Prediction-ready parts,120.0
+Isolation Forest anomalies,51.0
+K-Means clusters,3.0
+SHAP explanation coverage percent,100.0
+Best training R2,0.9994570816556231
+Lowest training MAE,16.197413470419853
+Lowest training RMSE,19.605801159832197
