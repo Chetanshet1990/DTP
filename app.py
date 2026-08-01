@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 from pathlib import Path
 from urllib.parse import quote
@@ -8,9 +9,21 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+import streamlit.components.v1 as components
 
 from dtp.cost_model import PRICE_GAP_THRESHOLD, calculate_should_cost
-from dtp.drawing_extractor import drawing_results_to_frame, extract_specs_from_text
+from dtp.drawing_extractor import extract_specs_from_text
+from dtp.drawing_preview import (
+    build_zoomable_preview_html,
+    load_raster_image,
+    pdf_page_count,
+    render_pdf_page,
+)
+from dtp.drawing_review import (
+    build_vertical_review_table,
+    reviewed_specs_from_vertical_table,
+)
+from dtp.drawing_store import store_committed_drawing
 from dtp.erp_pipeline import clean_erp_data
 from dtp.market_data import get_market_adjustment
 from dtp.ml_models import run_ai_pricing_models
@@ -24,6 +37,9 @@ from dtp.procurement_explain import build_procurement_explanations
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
+BASE_PARTS_PATH = DATA_DIR / "sample_parts.csv"
+ACTIVE_PARTS_PATH = DATA_DIR / "processed" / "active_parts_master.csv"
+DRAWINGS_DIR = DATA_DIR / "drawings"
 APP_HOME_URL = "./"
 USD_TO_INR = 83.0
 
@@ -65,6 +81,19 @@ REQUIRED_PART_COLUMNS = [
     "annual_volume",
 ]
 
+DRAWING_SPEC_COLUMNS = [
+    "category",
+    "material",
+    "material_grade",
+    "thickness_mm",
+    "length_mm",
+    "width_mm",
+    "weight_kg",
+    "bend_count",
+    "hole_count",
+    "surface_finish",
+]
+
 
 def load_csv(name: str) -> pd.DataFrame:
     """Load one default demo CSV from the data folder."""
@@ -74,12 +103,93 @@ def load_csv(name: str) -> pd.DataFrame:
 def read_parts(uploaded_file) -> pd.DataFrame:
     """Read the sheet-metal part master used by cost twin and ML models."""
     if uploaded_file is None:
-        return load_csv("sample_parts.csv")
+        source = ACTIVE_PARTS_PATH if ACTIVE_PARTS_PATH.exists() else BASE_PARTS_PATH
+        return pd.read_csv(source)
 
     suffix = Path(uploaded_file.name).suffix.lower()
     if suffix in {".xlsx", ".xls"}:
         return pd.read_excel(uploaded_file)
     return pd.read_csv(uploaded_file)
+
+
+def initialize_parts_database(parts: pd.DataFrame) -> pd.DataFrame:
+    """Keep the active engineering master in Streamlit session state."""
+    if "parts_database" not in st.session_state:
+        st.session_state["parts_database"] = parts.copy()
+        st.session_state["drawing_update_log"] = []
+    return st.session_state["parts_database"].copy()
+
+
+def reset_drawing_upload_widget() -> None:
+    """Create a fresh uploader whenever the user changes the target part."""
+    st.session_state["drawing_upload_generation"] = (
+        st.session_state.get("drawing_upload_generation", 0) + 1
+    )
+
+
+def save_active_parts_database(parts: pd.DataFrame) -> None:
+    """Persist the reviewed active part master with an atomic file replacement."""
+    ACTIVE_PARTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = ACTIVE_PARTS_PATH.with_suffix(".tmp")
+    parts.to_csv(temporary_path, index=False)
+    temporary_path.replace(ACTIVE_PARTS_PATH)
+
+
+def missing_drawing_specs(parts: pd.DataFrame) -> pd.Series:
+    """Count missing drawing-derived specs for each part."""
+    return parts[DRAWING_SPEC_COLUMNS].apply(
+        lambda row: sum(pd.isna(value) or str(value).strip() == "" for value in row),
+        axis=1,
+    )
+
+
+def validate_drawing_review(reviewed_row: pd.Series) -> list[str]:
+    """Validate one reviewed drawing row before it can replace active data."""
+    errors = []
+    missing = [
+        column
+        for column in DRAWING_SPEC_COLUMNS
+        if pd.isna(reviewed_row.get(column)) or str(reviewed_row.get(column)).strip() == ""
+    ]
+    if missing:
+        errors.append("Missing required drawing fields: " + ", ".join(missing))
+
+    positive_fields = ["thickness_mm", "length_mm", "width_mm", "weight_kg"]
+    count_fields = ["bend_count", "hole_count"]
+    for column in positive_fields:
+        value = pd.to_numeric(pd.Series([reviewed_row.get(column)]), errors="coerce").iloc[0]
+        if pd.isna(value) or float(value) <= 0:
+            errors.append(f"{column} must be greater than zero.")
+    for column in count_fields:
+        value = pd.to_numeric(pd.Series([reviewed_row.get(column)]), errors="coerce").iloc[0]
+        if pd.isna(value) or float(value) < 0 or not float(value).is_integer():
+            errors.append(f"{column} must be a non-negative whole number.")
+    return errors
+
+
+def apply_drawing_specs_to_part(
+    parts: pd.DataFrame,
+    part_id: str,
+    specs: dict[str, object],
+    file_name: str,
+    confidence: str,
+) -> pd.DataFrame:
+    """Update one part row with extracted drawing specifications."""
+    updated = parts.copy()
+    mask = updated["part_id"].astype(str) == str(part_id)
+    if not mask.any():
+        return updated
+
+    for column in DRAWING_SPEC_COLUMNS:
+        if column in specs:
+            updated.loc[mask, column] = specs[column]
+
+    updated.loc[mask, "drawing_source_file"] = file_name
+    updated.loc[mask, "drawing_extraction_confidence"] = confidence
+    updated.loc[mask, "engineering_data_source"] = "Uploaded drawing"
+    updated.loc[mask, "engineering_status"] = "Committed"
+    updated.loc[mask, "prediction_status"] = "Ready"
+    return updated
 
 
 def read_erp_transactions(uploaded_file) -> pd.DataFrame:
@@ -144,8 +254,13 @@ def validate_parts(parts: pd.DataFrame) -> list[str]:
         "annual_volume",
     ]
     for column in numeric_columns:
-        if pd.to_numeric(parts[column], errors="coerce").isna().any():
+        source = parts[column]
+        numeric = pd.to_numeric(source, errors="coerce")
+        blank = source.isna() | source.astype(str).str.strip().eq("")
+        if ((~blank) & numeric.isna()).any():
             errors.append(f"Column '{column}' contains non-numeric values.")
+        if column not in DRAWING_SPEC_COLUMNS and numeric.isna().any():
+            errors.append(f"Column '{column}' contains missing numeric values.")
     return errors
 
 
@@ -420,7 +535,7 @@ def render_part_detail(
             xaxis={"showticklabels": False},
             legend={"orientation": "h", "y": -0.12},
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with right_col:
         fig = go.Figure()
@@ -454,7 +569,7 @@ def render_part_detail(
             xaxis_title=None,
             legend={"orientation": "h", "y": -0.18},
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     st.caption("Daily ML fair-price table with monthly ERP price reference")
     table_view = price_history[
@@ -481,7 +596,7 @@ def render_part_detail(
                 "ml_price_gap_pct": "{:,.1f}%",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -509,7 +624,7 @@ def render_part_detail(
                 "material_cost": "₹{:,.0f}",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -563,7 +678,7 @@ def render_part_detail(
                     },
                 ]
             ),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
         st.caption(
@@ -624,6 +739,22 @@ def money(value: float) -> str:
     return f"₹{value:,.0f}"
 
 
+def compact_money(value: float) -> str:
+    """Format large INR portfolio values using Indian number units."""
+    absolute_value = abs(value)
+    if absolute_value >= 10_000_000:
+        scaled_value, unit = value / 10_000_000, "Crore"
+    elif absolute_value >= 100_000:
+        scaled_value, unit = value / 100_000, "Lakh"
+    elif absolute_value >= 1_000:
+        scaled_value, unit = value / 1_000, "Thousand"
+    else:
+        return money(value)
+
+    formatted_value = f"{scaled_value:,.2f}".rstrip("0").rstrip(".")
+    return f"₹{formatted_value} {unit}"
+
+
 def percent(value: float) -> str:
     """Format percentages for display."""
     return f"{value:,.1f}%"
@@ -661,74 +792,313 @@ with st.sidebar:
     if market_adjustment.source_status != "live":
         st.warning("Live API unavailable; baseline market inputs are being used.")
 
-tab_overview, tab_upload, tab_ai, tab_erp, tab_cost, tab_explain, tab_suppliers, tab_geo = st.tabs(
-    [
-        "Portfolio",
-        "Upload Drawing",
-        "AI Models",
-        "ERP Intelligence",
-        "Cost Drivers",
-        "Explainability",
-        "Supplier Benchmark",
-        "Geo Cost",
-    ]
+uploaded_file = None
+erp_file = None
+
+initial_parts = read_parts(uploaded_file)
+initial_errors = validate_parts(initial_parts)
+if initial_errors:
+    for error in initial_errors:
+        st.error(error)
+    st.stop()
+
+parts_raw = initialize_parts_database(initial_parts)
+
+WORKSPACE_VIEWS = [
+    "Portfolio",
+    "Upload Drawing",
+    "AI Models",
+    "ERP Intelligence",
+    "Cost Drivers",
+    "Explainability",
+    "Supplier Benchmark",
+    "Geo Cost",
+]
+active_workspace = st.radio(
+    "Workspace view",
+    WORKSPACE_VIEWS,
+    horizontal=True,
+    key="active_workspace",
+    label_visibility="collapsed",
 )
 
-with tab_upload:
+if active_workspace == "Upload Drawing":
     st.subheader("Upload Drawing")
+    commit_message = st.session_state.pop("drawing_commit_message", None)
+    if commit_message:
+        st.success(commit_message)
+
+    missing_counts = missing_drawing_specs(parts_raw)
+    part_options = parts_raw["part_id"].astype(str).tolist()
+    if "drawing_upload_generation" not in st.session_state:
+        st.session_state["drawing_upload_generation"] = 0
+    selected_upload_part = st.selectbox(
+        "Select part number",
+        part_options,
+        format_func=lambda part_id: (
+            f"{part_id} - {int(missing_counts.loc[parts_raw['part_id'].astype(str) == part_id].iloc[0])} missing drawing fields"
+        ),
+        help="Choose the ERP/part-master record that should receive the extracted drawing specifications.",
+        key="selected_upload_part",
+        on_change=reset_drawing_upload_widget,
+    )
+    selected_upload_row = parts_raw.loc[
+        parts_raw["part_id"].astype(str) == selected_upload_part
+    ].iloc[0]
+    st.caption("Current technical specifications for selected part")
+    st.dataframe(
+        pd.DataFrame([selected_upload_row[["part_id", "part_name"] + DRAWING_SPEC_COLUMNS]]),
+        width="stretch",
+        hide_index=True,
+    )
+
     drawing_files = st.file_uploader(
         "Upload technical drawing",
         type=["pdf", "png", "jpg", "jpeg", "tif", "tiff", "dxf", "dwg"],
-        accept_multiple_files=True,
+        accept_multiple_files=False,
         help="Use drawings when engineering specifications are missing from the dataset.",
+        key=(
+            f"drawing_upload_{selected_upload_part}_"
+            f"{st.session_state['drawing_upload_generation']}"
+        ),
     )
     if drawing_files:
-        extraction_results = []
-        for drawing_file in drawing_files:
-            text = extract_uploaded_drawing_text(drawing_file)
-            extraction_results.append(extract_specs_from_text(text, file_name=drawing_file.name))
+        text = extract_uploaded_drawing_text(drawing_files)
+        extraction_result = extract_specs_from_text(text, file_name=drawing_files.name)
 
-        st.success(f"{len(drawing_files)} drawing file(s) processed for technical specification review.")
+        if not text.strip():
+            st.warning(
+                "No readable text was extracted. Text-based PDFs and DXF/TXT files can be parsed in this prototype; "
+                "scanned images need an OCR layer before technical fields can be fetched automatically."
+            )
+
+        st.success("Drawing processed for technical specification review.")
         st.dataframe(
             pd.DataFrame(
                 [
                     {
-                        "file_name": drawing_file.name,
-                        "file_type": Path(drawing_file.name).suffix.lower().lstrip("."),
-                        "size_kb": drawing_file.size / 1024,
+                        "part_id": selected_upload_part,
+                        "file_name": drawing_files.name,
+                        "file_type": Path(drawing_files.name).suffix.lower().lstrip("."),
+                        "size_kb": drawing_files.size / 1024,
+                        "extraction_confidence": extraction_result.confidence,
                     }
-                    for drawing_file in drawing_files
                 ]
             ).style.format({"size_kb": "{:,.1f}"}),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
-        st.caption("Extracted manufacturing specifications")
-        st.dataframe(
-            drawing_results_to_frame(extraction_results),
-            use_container_width=True,
-            hide_index=True,
+        candidate_row = selected_upload_row.copy()
+        for column, value in extraction_result.extracted_specs.items():
+            if column in DRAWING_SPEC_COLUMNS:
+                candidate_row[column] = value
+
+        preview_column, review_column = st.columns([1.35, 1], vertical_alignment="top")
+        with preview_column:
+            st.caption("Drawing preview")
+            drawing_suffix = Path(drawing_files.name).suffix.lower()
+            if drawing_suffix == ".pdf":
+                try:
+                    pdf_bytes = drawing_files.getvalue()
+                    page_count = pdf_page_count(pdf_bytes)
+                    preview_page = 1
+                    if page_count > 1:
+                        preview_page = st.number_input(
+                            "Preview page",
+                            min_value=1,
+                            max_value=page_count,
+                            value=1,
+                            step=1,
+                            key=f"preview_page_{selected_upload_part}_{drawing_files.name}",
+                        )
+                    preview_image = render_pdf_page(
+                        pdf_bytes,
+                        page_number=int(preview_page),
+                        scale=1.5,
+                    )
+                    components.html(
+                        build_zoomable_preview_html(
+                            preview_image,
+                            f"{drawing_files.name} — page {preview_page} of {page_count}",
+                        ),
+                        height=700,
+                        scrolling=False,
+                    )
+                except Exception as exc:
+                    st.warning(f"PDF preview is unavailable: {exc}")
+                    st.download_button(
+                        "Open or download uploaded drawing",
+                        data=drawing_files.getvalue(),
+                        file_name=drawing_files.name,
+                        mime="application/pdf",
+                    )
+            elif drawing_suffix in {".png", ".jpg", ".jpeg", ".tif", ".tiff"}:
+                components.html(
+                    build_zoomable_preview_html(
+                        load_raster_image(drawing_files.getvalue()),
+                        drawing_files.name,
+                    ),
+                    height=700,
+                    scrolling=False,
+                )
+            else:
+                st.info("Inline preview is available for PDF and image drawings.")
+
+        with review_column:
+            st.caption("Review and edit the extracted specifications before committing")
+            reviewed_frame = st.data_editor(
+                build_vertical_review_table(candidate_row, DRAWING_SPEC_COLUMNS),
+                width="stretch",
+                hide_index=True,
+                num_rows="fixed",
+                disabled=["Parameter"],
+                height=455,
+                column_config={
+                    "Parameter": st.column_config.TextColumn("Parameter", width="medium"),
+                    "Reviewed value": st.column_config.TextColumn(
+                        "Reviewed value",
+                        width="medium",
+                    ),
+                },
+                key=f"drawing_review_vertical_{selected_upload_part}_{drawing_files.name}",
+            )
+        raw_reviewed_specs = reviewed_specs_from_vertical_table(
+            reviewed_frame,
+            DRAWING_SPEC_COLUMNS,
         )
-        st.caption(
-            "These extracted fields map to the required cost-twin inputs: material grade, "
-            "thickness, dimensions, bends, holes, and surface finish."
-        )
+        reviewed_row = pd.Series(raw_reviewed_specs)
+        review_errors = validate_drawing_review(reviewed_row)
+        if review_errors:
+            st.warning(
+                "Review required: " + " ".join(review_errors)
+            )
+
+        if st.button(
+            "Commit reviewed data and rerun ML pipeline",
+            type="primary",
+            disabled=bool(review_errors),
+        ):
+            reviewed_specs = reviewed_specs_from_vertical_table(
+                reviewed_frame,
+                DRAWING_SPEC_COLUMNS,
+                normalize=True,
+            )
+            candidate_parts = apply_drawing_specs_to_part(
+                st.session_state["parts_database"],
+                selected_upload_part,
+                reviewed_specs,
+                drawing_files.name,
+                extraction_result.confidence,
+            )
+            stored_drawing = None
+            try:
+                candidate_errors = validate_parts(candidate_parts)
+                if candidate_errors:
+                    raise ValueError(" ".join(candidate_errors))
+
+                candidate_ready = candidate_parts.loc[
+                    missing_drawing_specs(candidate_parts).eq(0)
+                ].copy()
+                candidate_priced = calculate_should_cost(
+                    candidate_ready,
+                    material_rate_factor=market_adjustment.material_rate_factor,
+                )
+                run_ai_pricing_models(
+                    candidate_priced,
+                    commodity_index=market_adjustment.steel_index,
+                    fx_rate=market_adjustment.usd_inr,
+                    market_source_status=market_adjustment.source_status,
+                )
+                stored_drawing = store_committed_drawing(
+                    content=drawing_files.getvalue(),
+                    original_file_name=drawing_files.name,
+                    part_id=selected_upload_part,
+                    drawings_directory=DRAWINGS_DIR,
+                    project_root=BASE_DIR,
+                )
+                selected_mask = candidate_parts["part_id"].astype(str).eq(selected_upload_part)
+                candidate_parts.loc[
+                    selected_mask, "drawing_stored_path"
+                ] = stored_drawing.relative_path
+                candidate_parts.loc[
+                    selected_mask, "drawing_sha256"
+                ] = stored_drawing.sha256
+                candidate_parts.loc[
+                    selected_mask, "drawing_committed_at_utc"
+                ] = stored_drawing.committed_at_utc
+                save_active_parts_database(candidate_parts)
+            except Exception as exc:
+                if stored_drawing is not None:
+                    stored_drawing.absolute_path.unlink(missing_ok=True)
+                st.error(f"Commit cancelled; the active database was not changed. {exc}")
+            else:
+                st.session_state["parts_database"] = candidate_parts
+                st.session_state["drawing_update_log"].append(
+                    {
+                        "part_id": selected_upload_part,
+                        "file_name": drawing_files.name,
+                        "stored_path": stored_drawing.relative_path,
+                        "drawing_sha256": stored_drawing.sha256,
+                        "confidence": extraction_result.confidence,
+                        "updated_fields": ", ".join(DRAWING_SPEC_COLUMNS),
+                        "previous_values": json.dumps(
+                            {
+                                column: (
+                                    None
+                                    if pd.isna(selected_upload_row[column])
+                                    else selected_upload_row[column]
+                                )
+                                for column in DRAWING_SPEC_COLUMNS
+                            },
+                            default=str,
+                        ),
+                        "committed_values": json.dumps(reviewed_specs, default=str),
+                        "committed_at_utc": stored_drawing.committed_at_utc,
+                    }
+                )
+                st.session_state["drawing_commit_message"] = (
+                    f"{selected_upload_part} committed. The should-cost, fair-price, "
+                    "anomaly, clustering, SHAP, savings, and portfolio pipelines were rerun."
+                )
+                st.rerun()
     else:
-        st.info("Upload a drawing when thickness, material, dimensions, bends, holes, or finish are missing.")
+        st.info("Upload a drawing when thickness, material, dimensions, weight, bends, holes, or finish are missing.")
 
-uploaded_file = None
-erp_file = None
+    if st.session_state.get("drawing_update_log"):
+        with st.expander("Committed drawing audit log"):
+            st.dataframe(
+                pd.DataFrame(st.session_state["drawing_update_log"]),
+                width="stretch",
+                hide_index=True,
+            )
+    if st.button("Restore baseline part master"):
+        baseline_parts = pd.read_csv(BASE_PARTS_PATH)
+        baseline_parts["engineering_status"] = "Baseline ready"
+        baseline_parts["prediction_status"] = "Ready"
+        save_active_parts_database(baseline_parts)
+        st.session_state["parts_database"] = baseline_parts
+        st.session_state["drawing_update_log"] = []
+        parts_raw = st.session_state["parts_database"].copy()
+        st.success("Active part database restored from the recoverable baseline part master.")
 
-parts_raw = read_parts(uploaded_file)
+parts_raw = st.session_state["parts_database"].copy()
 errors = validate_parts(parts_raw)
 if errors:
     for error in errors:
         st.error(error)
     st.stop()
 
+# Parts with incomplete drawing fields remain available for ingestion but are
+# intentionally blocked from cost and ML execution until reviewed data is committed.
+ready_mask = missing_drawing_specs(parts_raw).eq(0)
+ready_parts_raw = parts_raw.loc[ready_mask].copy()
+if ready_parts_raw.empty:
+    st.error("No parts have complete engineering data. Commit a reviewed drawing first.")
+    st.stop()
+
 # First backend calculation: engineering should-cost from the Cost Digital Twin.
 priced_parts = calculate_should_cost(
-    parts_raw,
+    ready_parts_raw,
     material_rate_factor=market_adjustment.material_rate_factor,
 )
 # Second backend calculation: ML fair price, anomaly detection, clusters, XAI.
@@ -765,11 +1135,11 @@ total_ml_fair_spend = (
 opportunity = ai_priced_parts["ai_savings_opportunity"].sum()
 savings_part_count = int((ai_priced_parts["ai_savings_opportunity"] > 0).sum())
 
-with tab_overview:
+if active_workspace == "Portfolio":
     kpi_cols = st.columns(4)
-    kpi_cols[0].metric("ERP annual spend", money(total_spend))
-    kpi_cols[1].metric("ML fair spend", money(total_ml_fair_spend))
-    kpi_cols[2].metric("Qualified savings", money(opportunity))
+    kpi_cols[0].metric("ERP annual spend", compact_money(total_spend))
+    kpi_cols[1].metric("ML fair spend", compact_money(total_ml_fair_spend))
+    kpi_cols[2].metric("Qualified savings", compact_money(opportunity))
     kpi_cols[3].metric("Savings-eligible parts", f"{savings_part_count}/{len(ai_priced_parts)}")
     st.caption(
         "Qualified savings excludes parts where ML Predicted Fair Price is higher than ERP/current supplier price. "
@@ -806,7 +1176,7 @@ with tab_overview:
     portfolio_view = add_part_links(ai_priced_parts)
     st.dataframe(
         portfolio_view[display_columns],
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         column_config={
             "part_id": st.column_config.LinkColumn(
@@ -857,9 +1227,9 @@ with tab_overview:
         y1=ai_priced_parts["ai_predicted_fair_price"].max() * 1.1,
         line={"dash": "dash", "color": "#555"},
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
-with tab_ai:
+if active_workspace == "AI Models":
     st.subheader("AI Pricing, Anomaly Detection, and Segmentation")
     st.caption(
         "Linear Regression, Random Forest, and XGBoost learn the explainable should-cost as "
@@ -901,7 +1271,7 @@ with tab_ai:
                 "should_cost_variance_pct": "{:,.1f}%",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -917,14 +1287,14 @@ with tab_ai:
                     "training_r2": "{:,.3f}",
                 }
             ),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
     st.caption("Fair-price label and confidence quality")
     st.dataframe(
         ai_result.label_quality.style.format({"avg_sample_weight": "{:,.2f}"}),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
     with clusters_col:
@@ -938,14 +1308,14 @@ with tab_ai:
                     "qualified_savings": "₹{:,.0f}",
                 }
             ),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
     st.caption("Part-level SHAP / model explanation")
     st.dataframe(
         ai_result.shap_explanations.style.format({"top_feature_impact": "{:,.3f}"}),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -968,7 +1338,7 @@ with tab_ai:
         labels={"importance": "Feature importance", "feature": "Feature"},
     )
     fig.update_yaxes(matches=None, showticklabels=True)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     fig = px.scatter(
         ai_priced_parts,
@@ -984,9 +1354,9 @@ with tab_ai:
             "erp_price": "ERP supplier price",
         },
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
-with tab_erp:
+if active_workspace == "ERP Intelligence":
     st.subheader("ERP Procurement Intelligence")
     if erp_error:
         st.error(erp_error)
@@ -1017,7 +1387,7 @@ with tab_erp:
             markers=True,
             labels={"po_month": "PO month", "avg_unit_price_usd": "Avg unit price USD"},
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         left_col, right_col = st.columns(2)
         supplier_price = (
@@ -1037,7 +1407,7 @@ with tab_erp:
                 supplier_price.style.format(
                     {"avg_unit_price_usd": "${:,.2f}", "spend_usd": "${:,.0f}"}
                 ),
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -1047,7 +1417,7 @@ with tab_erp:
                 country_spend.style.format(
                     {"avg_unit_price_usd": "${:,.2f}", "spend_usd": "${:,.0f}"}
                 ),
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -1056,11 +1426,11 @@ with tab_erp:
             erp_transactions.style.format(
                 {"unit_price": "{:,.2f}", "unit_price_usd": "${:,.2f}", "quantity": "{:,.0f}"}
             ),
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
-with tab_cost:
+if active_workspace == "Cost Drivers":
     selected_part_id = st.selectbox("Select part", priced_parts["part_id"])
     selected_part = priced_parts.loc[priced_parts["part_id"] == selected_part_id].iloc[0]
     cost_breakdown = pd.DataFrame(
@@ -1093,7 +1463,7 @@ with tab_cost:
         delta=f"{percent(selected_part['price_gap_pct'])} vs ERP",
     )
     fig = px.bar(cost_breakdown, x="cost_bucket", y="amount", text_auto=".0f")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.caption("Drawing-derived attributes used by the cost twin")
     st.dataframe(
@@ -1118,11 +1488,11 @@ with tab_cost:
                 "material_cost": "₹{:,.0f}",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
-with tab_explain:
+if active_workspace == "Explainability":
     st.subheader("Explainable AI Procurement Answers")
     st.caption(
         "This table answers what fair price is, what ERP purchased price is, who the vendor is, "
@@ -1138,14 +1508,14 @@ with tab_explain:
                 "savings_opportunity": "₹{:,.0f}",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
     st.subheader("Why Parts Are Flagged")
     st.dataframe(
         explanations.style.format({"price_gap_pct": "{:,.1f}%"}),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
     driver_summary = (
@@ -1160,9 +1530,9 @@ with tab_explain:
         color="gap_status",
         labels={"top_cost_driver": "Top cost driver"},
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
-with tab_suppliers:
+if active_workspace == "Supplier Benchmark":
     supplier_summary = (
         ai_priced_parts.groupby(["current_supplier", "category"], as_index=False)
         .agg(
@@ -1200,7 +1570,7 @@ with tab_suppliers:
                 "on_time_delivery_pct": "{:,.0f}%",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
     fig = px.scatter(
@@ -1212,9 +1582,9 @@ with tab_suppliers:
         hover_name="current_supplier",
         labels={"quality_ppm": "Quality defects PPM", "avg_gap_pct": "Average price gap %"},
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
-with tab_geo:
+if active_workspace == "Geo Cost":
     geo_part_id = st.selectbox("Geo comparison part", priced_parts["part_id"], key="geo_part")
     geo_part = priced_parts.loc[priced_parts["part_id"] == geo_part_id].iloc[0]
     geo_df = geo_cost_comparison(geo_part, geo_indices)
@@ -1232,7 +1602,7 @@ with tab_geo:
                 "landed_should_cost": "₹{:,.0f}",
             }
         ),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
     fig = px.bar(
@@ -1243,7 +1613,7 @@ with tab_geo:
         text_auto=".0f",
         labels={"landed_should_cost": "Landed should-cost"},
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 st.divider()
 with st.expander("Cost model"):
