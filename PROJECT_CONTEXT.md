@@ -363,6 +363,17 @@ Prediction confidence should consider:
 - Market-data freshness.
 - Model validation error.
 
+Implemented V1 confidence rule:
+
+- Start at three confidence points for a prediction with complete critical inputs.
+- Deduct one point when fewer than two similar ERP-history records exist.
+- Deduct one point when the ERP label is clipped, lifted, missing, or otherwise not a clean ERP label.
+- Deduct one point when commodity/FX inputs are not live.
+- Deduct one point when optional engineering fields are missing.
+- Map three or more points to `High`, two points to `Medium`, and fewer than two points to `Low`; missing critical fields remain `Blocked`.
+
+The strongest part-level SHAP feature and prediction confidence must not be interpreted as the same measure. SHAP identifies which feature most strongly moved one prediction relative to the model baseline and whether it increased or decreased the result. Confidence describes evidence sufficiency and freshness. For example, `Supplier_Region_USA` may strongly increase one predicted fair price while confidence remains Low because the ERP label required outlier adjustment and live commodity/FX inputs were unavailable.
+
 ---
 
 # Expected Outputs
@@ -376,6 +387,9 @@ Prediction confidence should consider:
 7. Cost Breakdown Percentage Chart
 8. Monthly ERP Price vs Daily ML-Predicted Fair Price Chart
 9. Live Market Inputs Panel
+10. Review-Only Procurement Action Table
+11. Same-Page Detailed Procurement Decision PDF
+12. Committed Drawing Preview on the Part Detail Page
 
 ---
 
@@ -421,6 +435,12 @@ The application currently supports:
 - Side-by-side PDF/image drawing preview and editable extracted-value table before commit.
 - Cursor-following drawing magnification with 1.5x, 2x, and 3x selectable zoom levels.
 - Vertical two-column engineering review table with one parameter per row beside the drawing preview.
+- Complete portfolio table plus a separate `Review`-only action table sorted by highest ML gap.
+- Explainability table restricted to positive qualified-savings opportunities.
+- Single-row report selection that displays the chosen report below the table without opening a new browser tab.
+- Detailed procurement PDF generation covering ERP-price diagnosis, cost evidence, negotiation steps, BATNA, XAI interpretation, confidence context, and a decision checklist.
+- Server-side rendering of generated PDF pages to avoid blank browser-blocked iframe previews.
+- Conditional committed-drawing preview below the drawing-derived cost-twin inputs on the part detail page.
 
 The dedicated part detail page shows:
 
@@ -433,6 +453,7 @@ The dedicated part detail page shows:
 - Manual template adjustment bucket.
 - Monthly ERP price versus daily ML-predicted fair price.
 - Auditable fair-price table with ERP data source labels.
+- Committed drawing preview and drawing download when a stored file is available.
 - Drawing-derived cost twin inputs.
 - Market-adjusted steel rate per kg and material cost.
 - Cost breakdown derived from live market-adjusted material cost.

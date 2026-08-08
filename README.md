@@ -29,6 +29,11 @@ https://github.com/Chetanshet1990/DTP
 - Supports a single-row drawing review and edit step before an atomic commit to the selected part
 - Blocks incomplete drawing rows from pricing without blocking the drawing-ingestion screen or the rest of the portfolio
 - Dry-runs and then reruns should-cost, fair-price, anomaly, clustering, SHAP, savings, and portfolio outputs after a drawing commit
+- Shows both the complete priced-part portfolio and a separate highest-gap-first table containing only `Review` items
+- Restricts Explainable AI Procurement Answers to parts with a positive qualified savings opportunity
+- Generates a detailed part-specific procurement PDF covering ERP-price explanation, negotiation strategy, BATNA, XAI interpretation, cost evidence, and a decision checklist
+- Opens a selected procurement report below the Explainability table in the same browser tab and retains a PDF download option
+- Shows a committed PDF/image drawing below the drawing-derived inputs on the part-detail page
 
 ## ML Fair Price Pipeline
 
@@ -98,6 +103,19 @@ Live commodity/FX available -> use live values
 Live unavailable and cache exists -> use latest cached values
 Live unavailable and no cache exists -> use baseline values and mark lower confidence
 ```
+
+Prediction-confidence scoring starts at three points and deducts one point for
+each applicable limitation: fewer than two similar ERP records, a non-clean or
+adjusted ERP label, non-live market inputs, or missing optional engineering
+fields. A ready prediction is `High` at three or more points, `Medium` at two,
+and `Low` below two. Missing critical fields produce `Blocked` instead.
+
+SHAP strength and prediction confidence are intentionally separate. A feature
+such as `Supplier_Region_USA` can be the strongest local price driver while the
+overall prediction remains Low confidence because its ERP label was adjusted
+and live commodity/FX inputs were unavailable. SHAP explains the direction and
+relative contribution of a feature; confidence describes how defensible the
+prediction is given evidence quality and freshness.
 
 ## Cost Formula
 
@@ -310,6 +328,28 @@ and `3x` zoom levels; moving the cursor away restores the complete drawing view.
 The review table is transposed vertically so all engineering fields use the height
 beside the drawing instead of extending horizontally beyond the available width.
 DXF and DWG uploads continue through extraction/commit without an inline renderer.
+
+On the part-detail page, a committed PDF or raster drawing is also rendered
+immediately below `Drawing-derived cost twin inputs`. PDF pages are rendered
+server-side, image drawings are displayed inline, and the original file remains
+available through the download button. Parts without a committed drawing do not
+show an empty preview section.
+
+## Portfolio and Procurement Reports
+
+The Portfolio workspace contains two distinct tables:
+
+- `ERP Price vs Predicted Fair Price`: all priced parts.
+- `Items Requiring Review`: only parts whose engineering should-cost gap status
+  is `Review`, sorted by highest ML price-gap percentage.
+
+The Explainability workspace lists only parts with
+`savings_opportunity > 0`. Select one row to generate and display its detailed
+procurement PDF below the table in the current browser tab. The PDF replaces
+the long narrative columns in the table and contains the ERP-price explanation,
+negotiation sequence, BATNA and escalation path, cost breakdown, SHAP-based XAI
+interpretation, confidence context, and decision checklist. PDF pages are
+rendered server-side to avoid browser restrictions on embedded `data:` PDF URLs.
 
 ## ML Results and Graphs
 

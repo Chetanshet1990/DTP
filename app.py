@@ -28,6 +28,7 @@ from dtp.erp_pipeline import clean_erp_data
 from dtp.market_data import get_market_adjustment
 from dtp.ml_models import run_ai_pricing_models
 from dtp.procurement_explain import build_procurement_explanations
+from dtp.procurement_report import build_procurement_report
 
 
 # REVIEW EXPLANATION:
@@ -464,6 +465,82 @@ def price_development_history(selected_part: pd.Series, erp_transactions: pd.Dat
     return history
 
 
+def render_committed_drawing_preview(selected_part: pd.Series) -> None:
+    """Show the committed drawing for a part when a stored file is available."""
+    stored_path = selected_part.get("drawing_stored_path")
+    if pd.isna(stored_path) or not str(stored_path).strip():
+        return
+
+    drawing_path = Path(str(stored_path))
+    if not drawing_path.is_absolute():
+        drawing_path = BASE_DIR / drawing_path
+    drawing_path = drawing_path.resolve()
+    project_root = BASE_DIR.resolve()
+    if project_root not in drawing_path.parents or not drawing_path.is_file():
+        st.warning("The drawing is recorded for this part, but its stored file is unavailable.")
+        return
+
+    st.markdown("#### Engineering drawing preview")
+    drawing_content = drawing_path.read_bytes()
+    drawing_suffix = drawing_path.suffix.lower()
+    source_name = selected_part.get("drawing_source_file")
+    drawing_name = (
+        Path(str(source_name)).name
+        if pd.notna(source_name) and str(source_name).strip()
+        else drawing_path.name
+    )
+    part_id = str(selected_part["part_id"])
+
+    try:
+        if drawing_suffix == ".pdf":
+            page_count = pdf_page_count(drawing_content)
+            preview_page = 1
+            if page_count > 1:
+                preview_page = st.number_input(
+                    "Drawing preview page",
+                    min_value=1,
+                    max_value=page_count,
+                    value=1,
+                    step=1,
+                    key=f"detail_drawing_page_{part_id}",
+                )
+            preview_image = render_pdf_page(
+                drawing_content,
+                page_number=int(preview_page),
+                scale=1.5,
+            )
+            components.html(
+                build_zoomable_preview_html(
+                    preview_image,
+                    f"{drawing_name} — page {preview_page} of {page_count}",
+                ),
+                height=700,
+                scrolling=False,
+            )
+        elif drawing_suffix in {".png", ".jpg", ".jpeg", ".tif", ".tiff"}:
+            components.html(
+                build_zoomable_preview_html(
+                    load_raster_image(drawing_content),
+                    drawing_name,
+                ),
+                height=700,
+                scrolling=False,
+            )
+        else:
+            st.info("An inline preview is unavailable for this drawing format.")
+    except Exception as exc:
+        st.warning(f"Drawing preview is unavailable: {exc}")
+
+    mime_type = "application/pdf" if drawing_suffix == ".pdf" else "application/octet-stream"
+    st.download_button(
+        "Download engineering drawing",
+        data=drawing_content,
+        file_name=drawing_name,
+        mime=mime_type,
+        key=f"detail_drawing_download_{part_id}",
+    )
+
+
 def render_part_detail(
     selected_part: pd.Series,
     priced_parts: pd.DataFrame,
@@ -535,7 +612,7 @@ def render_part_detail(
             xaxis={"showticklabels": False},
             legend={"orientation": "h", "y": -0.12},
         )
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
 
     with right_col:
         fig = go.Figure()
@@ -569,7 +646,7 @@ def render_part_detail(
             xaxis_title=None,
             legend={"orientation": "h", "y": -0.18},
         )
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
 
     st.caption("Daily ML fair-price table with monthly ERP price reference")
     table_view = price_history[
@@ -627,6 +704,7 @@ def render_part_detail(
         width="stretch",
         hide_index=True,
     )
+    render_committed_drawing_preview(selected_part)
 
     with st.expander("How predicted fair price is calculated"):
         st.write(
@@ -760,6 +838,15 @@ def percent(value: float) -> str:
     return f"{value:,.1f}%"
 
 
+@st.cache_data(show_spinner=False)
+def cached_procurement_report(
+    explanation_data: dict[str, object],
+    part_data: dict[str, object],
+) -> bytes:
+    """Cache generated PDF bytes for the selected procurement line item."""
+    return build_procurement_report(explanation_data, part_data)
+
+
 # MAIN APP EXECUTION STARTS HERE.
 # Explain this as: load inputs, run backend models, then render tabs.
 st.title("Sheet Metal Cost Digital Twin")
@@ -814,9 +901,15 @@ WORKSPACE_VIEWS = [
     "Supplier Benchmark",
     "Geo Cost",
 ]
+requested_report_part_id = st.query_params.get("report_part_id")
+if isinstance(requested_report_part_id, list):
+    requested_report_part_id = requested_report_part_id[0] if requested_report_part_id else None
+requested_report_part_id = str(requested_report_part_id) if requested_report_part_id else None
+default_workspace = "Explainability" if requested_report_part_id else "Portfolio"
 active_workspace = st.radio(
     "Workspace view",
     WORKSPACE_VIEWS,
+    index=WORKSPACE_VIEWS.index(default_workspace),
     horizontal=True,
     key="active_workspace",
     label_visibility="collapsed",
@@ -1147,7 +1240,12 @@ if active_workspace == "Portfolio":
     )
 
     st.subheader("ERP Price vs Predicted Fair Price")
-    st.caption("Click a part ID to open its detailed cost digital twin analysis page.")
+    review_parts = (
+        ai_priced_parts.loc[ai_priced_parts["gap_status"].eq("Review")]
+        .sort_values("ai_price_gap_pct", ascending=False)
+        .copy()
+    )
+    st.caption("All priced parts. Click a part ID to open its detailed cost digital twin analysis page.")
     display_columns = [
         "part_id",
         "gap_status",
@@ -1173,40 +1271,53 @@ if active_workspace == "Portfolio":
         "shap_top_feature",
         "shap_procurement_explanation",
     ]
+    pricing_table_config = {
+        "part_id": st.column_config.LinkColumn(
+            "part_id",
+            display_text=r"part_id=([^&]+)",
+            help="Open detailed part analysis",
+        ),
+        "gap_status": st.column_config.LinkColumn(
+            "gap_status",
+            display_text=r"gap_status=([^&]+)",
+            help="Open detailed part analysis",
+        ),
+        "erp_price": st.column_config.NumberColumn("erp_price", format="₹%.0f"),
+        "should_cost": st.column_config.NumberColumn("should_cost", format="₹%.0f"),
+        "ai_predicted_fair_price": st.column_config.NumberColumn("ML fair price", format="₹%.0f"),
+        "ai_price_gap_pct": st.column_config.NumberColumn("ML gap %", format="%.1f%%"),
+        "ai_savings_opportunity": st.column_config.NumberColumn(
+            "qualified_ml_savings",
+            format="₹%.0f",
+        ),
+        "should_cost_variance_pct": st.column_config.NumberColumn(
+            "ML vs should-cost %",
+            format="%.1f%%",
+        ),
+        "shap_top_feature": st.column_config.TextColumn("top ML driver"),
+        "shap_procurement_explanation": st.column_config.TextColumn("ML explanation"),
+        "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
+        "weight_kg": st.column_config.NumberColumn("weight_kg", format="%.2f"),
+        "material_cost": st.column_config.NumberColumn("material_cost", format="₹%.0f"),
+    }
     portfolio_view = add_part_links(ai_priced_parts)
     st.dataframe(
         portfolio_view[display_columns],
         width="stretch",
         hide_index=True,
-        column_config={
-            "part_id": st.column_config.LinkColumn(
-                "part_id",
-                display_text=r"part_id=([^&]+)",
-                help="Open detailed part analysis",
-            ),
-            "gap_status": st.column_config.LinkColumn(
-                "gap_status",
-                display_text=r"gap_status=([^&]+)",
-                help="Open detailed part analysis",
-            ),
-            "erp_price": st.column_config.NumberColumn("erp_price", format="₹%.0f"),
-            "should_cost": st.column_config.NumberColumn("should_cost", format="₹%.0f"),
-            "ai_predicted_fair_price": st.column_config.NumberColumn("ML fair price", format="₹%.0f"),
-            "ai_price_gap_pct": st.column_config.NumberColumn("ML gap %", format="%.1f%%"),
-            "ai_savings_opportunity": st.column_config.NumberColumn(
-                "qualified_ml_savings",
-                format="₹%.0f",
-            ),
-            "should_cost_variance_pct": st.column_config.NumberColumn(
-                "ML vs should-cost %",
-                format="%.1f%%",
-            ),
-            "shap_top_feature": st.column_config.TextColumn("top ML driver"),
-            "shap_procurement_explanation": st.column_config.TextColumn("ML explanation"),
-            "thickness_mm": st.column_config.NumberColumn("thickness_mm", format="%.1f"),
-            "weight_kg": st.column_config.NumberColumn("weight_kg", format="%.2f"),
-            "material_cost": st.column_config.NumberColumn("material_cost", format="₹%.0f"),
-        },
+        column_config=pricing_table_config,
+    )
+
+    st.subheader("Items Requiring Review")
+    st.caption(
+        f"Showing {len(review_parts)} parts with Gap Status = Review, sorted by highest ML gap."
+    )
+    review_view = add_part_links(review_parts)
+    st.dataframe(
+        review_view[display_columns],
+        width="stretch",
+        hide_index=True,
+        column_config=pricing_table_config,
     )
 
     fig = px.scatter(
@@ -1227,7 +1338,7 @@ if active_workspace == "Portfolio":
         y1=ai_priced_parts["ai_predicted_fair_price"].max() * 1.1,
         line={"dash": "dash", "color": "#555"},
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 if active_workspace == "AI Models":
     st.subheader("AI Pricing, Anomaly Detection, and Segmentation")
@@ -1338,7 +1449,7 @@ if active_workspace == "AI Models":
         labels={"importance": "Feature importance", "feature": "Feature"},
     )
     fig.update_yaxes(matches=None, showticklabels=True)
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     fig = px.scatter(
         ai_priced_parts,
@@ -1354,7 +1465,7 @@ if active_workspace == "AI Models":
             "erp_price": "ERP supplier price",
         },
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 if active_workspace == "ERP Intelligence":
     st.subheader("ERP Procurement Intelligence")
@@ -1387,7 +1498,7 @@ if active_workspace == "ERP Intelligence":
             markers=True,
             labels={"po_month": "PO month", "avg_unit_price_usd": "Avg unit price USD"},
         )
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
 
         left_col, right_col = st.columns(2)
         supplier_price = (
@@ -1463,7 +1574,7 @@ if active_workspace == "Cost Drivers":
         delta=f"{percent(selected_part['price_gap_pct'])} vs ERP",
     )
     fig = px.bar(cost_breakdown, x="cost_bucket", y="amount", text_auto=".0f")
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.caption("Drawing-derived attributes used by the cost twin")
     st.dataframe(
@@ -1494,35 +1605,101 @@ if active_workspace == "Cost Drivers":
 
 if active_workspace == "Explainability":
     st.subheader("Explainable AI Procurement Answers")
-    st.caption(
-        "This table answers what fair price is, what ERP purchased price is, who the vendor is, "
-        "why ERP price is high, what feature drives the increase, how to negotiate, savings opportunity, and BATNA."
+    savings_explanations = (
+        procurement_explanations.loc[
+            procurement_explanations["savings_opportunity"].gt(0)
+        ]
+        .sort_values("savings_opportunity", ascending=False)
+        .copy()
     )
-    st.dataframe(
-        procurement_explanations.style.format(
-            {
-                "erp_price": "₹{:,.0f}",
-                "fair_price": "₹{:,.0f}",
-                "should_cost": "₹{:,.0f}",
-                "price_gap_pct": "{:,.1f}%",
-                "savings_opportunity": "₹{:,.0f}",
-            }
-        ),
+    st.caption(
+        f"Showing {len(savings_explanations)} parts with a qualified savings opportunity. "
+        "Select a row to open its detailed PDF below in this tab."
+    )
+    narrative_columns = [
+        "erp_price_explanation",
+        "negotiation_recommendation",
+        "batna",
+        "xai_summary",
+    ]
+    report_table = savings_explanations.drop(columns=narrative_columns).copy()
+    report_selection = st.dataframe(
+        report_table,
         width="stretch",
         hide_index=True,
+        key="procurement_report_table",
+        on_select="rerun",
+        selection_mode="single-row",
+        column_config={
+            "erp_price": st.column_config.NumberColumn("ERP price", format="₹%.0f"),
+            "fair_price": st.column_config.NumberColumn("ML fair price", format="₹%.0f"),
+            "should_cost": st.column_config.NumberColumn("Should-cost", format="₹%.0f"),
+            "price_gap_pct": st.column_config.NumberColumn("Price gap", format="%.1f%%"),
+            "savings_opportunity": st.column_config.NumberColumn(
+                "Qualified savings",
+                format="₹%.0f",
+            ),
+        },
     )
 
-    st.subheader("Why Parts Are Flagged")
-    st.dataframe(
-        explanations.style.format({"price_gap_pct": "{:,.1f}%"}),
-        width="stretch",
-        hide_index=True,
-    )
+    selected_report_part_id = requested_report_part_id
+    selected_report_rows = report_selection.selection.rows
+    if selected_report_rows:
+        selected_report_part_id = str(
+            report_table.iloc[int(selected_report_rows[0])]["part_id"]
+        )
+
+    if selected_report_part_id:
+        explanation_match = savings_explanations.loc[
+            savings_explanations["part_id"].astype(str).eq(selected_report_part_id)
+        ]
+        part_match = ai_priced_parts.loc[
+            ai_priced_parts["part_id"].astype(str).eq(selected_report_part_id)
+        ]
+        if explanation_match.empty or part_match.empty:
+            st.warning("The selected PDF is unavailable because this part has no qualified savings opportunity.")
+        else:
+            explanation_row = explanation_match.iloc[0]
+            report_part = part_match.iloc[0]
+            report_bytes = cached_procurement_report(
+                explanation_row.to_dict(),
+                report_part.to_dict(),
+            )
+            safe_report_part_id = "".join(
+                character if character.isalnum() or character in {"-", "_"} else "_"
+                for character in selected_report_part_id
+            )
+            report_file_name = f"Procurement_Decision_Report_{safe_report_part_id}.pdf"
+            st.subheader(f"Detailed Procurement PDF — {selected_report_part_id}")
+            st.download_button(
+                "Download detailed PDF",
+                data=report_bytes,
+                file_name=report_file_name,
+                mime="application/pdf",
+                key=f"download_procurement_report_{safe_report_part_id}",
+            )
+            report_page_count = pdf_page_count(report_bytes)
+            for report_page_number in range(1, report_page_count + 1):
+                report_page_image = render_pdf_page(
+                    report_bytes,
+                    page_number=report_page_number,
+                    scale=1.6,
+                )
+                st.image(
+                    report_page_image,
+                    caption=(
+                        f"{report_file_name} — page {report_page_number} "
+                        f"of {report_page_count}"
+                    ),
+                    width="stretch",
+                )
+
     driver_summary = (
         explanations.groupby(["top_cost_driver", "gap_status"], as_index=False)
         .agg(parts=("part_id", "count"))
         .sort_values("parts", ascending=False)
     )
+    st.caption("Flagged parts grouped by their top cost driver")
     fig = px.bar(
         driver_summary,
         x="top_cost_driver",
@@ -1530,7 +1707,7 @@ if active_workspace == "Explainability":
         color="gap_status",
         labels={"top_cost_driver": "Top cost driver"},
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 if active_workspace == "Supplier Benchmark":
     supplier_summary = (
@@ -1582,7 +1759,7 @@ if active_workspace == "Supplier Benchmark":
         hover_name="current_supplier",
         labels={"quality_ppm": "Quality defects PPM", "avg_gap_pct": "Average price gap %"},
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 if active_workspace == "Geo Cost":
     geo_part_id = st.selectbox("Geo comparison part", priced_parts["part_id"], key="geo_part")
@@ -1613,7 +1790,7 @@ if active_workspace == "Geo Cost":
         text_auto=".0f",
         labels={"landed_should_cost": "Landed should-cost"},
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
 st.divider()
 with st.expander("Cost model"):
